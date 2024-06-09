@@ -1,7 +1,53 @@
+import { SetStateAction, useState } from 'react';
+import { Form, Select, Button, Row, Col } from 'antd';
+import { renderRefugeeFields } from './Fields/renderRefugeeFields';
+import { renderStudentFields } from './Fields/renderStudentFields';
+import { renderCommonFields } from './Fields/renderCommonFields';
+
+const { Option } = Select;
+
 const EditProfile = () => {
+  const [category, setCategory] = useState('Student');
+
+  const handleCategoryChange = (value: SetStateAction<string>) => {
+    setCategory(value);
+  };
+
+  const onFinish = values => {
+    console.log('Form Values:', values);
+  };
+
   return (
-    <div>
-      <h1>This is EditProfile page</h1>
+    <div className="container">
+      <Form layout="vertical" onFinish={onFinish}>
+        <Row gutter={16} key="category-row">
+          <Col span={12} key="category-col">
+            <Form.Item label="Category" name="category" key="category">
+              <Select onChange={handleCategoryChange}>
+                <Option value="Student" key="student-option">
+                  Student
+                </Option>
+                <Option value="Refugee" key="refugee-option">
+                  Refugee
+                </Option>
+              </Select>
+            </Form.Item>
+          </Col>
+        </Row>
+
+        <hr />
+        <div className="row mx-auto">
+          {renderCommonFields()}
+          {category === 'Student' && renderStudentFields()}
+          {category === 'Refugee' && renderRefugeeFields()}
+
+          <Form.Item key="submit-button">
+            <Button type="primary" htmlType="submit">
+              Submit
+            </Button>
+          </Form.Item>
+        </div>
+      </Form>
     </div>
   );
 };

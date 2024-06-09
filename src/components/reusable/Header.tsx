@@ -50,7 +50,7 @@ const Header = () => {
       link: '/register',
     },
     {
-      id: 2,
+      id: 3,
       label: 'profile',
       link: '/profile',
     },
