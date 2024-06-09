@@ -1,0 +1,577 @@
+* {
+  margin: 0;
+}
+
+.header-fixed {
+  background-color: #292c2f;
+  box-shadow: 0 1px 1px #ccc;
+  padding: 20px 40px;
+  height: 80px;
+  color: #ffffff;
+  box-sizing: border-box;
+  top: -100px;
+
+  -webkit-transition: top 0.3s;
+  transition: top 0.3s;
+}
+
+.header-fixed .header-limiter {
+  max-width: 1200px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.header-fixed-placeholder {
+  height: 80px;
+  display: none;
+}
+
+/* Logo */
+
+.header-fixed .header-limiter h1 {
+  float: left;
+  font: normal 28px Cookie, Arial, Helvetica, sans-serif;
+  line-height: 40px;
+  margin: 0;
+}
+
+.header-fixed .header-limiter h1 span {
+  color: #5383d3;
+}
+
+/* The navigation links */
+
+.header-fixed .header-limiter a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.header-fixed .header-limiter h1 {
+  font-weight: 900;
+  font-size: 20px;
+}
+
+.header-fixed .header-limiter nav {
+  font: 16px Arial, Helvetica, sans-serif;
+  line-height: 40px;
+  float: right;
+}
+
+.header-fixed .header-limiter nav a {
+  display: inline-block;
+  padding: 0 5px;
+  text-decoration: none;
+  color: #ffffff;
+  opacity: 0.9;
+  font-size: 22px;
+}
+
+.header-fixed .header-limiter nav a:hover {
+  opacity: 1;
+}
+
+.header-fixed .header-limiter nav a.selected {
+  color: #608bd2;
+  pointer-events: none;
+  opacity: 1;
+}
+
+/* Fixed version of the header */
+
+body.fixed .header-fixed {
+  padding: 10px 40px;
+  height: 50px;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+body.fixed .header-fixed-placeholder {
+  display: block;
+}
+
+body.fixed .header-fixed .header-limiter h1 {
+  font-size: 24px;
+  line-height: 30px;
+}
+
+body.fixed .header-fixed .header-limiter nav {
+  line-height: 28px;
+  font-size: 13px;
+}
+
+.cntnt {
+  position: absolute;
+  top: 50px;
+  left: 100px;
+  font-size: 37px;
+  background: linear-gradient(
+    160deg,
+    rgba(0, 104, 154, 1) 0%,
+    rgba(34, 134, 185, 1) 70%,
+    rgba(93, 171, 213, 1) 100%
+  );
+  padding: 22px 30px;
+  color: white;
+}
+
+.all-btns {
+  width: 100%;
+  height: 550px;
+  background-image: url(https://mustafiz.org/wp-content/uploads/2024/01/Education-2-1.webp);
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.banner {
+  width: 100%;
+  height: 26vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url('https://www.pixelstalk.net/wp-content/uploads/2016/05/Black-Abstract-HD-Wallpaper.jpg');
+}
+
+.banner-content {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.banner-title {
+  font-size: 1.5rem;
+  /* Adjust as needed for different screen sizes */
+  color: white;
+  font-weight: bold;
+  text-align: center;
+}
+
+.banner-links {
+  margin-top: 0.5rem;
+  /* Adjust as needed for different screen sizes */
+  font-size: 0.875rem;
+  /* Adjust as needed for different screen sizes */
+  color: white;
+}
+
+.banner-link {
+  color: white;
+  text-decoration: none;
+}
+
+.banner-link:hover {
+  text-decoration: underline;
+}
+
+.banner-divider {
+  margin: 0 0.5rem;
+  /* Adjust as needed for different screen sizes */
+}
+
+.other-page {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding-top: 40px;
+}
+
+.btn-container {
+  display: flex;
+  position: absolute;
+  bottom: 50px;
+  left: 150px;
+  flex-wrap: wrap;
+}
+
+.circle-contain-st {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 32px;
+  font-weight: 700;
+  border: 7px solid red;
+  height: 160px;
+  width: 160px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 6px solid #fdd700;
+}
+
+.circle-contain-st h3 {
+  transition: transform 0.3s ease;
+}
+
+.circle-contain-st:hover {
+  border: 6px solid #fdd70003;
+  background-color: #fdd700;
+}
+
+.circle-contain-st:hover h3 {
+  color: white;
+  transform: scale(1.1);
+}
+
+.btn-student {
+  text-decoration: none;
+  color: #58595b;
+  text-transform: capitalize;
+  display: inline-block;
+}
+
+.btn-student:hover {
+  border-color: transparent;
+}
+
+.circle-contain-rf {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 32px;
+  font-weight: 700;
+  border: 7px solid red;
+  height: 160px;
+  width: 160px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 6px solid #66a447;
+}
+
+.circle-contain-rf h3 {
+  transition: transform 0.3s ease;
+}
+
+.circle-contain-rf:hover {
+  border: 6px solid #fdd70003;
+  background-color: #66a447;
+}
+
+.circle-contain-rf:hover h3 {
+  color: white;
+  transform: scale(1.1);
+}
+
+.btn-refugee {
+  text-decoration: none;
+  color: #58595b;
+  text-transform: capitalize;
+  display: inline-block;
+}
+
+.btn-refugee:hover {
+  border-color: transparent;
+}
+
+/*  */
+
+.circle-contain-ot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 32px;
+  font-weight: 700;
+  border: 7px solid red;
+  height: 160px;
+  width: 160px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 6px solid #6abdea;
+}
+
+.circle-contain-ot h3 {
+  transition: transform 0.3s ease;
+}
+
+.circle-contain-ot:hover {
+  border: 6px solid #fdd70003;
+  background-color: #6abdea;
+}
+
+.circle-contain-ot:hover h3 {
+  color: white;
+  transform: scale(1.1);
+}
+
+.btn-other {
+  text-decoration: none;
+  color: #58595b;
+  text-transform: capitalize;
+  display: inline-block;
+}
+
+.btn-other:hover {
+  border-color: transparent;
+}
+
+.feature-title {
+  text-transform: uppercase;
+  font-weight: 400;
+
+  margin-top: 20px;
+
+  position: relative;
+  max-width: 555px;
+  margin-left: 0.9375rem;
+  margin-bottom: 0;
+}
+
+h2.feature-title {
+  top: 240px;
+  font-size: 24px;
+  color: #fefefe;
+  left: 91px;
+}
+
+.feature-title::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: calc(50% + 115px);
+  height: 1px;
+  background-color: white;
+}
+
+.feature-title::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 0;
+  left: calc(50% + 115px);
+  height: 1px;
+  background-color: white;
+}
+
+/*  */
+
+.btn-elderlypeople {
+  box-shadow: 0px 10px 14px -7px #276873;
+  background: linear-gradient(to bottom, #599bb3 5%, #408c99 100%);
+  background-color: #599bb3;
+  border-radius: 8px;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: Arial;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 13px 32px;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #3d768a;
+}
+
+.btn-elderlypeople:hover {
+  background: linear-gradient(to bottom, #408c99 5%, #599bb3 100%);
+  background-color: #408c99;
+}
+
+.btn-elderlypeople:active {
+  position: relative;
+  top: 1px;
+}
+
+/* - */
+
+.application-form {
+  margin: auto;
+  padding: inherit;
+  border: 1px solid #30363d;
+  padding-top: 30px;
+  background-color: #161b22;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s;
+}
+
+/* Style fieldsets */
+fieldset {
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  padding: 15px;
+}
+
+/* Style legend */
+legend {
+  font-weight: bold;
+  font-size: 1.2em;
+  color: white;
+}
+
+/* Style form groups */
+.form-group {
+  margin-bottom: 15px;
+}
+
+/* Style labels */
+label {
+  display: block;
+  margin-top: 10px;
+  color: #c9d1d9;
+}
+
+/* Style input fields */
+input[type='text'],
+input[type='date'],
+input[type='tel'],
+input[type='email'],
+textarea,
+select {
+  font-family: 'Montserrat', sans-serif;
+  width: 100%;
+  padding: 12px;
+  margin-top: 5px;
+  /* border: 1px solid #30363d; */
+  border-radius: 5px;
+  /* background-color: #0d1117; */
+  color: #1139a9;
+  box-sizing: border-box;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  outline: none;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #888;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: #9b59b6;
+  box-shadow: 0 0 8px rgba(155, 89, 182, 0.6);
+}
+
+textarea {
+  resize: none;
+}
+
+/* Style submit button */
+input[type='submit'] {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  margin-top: 20px;
+  background-color: #9b59b6;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+
+input[type='submit']:hover {
+  background-color: #8e44ad;
+  transform: translateY(-3px);
+  box-shadow: 0 0 10px rgba(155, 89, 182, 0.6);
+}
+
+.aligned-checkbox-label .form-group {
+  display: flex;
+  align-items: center;
+}
+
+.aligned-checkbox-label .form-group label {
+  margin-left: 10px;
+  /* Adjust this value as needed */
+}
+
+input[type='file'] {
+  border: 1px solid #ababab;
+  width: 100%;
+  padding: 5px;
+  border-radius: 4px;
+  color: white;
+}
+
+/* Making the header responsive */
+
+@media all and (max-width: 600px) {
+  .cntnt {
+    display: none;
+  }
+
+  .btn-container {
+    display: flex;
+    position: absolute;
+    top: 33px;
+    flex-wrap: wrap;
+    left: 20px;
+    justify-content: center;
+  }
+
+  .header-fixed {
+    padding: 20px 0;
+    height: 75px;
+  }
+
+  .header-fixed .header-limiter h1 {
+    float: none;
+    margin: -8px 0 10px;
+    text-align: center;
+    font-size: 24px;
+    line-height: 1;
+  }
+
+  .header-fixed .header-limiter nav {
+    line-height: 1;
+    float: none;
+  }
+
+  .header-fixed .header-limiter nav a {
+    font-size: 13px;
+  }
+
+  body.fixed .header-fixed {
+    display: none;
+  }
+}
+
+.primary_btn {
+  box-shadow: 0 1px #fdb200;
+  color: #fff;
+  border-radius: 0;
+  display: inline-block;
+  font-size: 18px;
+  width: 100%;
+  text-decoration: none;
+  border: none;
+  padding: 11px 4px;
+  font-weight: 400;
+  background: #0e3fad;
+}
+.primary_btn:hover {
+  background-color: #0e3eadd2;
+}
+student-profile .card {
+  border-radius: 10px;
+}
+
+.student-profile .card .card-header .profile_img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  margin: 10px auto;
+  border: 10px solid #ccc;
+  border-radius: 50%;
+}
+
+.student-profile .card h3 {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.student-profile .card p {
+  font-size: 16px;
+  color: #000;
+}
+
+.student-profile .table th,
+.student-profile .table td {
+  font-size: 14px;
+  padding: 5px 10px;
+  color: #000;
+}

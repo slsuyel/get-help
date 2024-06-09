@@ -1,0 +1,49 @@
+import { LogoutOutlined, UserOutlined } from '@ant-design/icons';
+import { Dropdown } from 'antd';
+
+const items = [
+  {
+    label: 'Profile',
+    key: '1',
+    icon: <UserOutlined />,
+    onClick: handleProfileClick,
+  },
+  {
+    label: 'Log Out',
+    key: '2', // Use a unique key for each menu item
+    icon: <LogoutOutlined />,
+    onClick: handleLogoutClick,
+  },
+];
+
+const menuProps = {
+  items,
+};
+
+// Define the onClick handler for Profile click
+function handleProfileClick() {
+  console.log('Profile clicked');
+  // Add your logic here
+}
+
+// Define the onClick handler for Logout click
+function handleLogoutClick() {
+  console.log('Logout clicked');
+  // Add your logic here
+}
+
+const Navbar = () => {
+  return (
+    <div className="d-flex gap-3 align-item-center ">
+      <Dropdown.Button
+        menu={menuProps}
+        placement="bottom"
+        icon={<UserOutlined />}
+      >
+        Admin
+      </Dropdown.Button>
+    </div>
+  );
+};
+
+export default Navbar;
