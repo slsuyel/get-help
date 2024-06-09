@@ -2,7 +2,8 @@ import MainLayout from '@/components/layouts/MainLayout';
 import AdminLayout from '@/components/layouts/admin/AdminLayout';
 import ErrorPage from '@/components/reusable/ErrorPage';
 
-import Home from '@/pages/Home/Home';
+// import Home from '@/pages/Home/Home';
+import NewHome from '@/pages/Home/NewHome';
 import EditProfile from '@/pages/Profile/EditProfile';
 import Profile from '@/pages/Profile/Profile';
 import Student from '@/pages/Student/Student';
@@ -18,7 +19,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <Home />,
+        element: <NewHome />,
       },
       {
         path: '/students',

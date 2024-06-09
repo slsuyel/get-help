@@ -3,6 +3,7 @@ import { Form, Select, Button, Row, Col } from 'antd';
 import { renderRefugeeFields } from './Fields/renderRefugeeFields';
 import { renderStudentFields } from './Fields/renderStudentFields';
 import { renderCommonFields } from './Fields/renderCommonFields';
+import { TypeDataForm } from '@/types';
 
 const { Option } = Select;
 
@@ -13,7 +14,7 @@ const EditProfile = () => {
     setCategory(value);
   };
 
-  const onFinish = values => {
+  const onFinish = (values: TypeDataForm) => {
     console.log('Form Values:', values);
   };
 

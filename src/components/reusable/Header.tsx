@@ -75,11 +75,11 @@ const Header = () => {
             className="justify-content-end fs-5 fw-semibold gap-3"
           >
             {menuItems.map(item => (
-              <NavLink key={item.id} to={item.link} className="nav-link ">
+              <NavLink key={item.id} to={item.link} className="nav-link fs-1">
                 {item.label}
               </NavLink>
             ))}
-            <SoundOutlined />
+            <SoundOutlined className="fs-1" />
             <Switch
               checkedChildren={<i className="fas fa-sun"></i>}
               unCheckedChildren={<i className="fas fa-moon"></i>}
@@ -91,7 +91,7 @@ const Header = () => {
 
       {isMobile && (
         <>
-          <div className="align-items-center d-flex justify-content-between p-2 bg-dark">
+          <div className="align-items-center d-flex justify-content-between p-2 ">
             <Navbar.Brand href="/" className="p-1 ">
               <img src={logo} alt="" width={120} />
             </Navbar.Brand>
@@ -107,7 +107,7 @@ const Header = () => {
             open={MobileMenu}
           >
             {menuItems.map(item => (
-              <NavLink key={item.id} to={item.link} className="nav-link ">
+              <NavLink key={item.id} to={item.link} className="nav-link fs-1">
                 {item.label}
               </NavLink>
             ))}

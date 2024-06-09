@@ -7,9 +7,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 import { RouterProvider } from 'react-router-dom';
 import router from './routes/routes.tsx';
+import GoToTop from 'go-to-top-react/src/GoToTop.tsx';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <RouterProvider router={router} />
+    <GoToTop />
   </React.StrictMode>
 );
