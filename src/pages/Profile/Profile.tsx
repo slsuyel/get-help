@@ -159,7 +159,35 @@ const Profile = () => {
             </div>
 
             <hr className="mt-4" />
-            <div>documents:</div>
+            <div>
+              <h1>documents</h1>:
+              <div className="row mx-auto justify-content-center">
+                <div className="col-md-3 px-2">
+                  <div className="image-with-shadow">
+                    <img
+                      src="https://www.svgrepo.com/show/73122/picture.svg"
+                      alt="Image 1"
+                    />
+                  </div>
+                </div>
+                <div className="col-md-3 px-2">
+                  <div className="image-with-shadow">
+                    <img
+                      src="https://www.svgrepo.com/show/73122/picture.svg"
+                      alt="Image 2"
+                    />
+                  </div>
+                </div>
+                <div className="col-md-3 px-2">
+                  <div className="image-with-shadow">
+                    <img
+                      src="https://www.svgrepo.com/show/73122/picture.svg"
+                      alt="Image 3"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

@@ -4,9 +4,10 @@ const { Sider } = Layout;
 
 const sidebarItems = [
   { key: '1', title: 'Dashboard' },
-  { key: '2', title: 'Profile' },
-  { key: '3', title: 'Settings' },
-  { key: '4', title: 'Logout' },
+  { key: '2', title: 'Students' },
+  { key: '3', title: 'Refuges' },
+  { key: '4', title: 'Others' },
+  { key: '5', title: 'Settings' },
 ];
 
 const theme = false;
@@ -25,7 +26,7 @@ const Sidebar = () => (
     <div
       className="border-bottom "
       style={{
-        height: '4rem',
+        height: '65px',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',

@@ -17,16 +17,19 @@ const Login = () => {
   };
 
   return (
-    <div className="row mx-auto pb-5 pt-1 ">
+    <div className="row mx-auto pb-5 my-5 ">
       <div className="col-md-4 mx-auto my-3">
-        <div className="p-3 w-100 mx-auto border-0 rounded shadow ">
+        <div className="p-3 w-100 mx-auto border-0 rounded shadow py-5">
           <div className="text-center">
             <img style={{ height: 80 }} src={logo} alt="Logo" />
             <h3 className="control-label mt-3">Sign in </h3>
           </div>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} className="px-3">
             <div className="form-group mb-2">
-              <label className="my-1" htmlFor="loginUsername">
+              <label
+                className="fs-3 my-1 text-secondary"
+                htmlFor="loginUsername"
+              >
                 Mobile Or Email
               </label>
               <Input
@@ -38,7 +41,10 @@ const Login = () => {
               />
             </div>
             <div className="form-group mb-2">
-              <label className="my-1" htmlFor="loginPassword">
+              <label
+                className="fs-3 my-1 text-secondary"
+                htmlFor="loginPassword"
+              >
                 Password
               </label>
               <Input.Password
@@ -60,14 +66,17 @@ const Login = () => {
               </div>
             </div>
             <div className="form-group">
-              <button type="submit" className="primary_btn py-2 rounded w-100">
+              <button type="submit" className="primary_btn py-3 rounded w-100">
                 Login
               </button>
             </div>
           </form>
           <hr />
-          <div className="text-center">
-            New? <Link to="/register">Sign Up Free </Link>
+          <div className="text-center fs-2">
+            New?{' '}
+            <Link to="/register" className="text-primary">
+              Sign Up Free{' '}
+            </Link>
           </div>
         </div>
       </div>

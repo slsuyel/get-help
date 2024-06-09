@@ -1,5 +1,5 @@
 import { SetStateAction, useState } from 'react';
-import { Form, Select, Button, Row, Col } from 'antd';
+import { Form, Select, Row, Col } from 'antd';
 import { renderRefugeeFields } from './Fields/renderRefugeeFields';
 import { renderStudentFields } from './Fields/renderStudentFields';
 import { renderCommonFields } from './Fields/renderCommonFields';
@@ -20,7 +20,7 @@ const EditProfile = () => {
 
   return (
     <div className="container">
-      <Form layout="vertical" onFinish={onFinish}>
+      <Form layout="vertical" onFinish={onFinish} className="p-4 shadow">
         <Row gutter={16} key="category-row">
           <Col span={12} key="category-col">
             <Form.Item label="Category" name="category" key="category">
@@ -43,9 +43,10 @@ const EditProfile = () => {
           {category === 'Refugee' && renderRefugeeFields()}
 
           <Form.Item key="submit-button">
-            <Button type="primary" htmlType="submit">
-              Submit
-            </Button>
+            <button type="submit" className="btn btn-get-started">
+              {' '}
+              Submit & Apply
+            </button>
           </Form.Item>
         </div>
       </Form>

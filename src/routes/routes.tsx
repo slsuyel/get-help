@@ -9,6 +9,7 @@ import Profile from '@/pages/Profile/Profile';
 import Student from '@/pages/Student/Student';
 import Login from '@/pages/auth/Login';
 import Register from '@/pages/auth/Register';
+import Dhome from '@/pages/dashboard/Dhome';
 import { createBrowserRouter } from 'react-router-dom';
 
 const router = createBrowserRouter([
@@ -43,21 +44,7 @@ const router = createBrowserRouter([
       },
     ],
   },
-  // {
-  //   path: 'profile',
-  //   element: <AdminLayout />,
-  //   errorElement: <ErrorPage />,
-  //   children: [
-  //     {
-  //       path: '',
-  //       element: <Login />,
-  //     },
-  //     {
-  //       path: 'register',
-  //       element: <Register />,
-  //     },
-  //   ],
-  // },
+
   {
     path: 'admin',
     element: <AdminLayout />,
@@ -65,7 +52,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: '',
-        element: <Login />,
+        element: <Dhome />,
       },
       {
         path: 'register',

@@ -575,3 +575,7 @@ student-profile .card {
   padding: 5px 10px;
   color: #000;
 }
+a.nav-link.fs-1.active {
+  color: #0032ab;
+  border-bottom: 2px solid #fed100;
+}

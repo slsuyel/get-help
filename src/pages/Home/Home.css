@@ -1,11 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap');
-*,
-*:before,
-*:after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
 
 html {
   font-size: 10px;
@@ -52,13 +45,6 @@ textarea:active {
 
 textarea {
   resize: none;
-}
-
-.container {
-  width: 100%;
-  max-width: 120rem;
-  margin: 0 auto;
-  padding: 0 1.5rem;
 }
 
 section {
@@ -111,7 +97,7 @@ section {
 
 /*HOME PAGE*/
 /*Header */
-header {
+/* header {
   position: absolute;
   top: 0;
   left: 0;
@@ -253,11 +239,7 @@ header .btn-get-started {
   margin-top: 0.5rem;
 }
 
-.btn-get-started {
-  background-color: #3040c4;
-  color: #ffffff;
-  border: none;
-}
+
 
 .hamburger-wrap {
   display: none;
@@ -284,8 +266,13 @@ header .btn-get-started {
   width: 100%;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
+} */
+.btn-get-started {
+  background-color: #fe8000;
+  color: #ffffff;
+  border: none;
+  text-wrap: nowrap;
 }
-
 /*End Header */
 /*Hero */
 .hero {

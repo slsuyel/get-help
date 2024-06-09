@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import banner from '../../assets/images/h-banner.png';
 import About from './About';
 import Feature from './Feature';
@@ -18,12 +19,17 @@ const NewHome = () => {
                   inspiration, join our community. Let's navigate life together.
                 </p>
                 <div className="hero-btn">
-                  <a href="pricing.html" className="btn btn-get-started">
+                  <Link
+                    to={'https://mustafiz.org/donation/'}
+                    className="btn btn-get-started"
+                  >
+                    {' '}
                     Donate here
-                  </a>
-                  <a href="#" className="btn btn-learn-more">
+                  </Link>
+                  <Link to={'login'} className="btn btn-learn-more">
+                    {' '}
                     Get Help
-                  </a>
+                  </Link>
                 </div>
               </div>
               <div className="hero-img">
@@ -327,6 +333,7 @@ const NewHome = () => {
                   <a href="index.html" className="footer-logo">
                     <div className="footer-img">
                       <img
+                        width={100}
                         src="https://mustafiz.org/wp-content/uploads/2023/05/5-4-copy-1.png"
                         alt=""
                       />

@@ -25,16 +25,19 @@ const Register = () => {
     <>
       {/* <Breadcrumbs items={[{ name: 'Home', path: '/' }]} current="Register" /> */}
 
-      <div className="row mx-auto pb-5 pt-1 bg-second">
+      <div className="row mx-auto pb-5 my-5 bg-second">
         <div className="col-md-4 mx-auto my-3">
-          <div className="p-3 w-100 mx-auto border-0 rounded shadow ">
+          <div className="p-3 w-100 mx-auto border-0 rounded shadow py-5">
             <div className="text-center">
               <img style={{ height: 80 }} src={logo} alt="Logo" />
               <h3 className="control-label mt-3">Sign Up</h3>
             </div>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className="px-3">
               <div className="form-group mb-2">
-                <label className="my-1" htmlFor="registerName">
+                <label
+                  className="fs-3 my-1 text-secondary"
+                  htmlFor="registerName"
+                >
                   Name
                 </label>
                 <Input
@@ -46,7 +49,10 @@ const Register = () => {
                 />
               </div>
               <div className="form-group mb-2">
-                <label className="my-1" htmlFor="registerEmail">
+                <label
+                  className="fs-3 my-1 text-secondary"
+                  htmlFor="registerEmail"
+                >
                   Email
                 </label>
                 <Input
@@ -59,7 +65,7 @@ const Register = () => {
               </div>
 
               <div className="form-group mb-2">
-                <label className="my-1" htmlFor="category">
+                <label className="fs-3 my-1 text-secondary" htmlFor="category">
                   Category
                 </label>
                 <Select
@@ -75,7 +81,10 @@ const Register = () => {
                 </Select>
               </div>
               <div className="form-group mb-2">
-                <label className="my-1" htmlFor="registerPassword">
+                <label
+                  className="fs-3 my-1 text-secondary"
+                  htmlFor="registerPassword"
+                >
                   Password
                 </label>
                 <Input.Password
@@ -87,7 +96,10 @@ const Register = () => {
                 />
               </div>
               <div className="form-group mb-2">
-                <label className="my-1" htmlFor="confirmPassword">
+                <label
+                  className="fs-3 my-1 text-secondary"
+                  htmlFor="confirmPassword"
+                >
                   Retype Password
                 </label>
                 <Input.Password
@@ -102,15 +114,18 @@ const Register = () => {
               <div className="form-group">
                 <button
                   type="submit"
-                  className="primary_btn py-2 rounded w-100"
+                  className="primary_btn py-3 rounded w-100"
                 >
                   Register
                 </button>
               </div>
             </form>
             <hr />
-            <div className="text-center">
-              Already have an account? <Link to="/login">Login</Link>
+            <div className="text-center fs-2">
+              Already have an account?{' '}
+              <Link className="text-primary" to="/login">
+                Login
+              </Link>
             </div>
           </div>
         </div>

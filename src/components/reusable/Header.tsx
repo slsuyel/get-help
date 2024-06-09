@@ -3,7 +3,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import logo from '../../assets/images/logo.png';
 import { NavLink } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { Button, Drawer, Switch } from 'antd';
+import { Button, Drawer } from 'antd';
 import { MenuOutlined } from '@ant-design/icons';
 import { SoundOutlined } from '@ant-design/icons';
 
@@ -79,12 +79,21 @@ const Header = () => {
                 {item.label}
               </NavLink>
             ))}
-            <SoundOutlined className="fs-1" />
-            <Switch
-              checkedChildren={<i className="fas fa-sun"></i>}
-              unCheckedChildren={<i className="fas fa-moon"></i>}
-              defaultChecked
-            />
+            <Button
+              className="shadow-none text-primary bg-transparent"
+              type="primary"
+              icon={<SoundOutlined className="fs-1" />}
+              style={{ fontSize: '24px' }}
+            ></Button>
+
+            <NavLink
+              target="_blank"
+              to={'https://mustafiz.org/donation/'}
+              className="btn btn-get-started p-2 px-3 rounded"
+            >
+              {' '}
+              Donate here
+            </NavLink>
           </Navbar.Collapse>
         </Container>
       </Navbar>
@@ -93,7 +102,7 @@ const Header = () => {
         <>
           <div className="align-items-center d-flex justify-content-between p-2 ">
             <Navbar.Brand href="/" className="p-1 ">
-              <img src={logo} alt="" width={120} />
+              <img src={logo} alt="" width={220} />
             </Navbar.Brand>
             <Button type="primary" className="rounded-0 " onClick={showDrawer}>
               <MenuOutlined />
@@ -101,7 +110,7 @@ const Header = () => {
           </div>
 
           <Drawer
-            style={{ backgroundColor: '#be93b6', width: '60%' }}
+            style={{ backgroundColor: '#be93b6' }}
             placement="left"
             onClose={onClose}
             open={MobileMenu}
