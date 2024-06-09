@@ -4,14 +4,14 @@ import logo from '../../assets/images/logo.png';
 import { NavLink } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { Button, Drawer } from 'antd';
-import { MenuOutlined } from '@ant-design/icons';
-import { SoundOutlined } from '@ant-design/icons';
+import { MenuOutlined, SoundOutlined } from '@ant-design/icons';
+import NotificationModal from './NotificationModal';
 
 const Header = () => {
   const [isFixed, setIsFixed] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-
   const [MobileMenu, setMobileMenu] = useState(false);
+  const [notice, setNotice] = useState(false);
 
   const showDrawer = () => {
     setMobileMenu(true);
@@ -51,10 +51,14 @@ const Header = () => {
     },
     {
       id: 3,
-      label: 'profile',
+      label: 'Profile',
       link: '/profile',
     },
   ];
+
+  const handleNotice = () => {
+    setNotice(!notice);
+  };
 
   return (
     <>
@@ -67,7 +71,7 @@ const Header = () => {
       >
         <Container>
           <Navbar.Brand href="/" className="p-0 ">
-            <img src={logo} alt="" width={250} />
+            <img src={logo} alt="Logo" width={250} />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse
@@ -80,18 +84,17 @@ const Header = () => {
               </NavLink>
             ))}
             <Button
+              onClick={handleNotice}
               className="shadow-none text-primary bg-transparent"
               type="primary"
               icon={<SoundOutlined className="fs-1" />}
               style={{ fontSize: '24px' }}
             ></Button>
-
             <NavLink
               target="_blank"
               to={'https://mustafiz.org/donation/'}
               className="btn btn-get-started p-2 px-3 rounded"
             >
-              {' '}
               Donate here
             </NavLink>
           </Navbar.Collapse>
@@ -102,13 +105,12 @@ const Header = () => {
         <>
           <div className="align-items-center d-flex justify-content-between p-2 ">
             <Navbar.Brand href="/" className="p-1 ">
-              <img src={logo} alt="" width={220} />
+              <img src={logo} alt="Logo" width={220} />
             </Navbar.Brand>
-            <Button type="primary" className="rounded-0 " onClick={showDrawer}>
+            <Button type="primary" className="rounded-0" onClick={showDrawer}>
               <MenuOutlined />
             </Button>
           </div>
-
           <Drawer
             style={{ backgroundColor: '#be93b6' }}
             placement="left"
@@ -120,9 +122,17 @@ const Header = () => {
                 {item.label}
               </NavLink>
             ))}
+            <Button
+              onClick={handleNotice}
+              className="shadow-none text-primary bg-transparent"
+              type="primary"
+              icon={<SoundOutlined className="fs-1" />}
+              style={{ fontSize: '24px' }}
+            ></Button>
           </Drawer>
         </>
       )}
+      {notice && <NotificationModal notice={notice} setNotice={setNotice} />}
     </>
   );
 };
