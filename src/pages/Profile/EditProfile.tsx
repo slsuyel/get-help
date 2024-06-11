@@ -5,7 +5,6 @@ import { renderStudentFields } from './Fields/renderStudentFields';
 
 import { TypeDataForm } from '@/types';
 import { renderCommonFields } from './Fields/renderCommonFields';
-import { EvidenceFields } from './Fields/EvidenceFields';
 
 const { Option } = Select;
 
@@ -27,7 +26,7 @@ const EditProfile = () => {
         onFinish={onFinish}
         className="p-4 shadow rounded container"
       >
-        <Row gutter={16} key="category-row">
+        <Row gutter={16} key="category-row" className="mx-auto">
           <Col span={12} key="category-col">
             <Form.Item label="Category" name="category" key="category">
               <Select onChange={handleCategoryChange}>
@@ -42,12 +41,10 @@ const EditProfile = () => {
           </Col>
         </Row>
 
-        <hr />
         <div className="row mx-auto">
-          {/* {renderCommonFields()} */}
-          {/* {category === 'Student' && renderStudentFields()}
-          {category === 'Refugee' && renderRefugeeFields()} */}
-          <EvidenceFields />
+          {renderCommonFields()}
+          {category === 'Student' && renderStudentFields()}
+          {category === 'Refugee' && renderRefugeeFields()}
 
           <div className="col-md-6">
             <Form.Item label="Reference 1 Name" name="reference1Name">

@@ -65,7 +65,7 @@ export const renderRefugeeFields = () => (
       </Form.Item>
     </div>
 
-    <div className="row" key="family-info-col-1">
+    <div className="row mx-auto" key="family-info-col-1">
       <Form.Item
         className="col-md-4"
         label="Total Family Members"
