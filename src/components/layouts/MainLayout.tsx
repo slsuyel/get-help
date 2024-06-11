@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom';
 import Header from '../reusable/Header';
-// import Footer from '../reusable/Footer';
+import Footer from '../reusable/Footer';
 import ScrollToTop from '@/utils/ScrollToTop';
 
 const MainLayout = () => {
@@ -9,7 +9,7 @@ const MainLayout = () => {
       <Header />
       <Outlet />
 
-      {/* <Footer /> */}
+      <Footer />
     </ScrollToTop>
   );
 };

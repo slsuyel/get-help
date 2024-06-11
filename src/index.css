@@ -596,3 +596,32 @@ a.nav-link.fs-1.active {
 .notice-content p {
   margin-bottom: 5px;
 }
+
+.need_hlp_txt {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  font-size: 17px;
+  animation: typing 3.5s steps(10, end), blink-caret 0.75s step-end infinite;
+  color: #002faa;
+  /* margin-bottom: 20px; */
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 10ch;
+  }
+}
+
+@keyframes blink-caret {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: black;
+  }
+}

@@ -78,6 +78,7 @@ const Header = () => {
             id="basic-navbar-nav "
             className="justify-content-end fs-5 fw-semibold gap-3"
           >
+            <h4 className="need_hlp_txt">Need Help?</h4>
             {menuItems.map(item => (
               <NavLink key={item.id} to={item.link} className="nav-link fs-1">
                 {item.label}
@@ -117,6 +118,8 @@ const Header = () => {
             onClose={onClose}
             open={MobileMenu}
           >
+            {' '}
+            <h4 className="need_hlp_txt">Need Help?</h4>
             {menuItems.map(item => (
               <NavLink key={item.id} to={item.link} className="nav-link fs-1">
                 {item.label}
