@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Input, Checkbox, message } from 'antd';
-import logo from '../../assets/images/logo.png';
+
 import { callApi } from '@/utilities/functions';
 import { Spinner } from 'react-bootstrap';
 
-const Login = () => {
+const AdminLogin = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
@@ -47,14 +47,13 @@ const Login = () => {
   console.log(success, error);
   return (
     <>
-      <div style={{ background: '#f4f5f7', marginTop: 'auto' }}>
+      <div
+        style={{ background: '#f4f5f7', marginTop: 'auto', minHeight: '50vh' }}
+        className="py-5"
+      >
         <div className="row mx-auto py-5 ">
           <div className="col-md-4 mx-auto my-3">
             <div className="p-3 w-100 mx-auto border-0 rounded shadow py-5">
-              <div className="text-center">
-                <img style={{ height: 80 }} src={logo} alt="Logo" />
-                <h3 className="control-label mt-3">Sign in</h3>
-              </div>
               <form onSubmit={handleSubmit} className="px-3">
                 <div className="form-group mb-2">
                   <label
@@ -109,13 +108,6 @@ const Login = () => {
                   </button>
                 </div>
               </form>
-              <hr />
-              <div className="text-center fs-2">
-                New?{' '}
-                <Link to="/register" className="text-primary">
-                  Sign Up Free{' '}
-                </Link>
-              </div>
             </div>
           </div>
         </div>
@@ -124,4 +116,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default AdminLogin;

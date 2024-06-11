@@ -1,6 +1,6 @@
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
-import logo from '../../assets/images/logo.png';
+import logo from '../../assets/images/logo-icon.webp';
 import { NavLink } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { Button, Drawer } from 'antd';
@@ -70,8 +70,17 @@ const Header = () => {
         } ${isMobile ? 'd-none' : 'd-block'}`}
       >
         <Container>
-          <Navbar.Brand href="/" className="p-0 ">
-            <img src={logo} alt="Logo" width={250} />
+          <Navbar.Brand
+            href="/"
+            className="align-items-center d-flex gap-3 navbar-brand"
+          >
+            <img src={logo} alt="Logo" width={70} />
+            <div>
+              <h2 className="fs-1 fw-bold" style={{ color: '#f89509' }}>
+                Mustafiz Foundation Inc.
+              </h2>
+              <h5>Frontiers for Humanity</h5>
+            </div>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse

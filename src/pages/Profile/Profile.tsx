@@ -1,10 +1,25 @@
-import { notification } from 'antd';
+import { message, notification } from 'antd';
 import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 import DocUpdate from './DocUpdate/DocUpdate';
+import { callApi } from '@/utilities/functions';
 
 const Profile = () => {
+  const navigate = useNavigate();
+
+  const handleLogoutClick = async () => {
+    try {
+      const res = await callApi('Post', '/api/user/logout');
+      if (res.message) {
+        message.success('Logged out successfully');
+        navigate('/');
+      } else message.error('Error occurred during logout');
+    } catch (error) {
+      console.error('Error occurred during logout:', error);
+    }
+  };
+
   useEffect(() => {
     notification.open({
       message: 'Important Notification',
@@ -62,7 +77,10 @@ const Profile = () => {
                       <i className="fas fa-user-edit"></i> Update Profile
                     </span>
                   </Link>
-                  <button className="btn btn-danger">
+                  <button
+                    className="btn btn-danger"
+                    onClick={handleLogoutClick}
+                  >
                     <span>
                       <i className="fas fa-sign-out-alt"></i> Log Out
                     </span>

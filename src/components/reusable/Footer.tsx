@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+import logo from '../../assets/images/logo-icon.webp';
 const Footer = () => {
   return (
     <footer className="footer">
@@ -7,15 +9,18 @@ const Footer = () => {
             <div className="footer-info">
               <a href="#" className="footer-logo">
                 <div className="footer-img">
-                  <img
-                    width={100}
-                    src="https://mustafiz.org/wp-content/uploads/2023/05/5-4-copy-1.png"
-                    alt=""
-                  />
-                </div>
-                <div className="footer-logo-text">
-                  <h4>Mustafiz Foundation Inc</h4>
-                  <span>Frontiers for Humanity</span>
+                  <Link
+                    to="/"
+                    className="align-items-center d-flex gap-3 navbar-brand"
+                  >
+                    <img src={logo} alt="Logo" width={70} />
+                    <div>
+                      <h2 className="fs-1 fw-bold" style={{ color: '#f89509' }}>
+                        Mustafiz Foundation Inc.
+                      </h2>
+                      <h5>Frontiers for Humanity</h5>
+                    </div>
+                  </Link>
                 </div>
               </a>
               <p className="footer-desc">

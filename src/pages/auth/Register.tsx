@@ -1,30 +1,42 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Input, message, Select } from 'antd';
 import logo from '../../assets/images/logo.png';
+import { callApi } from '@/utilities/functions';
+import { Spinner } from 'react-bootstrap';
 
 const { Option } = Select;
 
 const Register = () => {
+  const navigate = useNavigate();
+  const [loader, setLoader] = useState(false);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [category, setCategory] = useState('Student');
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    setLoader(true);
     event.preventDefault();
     if (password !== confirmPassword) {
       message.error('Passwords do not match!');
       return;
     }
-    console.log({ name, email, password, category });
+    const data = { name, email, password, category };
+    const res = await callApi('Post', '/api/students', data);
+    if (res.success) {
+      setLoader(false);
+      message.success('Signup successfully!');
+      navigate('/student/signin');
+    } else {
+      message.error('Something went wrong !! ');
+      setLoader(false);
+    }
   };
 
   return (
     <>
-      {/* <Breadcrumbs items={[{ name: 'Home', path: '/' }]} current="Register" /> */}
-
       <div
         className="row mx-auto py-5 bg-second"
         style={{ background: '#f4f5f7' }}
@@ -120,10 +132,11 @@ const Register = () => {
 
               <div className="form-group">
                 <button
+                  disabled={loader}
                   type="submit"
                   className="primary_btn py-3 rounded w-100"
                 >
-                  Register
+                  {loader ? <Spinner /> : 'Register'}
                 </button>
               </div>
             </form>

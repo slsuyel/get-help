@@ -8,8 +8,10 @@ import NewHome from '@/pages/Home/NewHome';
 import EditProfile from '@/pages/Profile/EditProfile';
 import Profile from '@/pages/Profile/Profile';
 import Student from '@/pages/Student/Student';
+import AdminLogin from '@/pages/auth/AdminLogin';
 import Login from '@/pages/auth/Login';
 import Register from '@/pages/auth/Register';
+import ResetPassword from '@/pages/auth/ResetPassword';
 import Dhome from '@/pages/dashboard/Dhome';
 import UserData from '@/pages/dashboard/UserData';
 import UserTable from '@/pages/dashboard/UserTable';
@@ -32,6 +34,14 @@ const router = createBrowserRouter([
       {
         path: '/login',
         element: <Login />,
+      },
+      {
+        path: '/admin-login',
+        element: <AdminLogin />,
+      },
+      {
+        path: '/reset-pass',
+        element: <ResetPassword />,
       },
       {
         path: '/register',
