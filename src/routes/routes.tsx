@@ -1,6 +1,7 @@
 import MainLayout from '@/components/layouts/MainLayout';
 import AdminLayout from '@/components/layouts/admin/AdminLayout';
 import ErrorPage from '@/components/reusable/ErrorPage';
+import UnderConstruction from '@/components/reusable/UnderConstruction';
 
 // import Home from '@/pages/Home/Home';
 import NewHome from '@/pages/Home/NewHome';
@@ -10,6 +11,8 @@ import Student from '@/pages/Student/Student';
 import Login from '@/pages/auth/Login';
 import Register from '@/pages/auth/Register';
 import Dhome from '@/pages/dashboard/Dhome';
+import UserData from '@/pages/dashboard/UserData';
+import UserTable from '@/pages/dashboard/UserTable';
 import { createBrowserRouter } from 'react-router-dom';
 
 const router = createBrowserRouter([
@@ -57,6 +60,18 @@ const router = createBrowserRouter([
       {
         path: 'register',
         element: <Register />,
+      },
+      {
+        path: ':category/:status',
+        element: <UserTable />,
+      },
+      {
+        path: 'user/:id',
+        element: <UserData />,
+      },
+      {
+        path: 'settings',
+        element: <UnderConstruction />,
       },
     ],
   },

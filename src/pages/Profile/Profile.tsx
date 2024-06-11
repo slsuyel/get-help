@@ -18,7 +18,7 @@ const Profile = () => {
   }, []);
 
   return (
-    <div>
+    <div style={{ background: '#f4f5f7' }}>
       <div className="student-profile py-4">
         <div className="container">
           <div className="row mx-auto">
@@ -58,7 +58,7 @@ const Profile = () => {
                     className="btn btn-outline-primary"
                   >
                     <span>
-                      <i className="fas fa-user-edit"></i> Edit Profile
+                      <i className="fas fa-user-edit"></i> Update Profile
                     </span>
                   </Link>
                   <button className="btn btn-danger">

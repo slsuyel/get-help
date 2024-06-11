@@ -1,108 +1,59 @@
-const Summary = () => {
+const SummaryItem = ({
+  icon,
+  title,
+  value,
+}: {
+  icon: string;
+  title: string;
+  value: number;
+}) => {
   return (
-    <>
-      <div className="row mx-auto">
-        <div className="col-md-3 my-1">
-          <div className="border-0 card hov-card mb-2 py-3 shadow-sm">
-            <div className="card-body d-flex align-item-center justify-content-around">
-              <i className="p-3 rounded-circle my-auto fa-solid fa-users fs-1"></i>
-              <div className="text-end">
-                <h5 className="card-title fw-bold fs-2">Total Registrations</h5>
-                <p className="card-text fs-2 mb-0">132996</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="col-md-3 my-1">
-          <div className="border-0 card hov-card mb-2 py-3 shadow-sm">
-            <div className="card-body d-flex align-item-center justify-content-around">
-              <i className="p-3 rounded-circle my-auto fa-solid fa-message fs-1"></i>
-              <div className="text-end">
-                <h5 className="card-title fw-bold fs-2">SMS Balance</h5>
-                <p className="card-text fs-2 mb-0">৳136</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="col-md-3 my-1">
-          <div className="border-0 card hov-card mb-2 py-3 shadow-sm">
-            <div className="card-body d-flex align-item-center justify-content-around">
-              <i className="p-3 rounded-circle my-auto fa-solid fa-chalkboard-user fs-1"></i>
-              <div className="text-end">
-                <h5 className="card-title fw-bold fs-2">Total Staffs</h5>
-                <p className="card-text fs-2 mb-0">26</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="col-md-3 my-1">
-          <div className="border-0 card hov-card mb-2 py-3 shadow-sm">
-            <div className="card-body d-flex align-item-center justify-content-around">
-              <i className="p-3 rounded-circle my-auto fa-solid fa-people-roof fs-1"></i>
-              <div className="text-end">
-                <h5 className="card-title fw-bold fs-2">Students</h5>
-                <p className="card-text fs-2 mb-0">500</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="col-md-3 my-1">
-          <div className="border-0 card hov-card mb-2 py-3 shadow-sm">
-            <div className="card-body d-flex align-item-center justify-content-around">
-              <i className="p-3 rounded-circle my-auto fa-solid fa-user-plus fs-1"></i>
-              <div className="text-end">
-                <h5 className="card-title fw-bold fs-2">Applications</h5>
-                <p className="card-text fs-2 mb-0">396</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="col-md-3 my-1">
-          <div className="border-0 card hov-card mb-2 py-3 shadow-sm">
-            <div className="card-body d-flex align-item-center justify-content-around">
-              <i className="p-3 rounded-circle my-auto fa-solid fa-users fs-1"></i>
-              <div className="text-end">
-                <h5 className="card-title fw-bold fs-2">Visitors</h5>
-                <p className="card-text fs-2 mb-0">2996</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="col-md-3 my-1">
-          <div className="border-0 card hov-card mb-2 py-3 shadow-sm">
-            <div className="card-body d-flex align-item-center justify-content-around">
-              <i className="p-3 rounded-circle my-auto fa-solid fa-user-graduate fs-1"></i>
-              <div className="text-end">
-                <h5 className="card-title fw-bold fs-2">Scholarships Given</h5>
-                <p className="card-text fs-2 mb-0">120</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="col-md-3 my-1">
-          <div className="border-0 card hov-card mb-2 py-3 shadow-sm">
-            <div className="card-body d-flex align-item-center justify-content-around">
-              <i className="p-3 rounded-circle my-auto fa-solid fa-user-plus fs-1"></i>
-              <div className="text-end">
-                <h5 className="card-title fw-bold fs-2">Pending Requests</h5>
-                <p className="card-text fs-2 mb-0">25</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="col-md-3 my-1">
-          <div className="border-0 card hov-card mb-2 py-3 shadow-sm">
-            <div className="card-body d-flex align-item-center justify-content-around">
-              <i className="p-3 rounded-circle my-auto fa-solid fa-user-secret fs-1"></i>
-              <div className="text-end">
-                <h5 className="card-title fw-bold fs-2">Refugees</h5>
-                <p className="card-text fs-2 mb-0">80</p>
-              </div>
-            </div>
+    <div className="col-md-3 my-1">
+      <div className="border-0 card hov-card mb-2 py-3 shadow-sm">
+        <div className="card-body d-flex align-item-center justify-content-around">
+          <i className={`p-3 rounded-circle my-auto ${icon} fs-1`}></i>
+          <div className="text-end">
+            <h5 className="card-title fw-bold fs-2">{title}</h5>
+            <p className="card-text fs-2 mb-0">{value}</p>
           </div>
         </div>
       </div>
-    </>
+    </div>
+  );
+};
+
+const Summary = () => {
+  const summaryItems = [
+    { icon: 'fa-solid fa-users', title: 'Total Registrations', value: 15299 },
+    { icon: 'fa-solid fa-user-graduate', title: 'Total Students', value: 1126 },
+    { icon: 'fa-solid fa-chalkboard-user', title: 'Total Refuges', value: 26 },
+    { icon: 'fa-solid fa-people-roof', title: 'Others', value: 500 },
+    { icon: 'fa-solid fa-user-plus', title: 'Pending Request', value: 396 },
+    {
+      icon: 'fa-solid fa-hand-holding-usd',
+      title: 'Scholarships Given',
+      value: 2996,
+    },
+    { icon: 'fa-solid fa-donate', title: 'Total Given amount', value: 120 },
+    { icon: 'fa-solid fa-user-plus', title: 'Given This month', value: 25 },
+    {
+      icon: 'fa-solid fa-exclamation-circle',
+      title: 'Pending this month',
+      value: 80,
+    },
+  ];
+
+  return (
+    <div className="row mx-auto">
+      {summaryItems.map((item, index) => (
+        <SummaryItem
+          key={index}
+          icon={item.icon}
+          title={item.title}
+          value={item.value}
+        />
+      ))}
+    </div>
   );
 };
 

@@ -19,8 +19,12 @@ const EditProfile = () => {
   };
 
   return (
-    <div className="container">
-      <Form layout="vertical" onFinish={onFinish} className="p-4 shadow">
+    <div className=" py-5 " style={{ background: '#f4f5f7' }}>
+      <Form
+        layout="vertical"
+        onFinish={onFinish}
+        className="p-4 shadow rounded container"
+      >
         <Row gutter={16} key="category-row">
           <Col span={12} key="category-col">
             <Form.Item label="Category" name="category" key="category">

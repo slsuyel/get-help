@@ -25,7 +25,10 @@ const Register = () => {
     <>
       {/* <Breadcrumbs items={[{ name: 'Home', path: '/' }]} current="Register" /> */}
 
-      <div className="row mx-auto pb-5 my-5 bg-second">
+      <div
+        className="row mx-auto py-5 bg-second"
+        style={{ background: '#f4f5f7' }}
+      >
         <div className="col-md-4 mx-auto my-3">
           <div className="p-3 w-100 mx-auto border-0 rounded shadow py-5">
             <div className="text-center">
