@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Input, Checkbox, message } from 'antd';
-import logo from '../../assets/images/logo.png';
+import logo from '../../assets/images/logo-icon.webp';
 import { callApi } from '@/utilities/functions';
 import { Spinner } from 'react-bootstrap';
 import useLoggedIn from '@/hooks/useLoggedIn';
@@ -10,6 +10,7 @@ import Loader from '@/components/reusable/Loader';
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+
   const [loading, setLoading] = useState(false);
   const { authenticated, loading: userLoading } = useLoggedIn();
 
@@ -28,15 +29,14 @@ const Login = () => {
         password,
       });
       console.log(res);
-      if (res.status == 200) {
+      if (res.status === 200) {
         localStorage.setItem('token', res.data.token);
 
-        message.success('Login successfully!');
+        message.success(
+          'Login successfully! Now Update Your Profile to get help'
+        );
         navigate(from, { replace: true });
-        window.location.replace(from);
       } else {
-        message.error('Login failed | An error occurred while logging in');
-        console.log('Login failed: Token missing in the response.');
         message.error('Login failed | An error occurred while logging in');
       }
     } catch (error) {
@@ -54,13 +54,24 @@ const Login = () => {
   return (
     <>
       {!authenticated ? (
-        <div style={{ background: '#f4f5f7', marginTop: 'auto' }}>
+        <div
+          style={{
+            background: '#f4f5f7',
+            paddingTop: '50px',
+            minHeight: '80vh',
+          }}
+        >
           <div className="row mx-auto py-5 ">
             <div className="col-md-4 mx-auto my-3">
               <div className="p-3 w-100 mx-auto border-0 rounded shadow py-5">
-                <div className="text-center">
-                  <img style={{ height: 80 }} src={logo} alt="Logo" />
-                  <h3 className="control-label mt-3">Sign in</h3>
+                <div className="align-items-center d-flex gap-3 justify-content-center">
+                  <img src={logo} alt="Logo" width={50} />
+                  <div>
+                    <h2 className="fs-1 fw-bold" style={{ color: '#f89509' }}>
+                      Mustafiz Foundation Inc.
+                    </h2>
+                    <h5>Frontiers for Humanity</h5>
+                  </div>
                 </div>
                 <form onSubmit={handleSubmit} className="px-3">
                   <div className="form-group mb-2">
@@ -116,7 +127,7 @@ const Login = () => {
                     </button>
                   </div>
                 </form>
-                <hr />
+
                 <div className="text-center fs-2">
                   New?{' '}
                   <Link to="/register" className="text-primary">

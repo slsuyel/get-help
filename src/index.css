@@ -702,3 +702,18 @@ openbtn
     transform: translateY(-6px) rotate(135deg);
   }
 }
+
+.edit_pro {
+  .ant-form-item-label > label {
+    height: auto;
+    font-size: 17px;
+    color: #012b95e3;
+    font-weight: 500;
+    padding-left: 5px;
+  }
+}
+
+.input_bor_edit {
+  border-bottom: 2px solid #0185d066;
+  font-size: 18px;
+}

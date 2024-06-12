@@ -8,9 +8,18 @@ export const renderCommonFields = (user: TypeDataForm) => (
     <div className="col-md-6">
       <Form.Item initialValue={user.name} label="Applicant Name" name="name">
         <Input
+          className="input_bor_edit"
           disabled
           style={{ height: 45, width: '100%' }}
-          placeholder="Enter applicant's name"
+        />
+      </Form.Item>
+    </div>
+    <div className="col-md-6">
+      <Form.Item initialValue={user.category} label="Category" name="category">
+        <Input
+          className="input_bor_edit"
+          disabled
+          style={{ height: 45, width: '100%' }}
         />
       </Form.Item>
     </div>
@@ -22,6 +31,7 @@ export const renderCommonFields = (user: TypeDataForm) => (
         name="father_name"
       >
         <Input
+          className="input_bor_edit"
           style={{ height: 45, width: '100%' }}
           placeholder="Enter father's name"
         />
@@ -35,6 +45,7 @@ export const renderCommonFields = (user: TypeDataForm) => (
         name="mother_name"
       >
         <Input
+          className="input_bor_edit"
           style={{ height: 45, width: '100%' }}
           placeholder="Enter mother's name"
         />
@@ -48,6 +59,7 @@ export const renderCommonFields = (user: TypeDataForm) => (
         name="nationality"
       >
         <Input
+          className="input_bor_edit"
           style={{ height: 45, width: '100%' }}
           placeholder="Enter nationality"
         />
@@ -61,6 +73,7 @@ export const renderCommonFields = (user: TypeDataForm) => (
         name="country_of_birth"
       >
         <Input
+          className="input_bor_edit"
           style={{ height: 45, width: '100%' }}
           placeholder="Enter country of birth"
         />
@@ -70,6 +83,7 @@ export const renderCommonFields = (user: TypeDataForm) => (
     <div className="col-md-6">
       <Form.Item initialValue={user.email} label="Email" name="email">
         <Input
+          className="input_bor_edit"
           disabled
           style={{ height: 45, width: '100%' }}
           placeholder="Enter email"
@@ -80,6 +94,8 @@ export const renderCommonFields = (user: TypeDataForm) => (
     <div className="col-md-6">
       <Form.Item initialValue={user.phone} label="Phone Number" name="phone">
         <Input
+          type="number"
+          className="input_bor_edit"
           style={{ height: 45, width: '100%' }}
           placeholder="Enter phone number"
         />
@@ -90,6 +106,7 @@ export const renderCommonFields = (user: TypeDataForm) => (
       <Form.Item label="Date of Birth" name="dob">
         <DatePicker
           required
+          className="input_bor_edit"
           style={{ height: 45, width: '100%' }}
           placeholder="Select date of birth"
         />
@@ -103,6 +120,7 @@ export const renderCommonFields = (user: TypeDataForm) => (
         name="national_id_or_ssn"
       >
         <Input
+          className="input_bor_edit"
           style={{ height: 45, width: '100%' }}
           placeholder="Enter National ID or last 4 digits of SSN"
         />
@@ -112,6 +130,7 @@ export const renderCommonFields = (user: TypeDataForm) => (
     <div className="col-md-6">
       <Form.Item initialValue={user.gender} label="Gender" name="gender">
         <Select
+          className="input_bor_edit rounded-bottom-4"
           style={{ height: 45, width: '100%' }}
           placeholder="Select gender"
         >
@@ -124,13 +143,18 @@ export const renderCommonFields = (user: TypeDataForm) => (
 
     <div className="col-md-6">
       <Form.Item initialValue={user.race} label="Race" name="race">
-        <Input style={{ height: 45, width: '100%' }} placeholder="Enter race" />
+        <Input
+          className="input_bor_edit"
+          style={{ height: 45, width: '100%' }}
+          placeholder="Enter race"
+        />
       </Form.Item>
     </div>
 
     <div className="col-md-6">
       <Form.Item initialValue={user.religion} label="Religion" name="religion">
         <Select
+          className="input_bor_edit rounded-bottom-4"
           style={{ height: 45, width: '100%' }}
           placeholder="Select religion"
         >
@@ -151,6 +175,7 @@ export const renderCommonFields = (user: TypeDataForm) => (
         name="marital_status"
       >
         <Select
+          className="input_bor_edit rounded-bottom-4"
           style={{ height: 45, width: '100%' }}
           placeholder="Select marital status"
         >
@@ -169,6 +194,7 @@ export const renderCommonFields = (user: TypeDataForm) => (
         name="current_address"
       >
         <Input
+          className="input_bor_edit"
           style={{ height: 45, width: '100%' }}
           placeholder="Enter current address"
         />
@@ -182,6 +208,7 @@ export const renderCommonFields = (user: TypeDataForm) => (
         name="permanent_address"
       >
         <Input
+          className="input_bor_edit"
           style={{ height: 45, width: '100%' }}
           placeholder="Enter permanent address"
         />
@@ -195,6 +222,7 @@ export const renderCommonFields = (user: TypeDataForm) => (
         name="highest_education"
       >
         <Input
+          className="input_bor_edit"
           style={{ height: 45, width: '100%' }}
           placeholder="Enter highest level of education"
         />

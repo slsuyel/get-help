@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Input, message, Select } from 'antd';
-import logo from '../../assets/images/logo.png';
+import logo from '../../assets/images/logo-icon.webp';
 import { callApi } from '@/utilities/functions';
 import { Spinner } from 'react-bootstrap';
 import useLoggedIn from '@/hooks/useLoggedIn';
@@ -22,6 +22,7 @@ const Register = () => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     setLoader(true);
     event.preventDefault();
+
     if (password !== confirmPassword) {
       message.error('Passwords do not match!');
       setLoader(false);
@@ -30,15 +31,21 @@ const Register = () => {
 
     const data = { name, email, password, mobile: '01722597565', category };
     const res = await callApi('Post', '/api/user/register', data);
-    console.log(res);
-    if (res.status == 201) {
-      setLoader(false);
-      message.success('Signup successfully!');
+
+    if (res.status === 400 && res.data && res.data.errors) {
+      if (res.data.errors.email) {
+        message.error(res.data.errors.email[0]);
+      } else {
+        message.error('Something went wrong!');
+      }
+    } else if (res.status === 201) {
+      message.success('Wow !! Sign up successfully , Login now');
       navigate('/login');
     } else {
-      message.error('Something went wrong !! ');
-      setLoader(false);
+      message.error('Something went wrong!');
     }
+
+    setLoader(false);
   };
 
   if (loading) {
@@ -54,9 +61,14 @@ const Register = () => {
         >
           <div className="col-md-4 mx-auto my-3">
             <div className="p-3 w-100 mx-auto border-0 rounded shadow py-5">
-              <div className="text-center">
-                <img style={{ height: 80 }} src={logo} alt="Logo" />
-                <h3 className="control-label mt-3">Sign Up</h3>
+              <div className="align-items-center d-flex gap-3 justify-content-center">
+                <img src={logo} alt="Logo" width={50} />
+                <div>
+                  <h2 className="fs-1 fw-bold" style={{ color: '#f89509' }}>
+                    Mustafiz Foundation Inc.
+                  </h2>
+                  <h5>Frontiers for Humanity</h5>
+                </div>
               </div>
               <form onSubmit={handleSubmit} className="px-3">
                 <div className="form-group mb-2">

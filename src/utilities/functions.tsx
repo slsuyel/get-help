@@ -24,7 +24,7 @@ export const callApi = async (
     if (error.response) {
       return error.response;
     } else {
-      console.error('Error making API call:', error);
+      // console.error('Error making API call:', error);
       return null;
     }
   }

@@ -11,6 +11,7 @@ export const renderRefugeeFields = () => (
         key="countryOfConflict"
       >
         <Input
+          className="input_bor_edit"
           placeholder="Enter the country you are fleeing from"
           style={{ height: 45, width: '100%' }}
         />
@@ -21,6 +22,7 @@ export const renderRefugeeFields = () => (
         key="shelteringCountry"
       >
         <Input
+          className="input_bor_edit"
           placeholder="Enter the country you are currently in"
           style={{ height: 45, width: '100%' }}
         />
@@ -30,6 +32,7 @@ export const renderRefugeeFields = () => (
     <div className="col-md-6" key="arrival-info-col-1">
       <Form.Item label="Arriving Date" name="arrivingDate" key="arrivingDate">
         <DatePicker
+          className="input_bor_edit"
           placeholder="Select date of arrival"
           style={{ height: 45, width: '100%' }}
         />
@@ -40,6 +43,7 @@ export const renderRefugeeFields = () => (
         key="arrivalLegality"
       >
         <Select
+          className="input_bor_edit rounded-bottom-4"
           placeholder="Select legality of arrival"
           style={{ height: 45, width: '100%' }}
         >
@@ -56,6 +60,7 @@ export const renderRefugeeFields = () => (
         key="currentLiving"
       >
         <Select
+          className="input_bor_edit rounded-bottom-4"
           placeholder="Select current living situation"
           style={{ height: 45, width: '100%' }}
         >
@@ -73,6 +78,7 @@ export const renderRefugeeFields = () => (
         key="totalFamilyMembers"
       >
         <Input
+          className="input_bor_edit"
           placeholder="Enter total number of family members"
           style={{ height: 45, width: '100%' }}
         />
@@ -84,6 +90,7 @@ export const renderRefugeeFields = () => (
         key="adultFamilyMembers"
       >
         <Input
+          className="input_bor_edit"
           placeholder="Enter number of adults"
           style={{ height: 45, width: '100%' }}
         />
@@ -95,6 +102,7 @@ export const renderRefugeeFields = () => (
         key="minorFamilyMembers"
       >
         <Input
+          className="input_bor_edit"
           placeholder="Enter number of minors"
           style={{ height: 45, width: '100%' }}
         />

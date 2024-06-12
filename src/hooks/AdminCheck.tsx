@@ -9,7 +9,7 @@ const AdminCheck = ({ children }: { children: ReactNode }) => {
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     const checkAdminAuthentication = async () => {
-      const token = localStorage.getItem('admin_token')!;
+      const token = localStorage.getItem('token')!;
 
       if (!token) {
         setAuthenticated(false);
@@ -18,7 +18,7 @@ const AdminCheck = ({ children }: { children: ReactNode }) => {
       }
       try {
         const response = await callApi('POST', '/api/admin/check-token');
-        // console.log(response);
+        console.log(response);
         if (response.data.message == 'Token is valid') {
           setAuthenticated(true);
         } else {

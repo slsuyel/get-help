@@ -59,7 +59,7 @@ const EditProfile = () => {
       <Form
         layout="vertical"
         onFinish={onFinish}
-        className="p-4 shadow rounded container"
+        className="p-4 shadow rounded container edit_pro"
       >
         <div className="row mx-auto">
           {renderCommonFields(user)}
@@ -73,6 +73,7 @@ const EditProfile = () => {
               name="reference1_name"
             >
               <Input
+                className="input_bor_edit"
                 placeholder="Enter reference 1 name"
                 style={{ height: 45, width: '100%' }}
               />
@@ -86,6 +87,7 @@ const EditProfile = () => {
               name="reference1_address"
             >
               <Input
+                className="input_bor_edit"
                 placeholder="Enter reference 1 address"
                 style={{ height: 45, width: '100%' }}
               />
@@ -99,6 +101,8 @@ const EditProfile = () => {
               name="reference1_phone"
             >
               <Input
+                type="number"
+                className="input_bor_edit"
                 placeholder="Enter reference 1 phone number"
                 style={{ height: 45, width: '100%' }}
               />
@@ -112,6 +116,8 @@ const EditProfile = () => {
               name="reference1_email"
             >
               <Input
+                type="email"
+                className="input_bor_edit"
                 placeholder="Enter reference 1 email"
                 style={{ height: 45, width: '100%' }}
               />
@@ -125,6 +131,7 @@ const EditProfile = () => {
               name="reference1_relationship"
             >
               <Input
+                className="input_bor_edit"
                 placeholder="Enter reference 1 relationship"
                 style={{ height: 45, width: '100%' }}
               />
@@ -138,6 +145,7 @@ const EditProfile = () => {
               name="reference2_name"
             >
               <Input
+                className="input_bor_edit"
                 placeholder="Enter reference 2 name"
                 style={{ height: 45, width: '100%' }}
               />
@@ -151,6 +159,7 @@ const EditProfile = () => {
               name="reference2_address"
             >
               <Input
+                className="input_bor_edit"
                 placeholder="Enter reference 2 address"
                 style={{ height: 45, width: '100%' }}
               />
@@ -164,6 +173,8 @@ const EditProfile = () => {
               name="reference2_phone"
             >
               <Input
+                type="number"
+                className="input_bor_edit"
                 placeholder="Enter reference 2 phone number"
                 style={{ height: 45, width: '100%' }}
               />
@@ -177,6 +188,8 @@ const EditProfile = () => {
               name="reference2_email"
             >
               <Input
+                type="email"
+                className="input_bor_edit"
                 placeholder="Enter reference 2 email"
                 style={{ height: 45, width: '100%' }}
               />
@@ -190,6 +203,7 @@ const EditProfile = () => {
               name="reference2_relationship"
             >
               <Input
+                className="input_bor_edit"
                 placeholder="Enter reference 2 relationship"
                 style={{ height: 45, width: '100%' }}
               />
@@ -203,6 +217,7 @@ const EditProfile = () => {
               name="situation"
             >
               <Input.TextArea
+                className="input_bor_edit"
                 placeholder="Enter current situation"
                 style={{ height: 100, width: '100%' }}
               />
@@ -216,6 +231,7 @@ const EditProfile = () => {
               name="application_preparer_name"
             >
               <Input
+                className="input_bor_edit"
                 placeholder="Enter application preparer name"
                 style={{ height: 45, width: '100%' }}
               />
@@ -229,6 +245,7 @@ const EditProfile = () => {
               name="preparer_address"
             >
               <Input
+                className="input_bor_edit"
                 placeholder="Enter preparer address"
                 style={{ height: 45, width: '100%' }}
               />
@@ -242,6 +259,7 @@ const EditProfile = () => {
               name="preparer_email"
             >
               <Input
+                className="input_bor_edit"
                 placeholder="Enter preparer email"
                 style={{ height: 45, width: '100%' }}
               />
@@ -255,6 +273,8 @@ const EditProfile = () => {
               name="preparer_phone"
             >
               <Input
+                type="number"
+                className="input_bor_edit"
                 placeholder="Enter preparer phone number"
                 style={{ height: 45, width: '100%' }}
               />
@@ -286,6 +306,7 @@ const EditProfile = () => {
               name="applicant_signature"
             >
               <Input
+                className="input_bor_edit"
                 placeholder="Enter your name"
                 style={{ height: 45, width: '100%' }}
               />

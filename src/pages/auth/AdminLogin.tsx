@@ -99,7 +99,7 @@ const AdminLogin = () => {
                   <button
                     type="submit"
                     className="primary_btn py-3 rounded w-100"
-                    disabled={loading} // Disable button during loading state
+                    disabled={loading}
                   >
                     {loading ? <Spinner /> : 'Admin Login'}
                   </button>
