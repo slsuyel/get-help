@@ -1,6 +1,7 @@
+import Loader from '@/components/reusable/Loader';
 import { callApi } from '@/utilities/functions';
 import { ReactNode, useEffect, useState } from 'react';
-import { Spinner } from 'react-bootstrap';
+
 import { Navigate } from 'react-router';
 
 const UserCheck = ({ children }: { children: ReactNode }) => {
@@ -35,7 +36,7 @@ const UserCheck = ({ children }: { children: ReactNode }) => {
   }, []);
 
   if (loading) {
-    return <Spinner />;
+    return <Loader />;
   }
   return authenticated ? children : <Navigate to="/login" />;
 };

@@ -4,9 +4,10 @@ import Navbar from 'react-bootstrap/Navbar';
 import logo from '../../assets/images/logo-icon.webp';
 import { NavLink } from 'react-router-dom';
 import { Button, Drawer } from 'antd';
-import { MenuOutlined, SoundOutlined } from '@ant-design/icons';
+import { SoundOutlined } from '@ant-design/icons';
 import NotificationModal from './NotificationModal';
 import useLoggedIn from '@/hooks/useLoggedIn';
+import Loader from './Loader';
 
 const Header = () => {
   const { authenticated, loading } = useLoggedIn();
@@ -15,13 +16,16 @@ const Header = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [MobileMenu, setMobileMenu] = useState(false);
   const [notice, setNotice] = useState(false);
+  const [isActive, setIsActive] = useState(false);
 
   const showDrawer = () => {
     setMobileMenu(true);
+    setIsActive(true);
   };
 
   const onClose = () => {
     setMobileMenu(false);
+    setIsActive(false);
   };
 
   useEffect(() => {
@@ -40,6 +44,10 @@ const Header = () => {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
+
+  if (loading) {
+    return <Loader />;
+  }
 
   let menuItems: { id: number; label: string; link: string }[] = [];
 
@@ -95,7 +103,9 @@ const Header = () => {
             id="basic-navbar-nav "
             className="justify-content-end fs-5 fw-semibold gap-3"
           >
-            <h4 className="need_hlp_txt">Need Help?</h4>
+            <h4 className="need_hlp_txt">
+              {authenticated ? 'Apply from profile' : 'Need Help'}
+            </h4>
             {menuItems.map(item => (
               <NavLink key={item.id} to={item.link} className="nav-link fs-1">
                 {item.label}
@@ -122,12 +132,27 @@ const Header = () => {
       {isMobile && (
         <>
           <div className="align-items-center d-flex justify-content-between p-2 ">
-            <Navbar.Brand href="/" className="p-1 ">
-              <img src={logo} alt="Logo" width={220} />
+            <Navbar.Brand
+              href="/"
+              className="align-items-center d-flex gap-3 navbar-brand"
+            >
+              <img src={logo} alt="Logo" width={70} />
+              <div>
+                <h2 className="fs-1 fw-bold" style={{ color: '#f89509' }}>
+                  Mustafiz Foundation Inc.
+                </h2>
+                <h5>Frontiers for Humanity</h5>
+              </div>
             </Navbar.Brand>
-            <Button type="primary" className="rounded-0" onClick={showDrawer}>
-              <MenuOutlined />
-            </Button>
+
+            <div
+              className={`openbtn ${isActive ? 'active' : ''}`}
+              onClick={showDrawer}
+            >
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
           </div>
           <Drawer
             style={{ backgroundColor: '#be93b6' }}
@@ -136,7 +161,9 @@ const Header = () => {
             open={MobileMenu}
           >
             {' '}
-            <h4 className="need_hlp_txt">Need Help?</h4>
+            <h4 className="need_hlp_txt">
+              {authenticated ? 'Apply from profile' : 'Need Help'}
+            </h4>
             {menuItems.map(item => (
               <NavLink key={item.id} to={item.link} className="nav-link fs-1">
                 {item.label}

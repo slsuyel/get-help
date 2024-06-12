@@ -1,19 +1,21 @@
 import { message, notification } from 'antd';
 import { useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 import DocUpdate from './DocUpdate/DocUpdate';
 import { callApi } from '@/utilities/functions';
+// import UseProfileData from '@/hooks/UseProfileData';
 
 const Profile = () => {
-  const navigate = useNavigate();
-
+  // const navigate = useNavigate();
+  // const { data, isLoading } = UseProfileData();
   const handleLogoutClick = async () => {
     try {
       const res = await callApi('Post', '/api/user/logout');
-      if (res.message) {
+
+      if (res.status == 200) {
         message.success('Logged out successfully');
-        navigate('/');
+        window.location.replace('/');
       } else message.error('Error occurred during logout');
     } catch (error) {
       console.error('Error occurred during logout:', error);
@@ -32,6 +34,8 @@ const Profile = () => {
       icon: <ExclamationCircleOutlined style={{ color: '#faad14' }} />,
     });
   }, []);
+
+  // console.log(data, isLoading);
 
   return (
     <div style={{ background: '#f4f5f7' }}>
