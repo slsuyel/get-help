@@ -90,6 +90,7 @@ const UserTable = () => {
               <th className="d-none d-lg-table-cell">Phone</th>
               <th>Category</th>
               <th>Status</th>
+              <th>Email</th>
               <th>Religion</th>
 
               <th className="d-none d-lg-table-cell">Permanent Address</th>
@@ -107,6 +108,8 @@ const UserTable = () => {
                 <td className="d-none d-lg-table-cell">{user.phone}</td>
                 <td>{user.category}</td>
                 <td>{user.status}</td>
+                <td>{user.email}</td>
+
                 <td>{user.religion}</td>
                 <td className="d-none d-lg-table-cell">
                   {user.permanent_address}
