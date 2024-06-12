@@ -7,22 +7,21 @@ const Footer = () => {
         <div className="container">
           <div className="footer-top">
             <div className="footer-info">
-              <a href="#" className="footer-logo">
-                <div className="footer-img">
-                  <Link
-                    to="/"
-                    className="align-items-center d-flex gap-3 navbar-brand"
-                  >
-                    <img src={logo} alt="Logo" width={70} />
-                    <div>
-                      <h2 className="fs-1 fw-bold" style={{ color: '#f89509' }}>
-                        Mustafiz Foundation Inc.
-                      </h2>
-                      <h5>Frontiers for Humanity</h5>
-                    </div>
-                  </Link>
-                </div>
-              </a>
+              <div className="footer-img">
+                <Link
+                  to="/"
+                  className="align-items-center d-flex gap-3 navbar-brand"
+                >
+                  <img src={logo} alt="Logo" width={70} />
+                  <div>
+                    <h2 className="fs-1 fw-bold" style={{ color: '#f89509' }}>
+                      Mustafiz Foundation Inc.
+                    </h2>
+                    <h5>Frontiers for Humanity</h5>
+                  </div>
+                </Link>
+              </div>
+
               <p className="footer-desc">
                 Mustafiz Foundation is a not-for-profit organization and EIN
                 Number: 87-2173874
