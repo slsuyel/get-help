@@ -14,6 +14,7 @@ import AdminLogin from '@/pages/auth/AdminLogin';
 import Login from '@/pages/auth/Login';
 import Register from '@/pages/auth/Register';
 import ResetPassword from '@/pages/auth/ResetPassword';
+import AllUsers from '@/pages/dashboard/AllUsers';
 import Dhome from '@/pages/dashboard/Dhome';
 import UserData from '@/pages/dashboard/UserData';
 import UserTable from '@/pages/dashboard/UserTable';
@@ -83,9 +84,10 @@ const router = createBrowserRouter([
         element: <Dhome />,
       },
       {
-        path: 'register',
-        element: <Register />,
+        path: 'all-users',
+        element: <AllUsers />,
       },
+
       {
         path: ':category/:status',
         element: <UserTable />,

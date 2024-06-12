@@ -9,11 +9,7 @@ const sidebarItems = [
   {
     key: '0',
     title: 'All Users',
-    submenu: [
-      { key: '2-1', title: 'Pending', slug: '/admin/users/pending' },
-      { key: '2-2', title: 'Approved', slug: '/admin/users/approved' },
-      { key: '2-3', title: 'Rejected', slug: '/admin/users/rejected' },
-    ],
+    slug: '/admin/all-users',
   },
   {
     key: '2',
