@@ -3,6 +3,7 @@ import { ReactNode } from 'react';
 export interface ScrollToTopProps {
   children?: ReactNode;
 }
+
 export interface TypeDataForm {
   id?: number;
   name?: string;

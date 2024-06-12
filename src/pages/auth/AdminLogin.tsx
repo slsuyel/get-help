@@ -9,46 +9,43 @@ const AdminLogin = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
-  const [success, setSuccess] = useState(false);
+
   const navigate = useNavigate();
 
   const location = useLocation();
 
   const from =
     (location.state && location.state.from && location.state.from.pathname) ||
-    '/dashboard';
+    '/admin';
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
       setLoading(true);
-      const res = await callApi('POST', '/api/user/login', {
+      const res = await callApi('POST', '/api/admin/login', {
         email: username,
         password,
       });
-      if (res.token) {
-        localStorage.setItem('token', res.token);
-        setSuccess(true);
+      if (res.status == 200) {
+        localStorage.setItem('token', res.data.token);
+
         message.success('Login successfully!');
         navigate(from, { replace: true });
       } else {
         message.error('Login failed');
         console.log('Login failed: Token missing in the response.');
-        setError('Login failed');
       }
     } catch (error) {
       console.error('An error occurred while logging in:', error);
-      setError('An error occurred while logging in');
     } finally {
       setLoading(false);
     }
   };
-  console.log(success, error);
+
   return (
     <>
       <div
-        style={{ background: '#f4f5f7', marginTop: 'auto', minHeight: '50vh' }}
+        style={{ background: '#f4f5f7', marginTop: 'auto', minHeight: '80vh' }}
         className="py-5"
       >
         <div className="row mx-auto py-5 ">

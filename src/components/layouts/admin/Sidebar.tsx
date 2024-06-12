@@ -7,6 +7,15 @@ const { SubMenu } = Menu;
 const sidebarItems = [
   { key: '1', title: 'Dashboard', slug: '/admin' },
   {
+    key: '0',
+    title: 'All Users',
+    submenu: [
+      { key: '2-1', title: 'Pending', slug: '/admin/users/pending' },
+      { key: '2-2', title: 'Approved', slug: '/admin/users/approved' },
+      { key: '2-3', title: 'Rejected', slug: '/admin/users/rejected' },
+    ],
+  },
+  {
     key: '2',
     title: 'Students',
     submenu: [

@@ -2,27 +2,20 @@ import { Link, useParams } from 'react-router-dom';
 import { Button, Dropdown, Menu, Modal } from 'antd';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { MenuInfo } from 'rc-menu/lib/interface';
-const mockData = [
-  {
-    id: 1,
-    name: 'John Doe',
-    phone: '123-456-7890',
-    address: '123 Main St',
-    education: "Bachelor's Degree",
-    totalIncome: '$50,000',
-  },
-  {
-    id: 2,
-    name: 'Jane Smith',
-    phone: '987-654-3210',
-    address: '456 Elm St',
-    education: "Master's Degree",
-    totalIncome: '$70,000',
-  },
-];
+import useAllUser from '@/hooks/useAllUser';
+import Loader from '@/components/reusable/Loader';
+import { TypeDataForm } from '@/types';
+
 const UserTable = () => {
   const { category, status } = useParams();
 
+  const { data, isLoading } = useAllUser();
+
+  if (isLoading) {
+    return <Loader />;
+  }
+
+  console.log(data);
   const handleMenuClick = (e: MenuInfo, record: number) => {
     const action = e.key;
     Modal.confirm({
@@ -72,13 +65,17 @@ const UserTable = () => {
             </tr>
           </thead>
           <tbody>
-            {mockData.map(user => (
+            {data.map((user: TypeDataForm) => (
               <tr key={user.id}>
                 <td>{user.name}</td>
                 <td className="d-none d-lg-table-cell">{user.phone}</td>
-                <td className="d-none d-lg-table-cell">{user.address}</td>
-                <td className="d-none d-lg-table-cell">{user.education}</td>
-                <td>{user.totalIncome}</td>
+                <td>{user.category}</td>
+                <td className="d-none d-lg-table-cell">
+                  {user.permanent_address}
+                </td>
+                <td className="d-none d-lg-table-cell">
+                  {user.highest_education}
+                </td>
                 <td className="">
                   <Link
                     to={`/admin/user/${user.id}`}
@@ -87,7 +84,7 @@ const UserTable = () => {
                     View
                   </Link>
                 </td>
-                <td> {renderActions(user.id)}</td>
+                <td> {renderActions(user.id as number)}</td>
               </tr>
             ))}
           </tbody>
