@@ -50,7 +50,7 @@ const Profile = () => {
                 <div className="card-header bg-transparent text-center">
                   <img
                     className="profile_img"
-                    src="https://placeimg.com/640/480/arch/any"
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFLHz0vltSz4jyrQ5SmjyKiVAF-xjpuoHcCw&s"
                     alt=""
                   />
                   <h3>{user.name}</h3>

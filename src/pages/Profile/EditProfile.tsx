@@ -292,8 +292,12 @@ const EditProfile = () => {
             </Form.Item>
           </div>
 
-          <Form.Item key="submit-button" style={{ width: '105px' }}>
-            <button type="submit" className="btn btn-get-started">
+          <Form.Item key="submit-button">
+            <button
+              type="submit"
+              className="btn btn-get-started"
+              style={{ width: '215px' }}
+            >
               {' '}
               {loader ? <Spinner /> : ' Submit & Apply'}
             </button>
