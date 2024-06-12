@@ -29,15 +29,7 @@ const sidebarItems = [
       { key: '3-3', title: 'Rejected', slug: '/admin/refugee/rejected' },
     ],
   },
-  {
-    key: '4',
-    title: 'Others',
-    submenu: [
-      { key: '4-1', title: 'Pending', slug: '/admin/others/pending' },
-      { key: '4-2', title: 'Approved', slug: '/admin/others/approved' },
-      { key: '4-3', title: 'Rejected', slug: '/admin/others/rejected' },
-    ],
-  },
+
   { key: '5', title: 'Settings', slug: '/admin/settings' },
 ];
 

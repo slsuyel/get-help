@@ -46,7 +46,7 @@ const AllUsers = () => {
                 <td className="">
                   <Link
                     to={`/admin/user/${user.id}`}
-                    className="btn btn-outline-success fw-normal p-1 px-2 rounded"
+                    className="btn btn-outline-success fw-normal p-1 px-4 rounded"
                   >
                     View
                   </Link>

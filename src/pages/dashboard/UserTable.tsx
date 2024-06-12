@@ -1,28 +1,58 @@
 import { Link, useParams } from 'react-router-dom';
-import { Button, Dropdown, Menu, Modal } from 'antd';
+import { Button, Dropdown, Menu, Modal, message } from 'antd';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { MenuInfo } from 'rc-menu/lib/interface';
 import useAllUser from '@/hooks/useAllUser';
 import Loader from '@/components/reusable/Loader';
 import { TypeDataForm } from '@/types';
+import { callApi } from '@/utilities/functions';
 
 const UserTable = () => {
   const { category, status } = useParams();
 
-  const { data, isLoading } = useAllUser(category, status);
+  const { data, isLoading, refetch } = useAllUser(category, status);
 
   if (isLoading) {
     return <Loader />;
   }
 
-  console.log(data);
-  const handleMenuClick = (e: MenuInfo, record: number) => {
+  const handleMenuClick = async (e: MenuInfo, record: number) => {
     const action = e.key;
     Modal.confirm({
       title: `Confirm ${action}`,
       content: `Are you sure you want to ${action} this user?`,
-      onOk() {
-        console.log('Action:', action, 'on record:', record);
+      async onOk() {
+        if (action == 'delete') {
+          const res = await callApi(
+            'delete',
+            `/api/admin/users/delete/${record}`
+          );
+          if (res.status == 200) {
+            refetch();
+
+            message.success('Delete successfully');
+          } else message.error('Delete function failed');
+        } else if (action == 'approved') {
+          const res = await callApi('Post', `/api/admin/users/status/update`, {
+            id: record,
+            status: 'approved',
+          });
+          if (res.status == 200) {
+            refetch();
+
+            message.success('approved  successfully');
+          } else message.error('approved function failed');
+        } else {
+          const res = await callApi('Post', `/api/admin/users/status/update`, {
+            id: record,
+            status: 'rejected',
+          });
+          if (res.status == 200) {
+            refetch();
+
+            message.success('rejected  successfully');
+          } else message.error('rejected function failed');
+        }
       },
       onCancel() {
         console.log('Action canceled:', action);
@@ -52,7 +82,7 @@ const UserTable = () => {
         All {category} : <span className="text-success">{status}</span>
       </h3>
       <div className="table-responsive">
-        <table className="table table-striped">
+        <table className="table table-striped fs-3">
           <thead>
             <tr>
               <th>S.L</th>
@@ -87,7 +117,7 @@ const UserTable = () => {
                 <td className="">
                   <Link
                     to={`/admin/user/${user.id}`}
-                    className="btn btn-outline-success fw-normal p-1 px-2 rounded"
+                    className="btn btn-outline-success fw-normal p-1 px-4 rounded"
                   >
                     View
                   </Link>
