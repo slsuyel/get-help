@@ -1,13 +1,16 @@
+import { useEffect, useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import logo from '../../assets/images/logo-icon.webp';
 import { NavLink } from 'react-router-dom';
-import { useEffect, useState } from 'react';
 import { Button, Drawer } from 'antd';
 import { MenuOutlined, SoundOutlined } from '@ant-design/icons';
 import NotificationModal from './NotificationModal';
+import useLoggedIn from '@/hooks/useLoggedIn';
 
 const Header = () => {
+  const { authenticated, loading } = useLoggedIn();
+
   const [isFixed, setIsFixed] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [MobileMenu, setMobileMenu] = useState(false);
@@ -38,23 +41,28 @@ const Header = () => {
     };
   }, []);
 
-  const menuItems = [
-    {
-      id: 1,
-      label: 'Login',
-      link: '/login',
-    },
-    {
-      id: 2,
-      label: 'Register',
-      link: '/register',
-    },
-    {
+  let menuItems: { id: number; label: string; link: string }[] = [];
+
+  if (authenticated && !loading) {
+    menuItems.push({
       id: 3,
       label: 'Profile',
       link: '/profile',
-    },
-  ];
+    });
+  } else if (!authenticated && !loading) {
+    menuItems = [
+      {
+        id: 1,
+        label: 'Login',
+        link: '/login',
+      },
+      {
+        id: 2,
+        label: 'Register',
+        link: '/register',
+      },
+    ];
+  }
 
   const handleNotice = () => {
     setNotice(!notice);

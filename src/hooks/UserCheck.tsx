@@ -16,11 +16,11 @@ const UserCheck = ({ children }: { children: ReactNode }) => {
         return;
       }
       try {
-        const response = await callApi('POST', '/api/user/check/login', {
+        const response = await callApi('POST', '/api/user/check-token', {
           token,
         });
 
-        if (response.message == 'Token is valid') {
+        if (response.data.message == 'Token is valid') {
           setAuthenticated(true);
         } else {
           setAuthenticated(false);

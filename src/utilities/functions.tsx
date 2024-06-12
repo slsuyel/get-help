@@ -19,7 +19,7 @@ export const callApi = async (
       headers: headers,
     });
 
-    return response.data;
+    return response;
   } catch (error: any) {
     if (error.response) {
       return error.response;

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Input, Checkbox, message } from 'antd';
@@ -9,15 +10,14 @@ const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
-  const [success, setSuccess] = useState(false);
+
   const navigate = useNavigate();
 
   const location = useLocation();
 
   const from =
     (location.state && location.state.from && location.state.from.pathname) ||
-    '/dashboard';
+    '/profile';
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -27,24 +27,25 @@ const Login = () => {
         email: username,
         password,
       });
-      if (res.token) {
-        localStorage.setItem('token', res.token);
-        setSuccess(true);
+
+      if (res.status == 200) {
+        localStorage.setItem('token', res.data.token);
+
         message.success('Login successfully!');
         navigate(from, { replace: true });
       } else {
-        message.error('Login failed');
+        message.error('Login failed | An error occurred while logging in');
         console.log('Login failed: Token missing in the response.');
-        setError('Login failed');
+        message.error('Login failed | An error occurred while logging in');
       }
     } catch (error) {
       console.error('An error occurred while logging in:', error);
-      setError('An error occurred while logging in');
+      message.error('Login failed | An error occurred while logging in');
     } finally {
       setLoading(false);
     }
   };
-  console.log(success, error);
+
   return (
     <>
       <div style={{ background: '#f4f5f7', marginTop: 'auto' }}>
@@ -105,7 +106,7 @@ const Login = () => {
                     className="primary_btn py-3 rounded w-100"
                     disabled={loading} // Disable button during loading state
                   >
-                    {loading ? <Spinner /> : 'Register'}
+                    {loading ? <Spinner /> : 'Login'}
                   </button>
                 </div>
               </form>

@@ -2,6 +2,7 @@ import MainLayout from '@/components/layouts/MainLayout';
 import AdminLayout from '@/components/layouts/admin/AdminLayout';
 import ErrorPage from '@/components/reusable/ErrorPage';
 import UnderConstruction from '@/components/reusable/UnderConstruction';
+import UserCheck from '@/hooks/UserCheck';
 
 // import Home from '@/pages/Home/Home';
 import NewHome from '@/pages/Home/NewHome';
@@ -49,7 +50,12 @@ const router = createBrowserRouter([
       },
       {
         path: '/profile',
-        element: <Profile />,
+        element: (
+          <UserCheck>
+            {' '}
+            <Profile />
+          </UserCheck>
+        ),
       },
       {
         path: '/edit-profile',

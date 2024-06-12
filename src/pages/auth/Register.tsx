@@ -21,14 +21,17 @@ const Register = () => {
     event.preventDefault();
     if (password !== confirmPassword) {
       message.error('Passwords do not match!');
+      setLoader(false);
       return;
     }
-    const data = { name, email, password, category };
-    const res = await callApi('Post', '/api/students', data);
-    if (res.success) {
+
+    const data = { name, email, password, mobile: '01722597565', category };
+    const res = await callApi('Post', '/api/user/register', data);
+    console.log(res);
+    if (res.status == 201) {
       setLoader(false);
       message.success('Signup successfully!');
-      navigate('/student/signin');
+      navigate('/login');
     } else {
       message.error('Something went wrong !! ');
       setLoader(false);
@@ -56,6 +59,7 @@ const Register = () => {
                   Name
                 </label>
                 <Input
+                  required
                   id="registerName"
                   placeholder="Enter Name"
                   style={{ height: 45 }}
@@ -71,6 +75,7 @@ const Register = () => {
                   Email
                 </label>
                 <Input
+                  required
                   id="registerEmail"
                   placeholder="Enter Email"
                   style={{ height: 45 }}
@@ -107,6 +112,7 @@ const Register = () => {
                   Password
                 </label>
                 <Input.Password
+                  required
                   id="registerPassword"
                   placeholder="Enter Password"
                   style={{ height: 45 }}
@@ -122,6 +128,7 @@ const Register = () => {
                   Retype Password
                 </label>
                 <Input.Password
+                  required
                   id="confirmPassword"
                   placeholder="Retype Password"
                   style={{ height: 45 }}

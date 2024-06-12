@@ -1,5 +1,5 @@
-import { callApi } from '@/utilities/functions';
 import { useState, useEffect } from 'react';
+import { callApi } from '@/utilities/functions';
 
 const useLoggedIn = () => {
   const [authenticated, setAuthenticated] = useState(false);
@@ -8,19 +8,18 @@ const useLoggedIn = () => {
   useEffect(() => {
     const checkUserAuthentication = async () => {
       const token = localStorage.getItem('token');
+
       if (!token) {
         setAuthenticated(false);
         setLoading(false);
         return;
       }
-
       try {
-        const response = await callApi('POST', '/api/check/student/login', {
+        const response = await callApi('POST', '/api/user/check-token', {
           token,
         });
-        console.log(response);
-        if (response.message === 'Token is valid') {
-          localStorage.setItem('studentId', response.student.id);
+
+        if (response.data.message === 'Token is valid') {
           setAuthenticated(true);
         } else {
           setAuthenticated(false);
