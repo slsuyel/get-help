@@ -1,5 +1,6 @@
+import { callApi } from '@/utilities/functions';
 import { LogoutOutlined, UserOutlined } from '@ant-design/icons';
-import { Dropdown } from 'antd';
+import { Dropdown, message } from 'antd';
 
 const items = [
   {
@@ -27,9 +28,12 @@ function handleProfileClick() {
 }
 
 // Define the onClick handler for Logout click
-function handleLogoutClick() {
-  console.log('Logout clicked');
-  // Add your logic here
+async function handleLogoutClick() {
+  const res = await callApi('post', '/api/admin/logout');
+  if (res.status == 200) {
+    window.location.replace('/');
+    message.success('Logout successfully');
+  } else message.error('log out Failed');
 }
 
 const Navbar = () => {

@@ -1,11 +1,8 @@
-import { Spinner } from 'react-bootstrap';
 import logo from '../../assets/images/logo-icon.webp';
 const Loader = () => {
   return (
     <div className="loader-container">
       <div className="loader-content">
-        <Spinner animation="border" role="status" variant="primary" />
-
         <div>
           <img src={logo} width={100} alt="" />
         </div>
