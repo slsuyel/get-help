@@ -106,13 +106,13 @@ const Register = () => {
                     value={category}
                     onChange={value => setCategory(value)}
                   >
-                    <Option value="Student">Student</Option>
-                    <Option value="Senior">Senior</Option>
-                    <Option value="Disable">Disable</Option>
-                    <Option value="Orphan">Orphan</Option>
-                    <Option value="Homeless">Homeless</Option>
-                    <Option value="Refugee">Refugee</Option>
-                    <Option value="Other">Other</Option>
+                    <Option value="student">Student</Option>
+                    <Option value="senior">Senior</Option>
+                    <Option value="disable">Disable</Option>
+                    <Option value="orphan">Orphan</Option>
+                    <Option value="homeless">Homeless</Option>
+                    <Option value="refugee">Refugee</Option>
+                    <Option value="other">Other</Option>
                   </Select>
                 </div>
                 <div className="form-group mb-2">

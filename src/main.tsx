@@ -1,4 +1,3 @@
-import React from 'react';
 import ReactDOM from 'react-dom/client';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -12,9 +11,9 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 const queryClient = new QueryClient();
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <QueryClientProvider client={queryClient}>
-    <React.StrictMode>
-      <RouterProvider router={router} />
-      <GoToTop />
-    </React.StrictMode>
+    {/* <React.StrictMode> */}
+    <RouterProvider router={router} />
+    <GoToTop />
+    {/* </React.StrictMode> */}
   </QueryClientProvider>
 );

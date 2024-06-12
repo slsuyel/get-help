@@ -1,22 +1,25 @@
 import { callApi } from '@/utilities/functions';
 import { useQuery } from 'react-query';
 
-const useAllUser = () => {
+const useAllUser = (category = '', status = '') => {
+  async function fetchData() {
+    try {
+      const response = await callApi(
+        'GET',
+        `/api/all/users/list?category=${category}&status=${status}`
+      );
+      return response.data;
+    } catch (error) {
+      throw new Error('Error fetching user data');
+    }
+  }
+
   const {
-    data: data = [],
+    data = [],
     isLoading,
     isError,
     refetch,
-  } = useQuery('data', fetchData);
-
-  async function fetchData() {
-    try {
-      const response = await callApi('GET', `/api/all/users/list`);
-      return response.data;
-    } catch (error) {
-      throw new Error('Error fetching news data');
-    }
-  }
+  } = useQuery(['data', category, status], fetchData);
 
   return { data, isLoading, isError, refetch };
 };

@@ -15,18 +15,18 @@ const sidebarItems = [
     key: '2',
     title: 'Students',
     submenu: [
-      { key: '2-1', title: 'Pending', slug: '/admin/students/pending' },
-      { key: '2-2', title: 'Approved', slug: '/admin/students/approved' },
-      { key: '2-3', title: 'Rejected', slug: '/admin/students/rejected' },
+      { key: '2-1', title: 'Pending', slug: '/admin/Student/pending' },
+      { key: '2-2', title: 'Approved', slug: '/admin/Student/approved' },
+      { key: '2-3', title: 'Rejected', slug: '/admin/Student/rejected' },
     ],
   },
   {
     key: '3',
     title: 'Refuges',
     submenu: [
-      { key: '3-1', title: 'Pending', slug: '/admin/refuges/pending' },
-      { key: '3-2', title: 'Approved', slug: '/admin/refuges/approved' },
-      { key: '3-3', title: 'Rejected', slug: '/admin/refuges/rejected' },
+      { key: '3-1', title: 'Pending', slug: '/admin/refugee/pending' },
+      { key: '3-2', title: 'Approved', slug: '/admin/refugee/approved' },
+      { key: '3-3', title: 'Rejected', slug: '/admin/refugee/rejected' },
     ],
   },
   {

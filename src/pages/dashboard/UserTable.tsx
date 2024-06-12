@@ -9,7 +9,7 @@ import { TypeDataForm } from '@/types';
 const UserTable = () => {
   const { category, status } = useParams();
 
-  const { data, isLoading } = useAllUser();
+  const { data, isLoading } = useAllUser(category, status);
 
   if (isLoading) {
     return <Loader />;
