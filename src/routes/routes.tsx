@@ -59,7 +59,11 @@ const router = createBrowserRouter([
       },
       {
         path: '/edit-profile/:id',
-        element: <EditProfile />,
+        element: (
+          <UserCheck>
+            <EditProfile />
+          </UserCheck>
+        ),
       },
     ],
   },

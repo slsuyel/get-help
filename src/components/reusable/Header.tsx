@@ -177,6 +177,13 @@ const Header = () => {
               icon={<SoundOutlined className="fs-1" />}
               style={{ fontSize: '24px' }}
             ></Button>
+            <NavLink
+              target="_blank"
+              to={'https://mustafiz.org/donation/'}
+              className="btn btn-get-started p-2 px-3 rounded"
+            >
+              Donate here
+            </NavLink>
           </Drawer>
         </>
       )}
