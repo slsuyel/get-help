@@ -3,9 +3,9 @@ import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import logo from '../../assets/images/logo-icon.webp';
 import { NavLink } from 'react-router-dom';
-import { Button, Drawer } from 'antd';
-import { SoundOutlined } from '@ant-design/icons';
-import NotificationModal from './NotificationModal';
+import { Drawer } from 'antd';
+// import { SoundOutlined } from '@ant-design/icons';
+// import NotificationModal from './NotificationModal';
 
 import Loader from './Loader';
 import UseProfileData from '@/hooks/UseProfileData';
@@ -16,7 +16,7 @@ const Header = () => {
   const [isFixed, setIsFixed] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [MobileMenu, setMobileMenu] = useState(false);
-  const [notice, setNotice] = useState(false);
+  // const [notice, setNotice] = useState(false);
   const [isActive, setIsActive] = useState(false);
 
   const showDrawer = () => {
@@ -73,9 +73,9 @@ const Header = () => {
     ];
   }
 
-  const handleNotice = () => {
-    setNotice(!notice);
-  };
+  // const handleNotice = () => {
+  //   setNotice(!notice);
+  // };
 
   return (
     <>
@@ -112,13 +112,13 @@ const Header = () => {
                 {item.label}
               </NavLink>
             ))}
-            <Button
+            {/* <Button
               onClick={handleNotice}
               className="shadow-none text-primary bg-transparent"
               type="primary"
               icon={<SoundOutlined className="fs-1" />}
               style={{ fontSize: '24px' }}
-            ></Button>
+            ></Button> */}
             <NavLink
               target="_blank"
               to={'https://mustafiz.org/donation/'}
@@ -170,13 +170,13 @@ const Header = () => {
                 {item.label}
               </NavLink>
             ))}
-            <Button
+            {/* <Button
               onClick={handleNotice}
               className="shadow-none text-primary bg-transparent"
               type="primary"
               icon={<SoundOutlined className="fs-1" />}
               style={{ fontSize: '24px' }}
-            ></Button>
+            ></Button> */}
             <NavLink
               target="_blank"
               to={'https://mustafiz.org/donation/'}
@@ -187,7 +187,7 @@ const Header = () => {
           </Drawer>
         </>
       )}
-      {notice && <NotificationModal notice={notice} setNotice={setNotice} />}
+      {/* {notice && <NotificationModal notice={notice} setNotice={setNotice} />} */}
     </>
   );
 };
