@@ -4,11 +4,11 @@ import { Link } from 'react-router-dom';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 import DocUpdate from './DocUpdate/DocUpdate';
 import { callApi } from '@/utilities/functions';
-// import UseProfileData from '@/hooks/UseProfileData';
+import UseProfileData from '@/hooks/UseProfileData';
+import Loader from '@/components/reusable/Loader';
 
 const Profile = () => {
-  // const navigate = useNavigate();
-  // const { data, isLoading } = UseProfileData();
+  const { user, loading } = UseProfileData();
   const handleLogoutClick = async () => {
     try {
       const res = await callApi('Post', '/api/user/logout');
@@ -34,9 +34,12 @@ const Profile = () => {
       icon: <ExclamationCircleOutlined style={{ color: '#faad14' }} />,
     });
   }, []);
-
-  // console.log(data, isLoading);
-
+  if (loading) {
+    return <Loader />;
+  }
+  if (user == null) {
+    return null;
+  }
   return (
     <div style={{ background: '#f4f5f7' }}>
       <div className="student-profile py-4">
@@ -50,31 +53,18 @@ const Profile = () => {
                     src="https://placeimg.com/640/480/arch/any"
                     alt=""
                   />
-                  <h3>Ishmam Ahasan Samin</h3>
-                  <button className="btn btn-outline-success fw-bold" disabled>
-                    Status : Pending
+                  <h3>{user.name}</h3>
+                  <button
+                    className="btn btn-outline-success fw-bold mb-2"
+                    disabled
+                  >
+                    Status : {user.status}
                   </button>
                 </div>
-                <div className="card-body ">
-                  <p className="mb-0">
-                    <strong className="pe-1">Phone Number:</strong> 01700000000
-                  </p>
-                  <hr />
-                  <p className="mb-0">
-                    <strong className="pe-1">Email Address:</strong>{' '}
-                    example@gmail.com
-                  </p>
-                  <hr />
 
-                  <p className="mb-0">
-                    <strong className="pe-1">Permanent Address:</strong>
-                    Nikunjo-02, Khilkhet, Dhaka-1229, Bangladesh
-                  </p>
-                  <hr />
-                </div>
-                <div className="d-flex gap-4 justify-content-center mb-4">
+                <div className="d-flex gap-4 justify-content-center my-4">
                   <Link
-                    to={'/edit-profile'}
+                    to={`/edit-profile/${user.id}`}
                     className="btn btn-outline-primary"
                   >
                     <span>
@@ -106,74 +96,49 @@ const Profile = () => {
                       <tr>
                         <th>Date of Birth</th>
                         <td width="2%">:</td>
-                        <td>05/20/1998</td>
+                        <td>{user.dob}</td>
                       </tr>
                       <tr>
                         <th>Gender</th>
                         <td width="2%">:</td>
-                        <td>Male</td>
+                        <td>{user.gender}</td>
                       </tr>
                       <tr>
                         <th>Nationality</th>
                         <td width="2%">:</td>
-                        <td>US Citizen</td>
+                        <td>{user.nationality}</td>
                       </tr>
                       <tr>
                         <th>Phone Number</th>
                         <td width="2%">:</td>
-                        <td>123-456-7890</td>
+                        <td>{user.phone}</td>
                       </tr>
                       <tr>
                         <th>Email Address</th>
                         <td width="2%">:</td>
-                        <td>john.doe@example.com</td>
+                        <td>{user.email}</td>
                       </tr>
                       <tr>
                         <th>Address Details</th>
                         <td width="2%">:</td>
-                        <td>123 Main St, City, State, Zip</td>
+                        <td>{user.current_address}</td>
                       </tr>
                       <tr>
                         <th>Educational Background</th>
                         <td width="2%">:</td>
-                        <td>XYZ University</td>
+                        <td>{user.highest_education}</td>
                       </tr>
                       <tr>
                         <th>Family Information</th>
                         <td width="2%">:</td>
                         <td>
-                          Parents: Jane Doe, John Doe Sr. Total Family Income:
-                          $50,000. Siblings: 2, both in high school.
+                          {user.father_name},{user.mother_name}
                         </td>
                       </tr>
                       <tr>
-                        <th>Financial Information</th>
+                        <th>Current Situation</th>
                         <td width="2%">:</td>
-                        <td>Self-funded. No current scholarships or grants.</td>
-                      </tr>
-                      <tr>
-                        <th>Academic and Extracurricular Activities</th>
-                        <td width="2%">:</td>
-                        <td>
-                          Award for Excellence in Mathematics, Chess Club
-                          President.
-                        </td>
-                      </tr>
-                      <tr>
-                        <th>Essay Questions</th>
-                        <td width="2%">:</td>
-                        <td>
-                          Educational and career goals: To become a software
-                          engineer. Assistance: Will help cover tuition fees,
-                          textbooks, and living expenses. Challenges: Overcame
-                          financial difficulties and managed to excel
-                          academically.
-                        </td>
-                      </tr>
-                      <tr>
-                        <th>References</th>
-                        <td width="2%">:</td>
-                        <td>Jane Doe, Mother, jane.doe@example.com</td>
+                        <td>{user.situation}</td>
                       </tr>
                     </tbody>
                   </table>

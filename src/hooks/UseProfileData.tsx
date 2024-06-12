@@ -1,26 +1,41 @@
 import { useState, useEffect } from 'react';
-import { callApi } from '../utilities/functions';
+import { callApi } from '@/utilities/functions';
+import { TypeDataForm } from '@/types';
 
 const UseProfileData = () => {
-  const [data, setData] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [user, setUser] = useState<TypeDataForm | null>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await callApi('GET', `/api/user-access`);
+    const checkUserAuthentication = async () => {
+      const token = localStorage.getItem('token');
 
-        setData(response);
-        setIsLoading(false);
-      } catch (error) {
-        console.error('Error fetching student data:', error);
-        setIsLoading(false);
+      if (!token) {
+        setUser(null);
+        setLoading(false);
+        return;
       }
+      try {
+        /* /api/user/check/login */
+        const response = await callApi('POST', '/api/user/check/login', {
+          token,
+        });
+
+        if (response.data.message === 'Token is valid') {
+          setUser(response.data.user);
+        } else {
+          setUser(null);
+        }
+      } catch (error) {
+        setUser(null);
+      }
+      setLoading(false);
     };
-    fetchData();
+
+    checkUserAuthentication();
   }, []);
 
-  return { data, isLoading };
+  return { user, loading };
 };
 
 export default UseProfileData;

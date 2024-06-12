@@ -6,11 +6,12 @@ import { NavLink } from 'react-router-dom';
 import { Button, Drawer } from 'antd';
 import { SoundOutlined } from '@ant-design/icons';
 import NotificationModal from './NotificationModal';
-import useLoggedIn from '@/hooks/useLoggedIn';
+
 import Loader from './Loader';
+import UseProfileData from '@/hooks/UseProfileData';
 
 const Header = () => {
-  const { authenticated, loading } = useLoggedIn();
+  const { user, loading } = UseProfileData();
 
   const [isFixed, setIsFixed] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -51,13 +52,13 @@ const Header = () => {
 
   let menuItems: { id: number; label: string; link: string }[] = [];
 
-  if (authenticated && !loading) {
+  if (user && !loading) {
     menuItems.push({
       id: 3,
       label: 'Profile',
       link: '/profile',
     });
-  } else if (!authenticated && !loading) {
+  } else if (!user && !loading) {
     menuItems = [
       {
         id: 1,
@@ -104,7 +105,7 @@ const Header = () => {
             className="justify-content-end fs-5 fw-semibold gap-3"
           >
             <h4 className="need_hlp_txt">
-              {authenticated ? 'Apply from profile' : 'Need Help'}
+              {user ? 'Apply from profile' : 'Need Help'}
             </h4>
             {menuItems.map(item => (
               <NavLink key={item.id} to={item.link} className="nav-link fs-1">
@@ -162,7 +163,7 @@ const Header = () => {
           >
             {' '}
             <h4 className="need_hlp_txt">
-              {authenticated ? 'Apply from profile' : 'Need Help'}
+              {user ? 'Apply from profile' : 'Need Help'}
             </h4>
             {menuItems.map(item => (
               <NavLink key={item.id} to={item.link} className="nav-link fs-1">

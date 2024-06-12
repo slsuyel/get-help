@@ -7,7 +7,7 @@ export const renderRefugeeFields = () => (
     <div className="col-md-6" key="conflict-info-col-1">
       <Form.Item
         label="Country of Conflict"
-        name="countryOfConflict"
+        name="country_of_conflict"
         key="countryOfConflict"
       >
         <Input
@@ -17,7 +17,7 @@ export const renderRefugeeFields = () => (
       </Form.Item>
       <Form.Item
         label="Sheltering Country"
-        name="shelteringCountry"
+        name="sheltering_country"
         key="shelteringCountry"
       >
         <Input
@@ -36,7 +36,7 @@ export const renderRefugeeFields = () => (
       </Form.Item>
       <Form.Item
         label="Arrived Legally or Illegally"
-        name="arrivalLegality"
+        name="arrival_legality"
         key="arrivalLegality"
       >
         <Select
@@ -52,7 +52,7 @@ export const renderRefugeeFields = () => (
     <div className="col-md-6" key="current-living-col-1">
       <Form.Item
         label="Currently Living in Shelter or Rented House"
-        name="currentLiving"
+        name="current_living"
         key="currentLiving"
       >
         <Select
@@ -69,7 +69,7 @@ export const renderRefugeeFields = () => (
       <Form.Item
         className="col-md-4"
         label="Total Family Members"
-        name="totalFamilyMembers"
+        name="total_family_members"
         key="totalFamilyMembers"
       >
         <Input
@@ -80,7 +80,7 @@ export const renderRefugeeFields = () => (
       <Form.Item
         className="col-md-4"
         label="Adult Family Members"
-        name="adultFamilyMembers"
+        name="adult_family_members"
         key="adultFamilyMembers"
       >
         <Input
@@ -91,7 +91,7 @@ export const renderRefugeeFields = () => (
       <Form.Item
         className="col-md-4"
         label="Minor Family Members"
-        name="minorFamilyMembers"
+        name="minor_family_members"
         key="minorFamilyMembers"
       >
         <Input

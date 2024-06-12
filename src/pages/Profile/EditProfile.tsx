@@ -1,23 +1,58 @@
-import { SetStateAction, useState } from 'react';
-import { Form, Select, Row, Col, Input, Checkbox } from 'antd';
+import { Form, Input, Checkbox, message } from 'antd';
 import { renderRefugeeFields } from './Fields/renderRefugeeFields';
 import { renderStudentFields } from './Fields/renderStudentFields';
 
 import { TypeDataForm } from '@/types';
 import { renderCommonFields } from './Fields/renderCommonFields';
-
-const { Option } = Select;
+import { callApi } from '@/utilities/functions';
+import UseProfileData from '@/hooks/UseProfileData';
+import Loader from '@/components/reusable/Loader';
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { Spinner } from 'react-bootstrap';
 
 const EditProfile = () => {
-  const [category, setCategory] = useState('Student');
+  const { user, loading } = UseProfileData();
+  const [loader, setLoader] = useState(false);
+  const navigate = useNavigate();
+  const onFinish = async (values: TypeDataForm) => {
+    setLoader(true);
+    if (values.perjury_declaration && values.terms_agreement && values.dob) {
+      const formattedDOB = new Date(values.dob).toISOString().split('T')[0];
+      const updatedValues = {
+        ...values,
+        perjury_declaration: 'yes',
+        terms_agreement: 'yes',
+        dob: formattedDOB,
+      };
 
-  const handleCategoryChange = (value: SetStateAction<string>) => {
-    setCategory(value);
+      const res = await callApi(
+        'POST',
+        `/api/user/update/${user?.id}`,
+        updatedValues
+      );
+      if (res.status == 200) {
+        setLoader(false);
+        navigate('/profile');
+        message.success('profile Update Successfully');
+      } else {
+        message.error('User Update failed');
+        setLoader(false);
+      }
+    } else {
+      message.error('User Update failed');
+      console.log('error');
+      setLoader(false);
+    }
   };
 
-  const onFinish = (values: TypeDataForm) => {
-    console.log('Form Values:', values);
-  };
+  if (loading) {
+    return <Loader />;
+  }
+
+  if (user == null) {
+    return <>User Not Found</>;
+  }
 
   return (
     <div className=" py-5 " style={{ background: '#f4f5f7' }}>
@@ -26,28 +61,17 @@ const EditProfile = () => {
         onFinish={onFinish}
         className="p-4 shadow rounded container"
       >
-        <Row gutter={16} key="category-row" className="mx-auto">
-          <Col span={12} key="category-col">
-            <Form.Item label="Category" name="category" key="category">
-              <Select onChange={handleCategoryChange}>
-                <Option value="Student" key="student-option">
-                  Student
-                </Option>
-                <Option value="Refugee" key="refugee-option">
-                  Refugee
-                </Option>
-              </Select>
-            </Form.Item>
-          </Col>
-        </Row>
-
         <div className="row mx-auto">
-          {renderCommonFields()}
-          {category === 'Student' && renderStudentFields()}
-          {category === 'Refugee' && renderRefugeeFields()}
+          {renderCommonFields(user)}
+          {user.category === 'Student' && renderStudentFields(user)}
+          {user.category === 'Refugee' && renderRefugeeFields()}
 
           <div className="col-md-6">
-            <Form.Item label="Reference 1 Name" name="reference1Name">
+            <Form.Item
+              initialValue={user.reference1_name}
+              label="Reference 1 Name"
+              name="reference1_name"
+            >
               <Input
                 placeholder="Enter reference 1 name"
                 style={{ height: 45, width: '100%' }}
@@ -56,7 +80,11 @@ const EditProfile = () => {
           </div>
 
           <div className="col-md-6">
-            <Form.Item label="Reference 1 Address" name="reference1Address">
+            <Form.Item
+              initialValue={user.reference1_address}
+              label="Reference 1 Address"
+              name="reference1_address"
+            >
               <Input
                 placeholder="Enter reference 1 address"
                 style={{ height: 45, width: '100%' }}
@@ -65,7 +93,11 @@ const EditProfile = () => {
           </div>
 
           <div className="col-md-6">
-            <Form.Item label="Reference 1 Phone Number" name="reference1Phone">
+            <Form.Item
+              initialValue={user.reference1_phone}
+              label="Reference 1 Phone Number"
+              name="reference1_phone"
+            >
               <Input
                 placeholder="Enter reference 1 phone number"
                 style={{ height: 45, width: '100%' }}
@@ -74,7 +106,11 @@ const EditProfile = () => {
           </div>
 
           <div className="col-md-6">
-            <Form.Item label="Reference 1 Email" name="reference1Email">
+            <Form.Item
+              initialValue={user.reference1_email}
+              label="Reference 1 Email"
+              name="reference1_email"
+            >
               <Input
                 placeholder="Enter reference 1 email"
                 style={{ height: 45, width: '100%' }}
@@ -84,8 +120,9 @@ const EditProfile = () => {
 
           <div className="col-md-6">
             <Form.Item
+              initialValue={user.reference1_relationship}
               label="Reference 1 Relationship"
-              name="reference1Relationship"
+              name="reference1_relationship"
             >
               <Input
                 placeholder="Enter reference 1 relationship"
@@ -95,7 +132,11 @@ const EditProfile = () => {
           </div>
 
           <div className="col-md-6">
-            <Form.Item label="Reference 2 Name" name="reference2Name">
+            <Form.Item
+              initialValue={user.reference2_name}
+              label="Reference 2 Name"
+              name="reference2_name"
+            >
               <Input
                 placeholder="Enter reference 2 name"
                 style={{ height: 45, width: '100%' }}
@@ -104,7 +145,11 @@ const EditProfile = () => {
           </div>
 
           <div className="col-md-6">
-            <Form.Item label="Reference 2 Address" name="reference2Address">
+            <Form.Item
+              label="Reference 2 Address"
+              initialValue={user.reference2_address}
+              name="reference2_address"
+            >
               <Input
                 placeholder="Enter reference 2 address"
                 style={{ height: 45, width: '100%' }}
@@ -113,7 +158,11 @@ const EditProfile = () => {
           </div>
 
           <div className="col-md-6">
-            <Form.Item label="Reference 2 Phone Number" name="reference2Phone">
+            <Form.Item
+              initialValue={user.reference2_phone}
+              label="Reference 2 Phone Number"
+              name="reference2_phone"
+            >
               <Input
                 placeholder="Enter reference 2 phone number"
                 style={{ height: 45, width: '100%' }}
@@ -122,7 +171,11 @@ const EditProfile = () => {
           </div>
 
           <div className="col-md-6">
-            <Form.Item label="Reference 2 Email" name="reference2Email">
+            <Form.Item
+              initialValue={user.reference2_email}
+              label="Reference 2 Email"
+              name="reference2_email"
+            >
               <Input
                 placeholder="Enter reference 2 email"
                 style={{ height: 45, width: '100%' }}
@@ -132,8 +185,9 @@ const EditProfile = () => {
 
           <div className="col-md-6">
             <Form.Item
+              initialValue={user.reference2_relationship}
               label="Reference 2 Relationship"
-              name="reference2Relationship"
+              name="reference2_relationship"
             >
               <Input
                 placeholder="Enter reference 2 relationship"
@@ -144,6 +198,7 @@ const EditProfile = () => {
 
           <div className="col-md-6">
             <Form.Item
+              initialValue={user.situation}
               label="Describe your situation in minimum 200 hundred Words: "
               name="situation"
             >
@@ -156,8 +211,9 @@ const EditProfile = () => {
 
           <div className="col-md-6">
             <Form.Item
+              initialValue={user.application_preparer_name}
               label="Application Preparer Name"
-              name="applicationPreparerName"
+              name="application_preparer_name"
             >
               <Input
                 placeholder="Enter application preparer name"
@@ -167,7 +223,11 @@ const EditProfile = () => {
           </div>
 
           <div className="col-md-6">
-            <Form.Item label="Address" name="preparerAddress">
+            <Form.Item
+              initialValue={user.preparer_address}
+              label="Address"
+              name="preparer_address"
+            >
               <Input
                 placeholder="Enter preparer address"
                 style={{ height: 45, width: '100%' }}
@@ -176,7 +236,11 @@ const EditProfile = () => {
           </div>
 
           <div className="col-md-6">
-            <Form.Item label="Email" name="preparerEmail">
+            <Form.Item
+              initialValue={user.preparer_email}
+              label="Email"
+              name="preparer_email"
+            >
               <Input
                 placeholder="Enter preparer email"
                 style={{ height: 45, width: '100%' }}
@@ -185,7 +249,11 @@ const EditProfile = () => {
           </div>
 
           <div className="col-md-6">
-            <Form.Item label="Phone Number" name="preparerPhone">
+            <Form.Item
+              initialValue={user.preparer_phone}
+              label="Phone Number"
+              name="preparer_phone"
+            >
               <Input
                 placeholder="Enter preparer phone number"
                 style={{ height: 45, width: '100%' }}
@@ -194,8 +262,8 @@ const EditProfile = () => {
           </div>
 
           <div className="col-md-6">
-            <Form.Item name="perjuryDeclaration" valuePropName="checked">
-              <Checkbox>
+            <Form.Item name="perjury_declaration" valuePropName="checked">
+              <Checkbox required>
                 You swear under penalty of perjury that the above information is
                 true and accurate.
               </Checkbox>
@@ -203,7 +271,7 @@ const EditProfile = () => {
           </div>
 
           <div className="col-md-6">
-            <Form.Item name="termsAgreement" valuePropName="checked">
+            <Form.Item required name="terms_agreement" valuePropName="checked">
               <Checkbox>
                 You agree with the terms and conditions and privacy policy of
                 Mustafiz Foundation Inc.
@@ -212,7 +280,11 @@ const EditProfile = () => {
           </div>
 
           <div className="col-md-6">
-            <Form.Item label="Sign Your Name" name="applicantSignature">
+            <Form.Item
+              initialValue={user.applicant_signature}
+              label="Sign Your Name"
+              name="applicant_signature"
+            >
               <Input
                 placeholder="Enter your name"
                 style={{ height: 45, width: '100%' }}
@@ -220,10 +292,10 @@ const EditProfile = () => {
             </Form.Item>
           </div>
 
-          <Form.Item key="submit-button">
+          <Form.Item key="submit-button" style={{ width: '105px' }}>
             <button type="submit" className="btn btn-get-started">
               {' '}
-              Submit & Apply
+              {loader ? <Spinner /> : ' Submit & Apply'}
             </button>
           </Form.Item>
         </div>

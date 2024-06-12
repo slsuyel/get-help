@@ -1,12 +1,14 @@
+import { TypeDataForm } from '@/types';
 import { Form, Input, DatePicker, Select } from 'antd';
 
 const { Option } = Select;
 
-export const renderCommonFields = () => (
+export const renderCommonFields = (user: TypeDataForm) => (
   <>
     <div className="col-md-6">
-      <Form.Item label="Applicant Name" name="applicantName">
+      <Form.Item initialValue={user.name} label="Applicant Name" name="name">
         <Input
+          disabled
           style={{ height: 45, width: '100%' }}
           placeholder="Enter applicant's name"
         />
@@ -14,7 +16,11 @@ export const renderCommonFields = () => (
     </div>
 
     <div className="col-md-6">
-      <Form.Item label="Father's Name" name="fatherName">
+      <Form.Item
+        initialValue={user.father_name}
+        label="Father's Name"
+        name="father_name"
+      >
         <Input
           style={{ height: 45, width: '100%' }}
           placeholder="Enter father's name"
@@ -23,7 +29,11 @@ export const renderCommonFields = () => (
     </div>
 
     <div className="col-md-6">
-      <Form.Item label="Mother's Name" name="motherName">
+      <Form.Item
+        initialValue={user.mother_name}
+        label="Mother's Name"
+        name="mother_name"
+      >
         <Input
           style={{ height: 45, width: '100%' }}
           placeholder="Enter mother's name"
@@ -32,7 +42,11 @@ export const renderCommonFields = () => (
     </div>
 
     <div className="col-md-6">
-      <Form.Item label="Nationality" name="nationality">
+      <Form.Item
+        initialValue={user.nationality}
+        label="Nationality"
+        name="nationality"
+      >
         <Input
           style={{ height: 45, width: '100%' }}
           placeholder="Enter nationality"
@@ -41,7 +55,11 @@ export const renderCommonFields = () => (
     </div>
 
     <div className="col-md-6">
-      <Form.Item label="Country of Birth" name="countryOfBirth">
+      <Form.Item
+        initialValue={user.country_of_birth}
+        label="Country of Birth"
+        name="country_of_birth"
+      >
         <Input
           style={{ height: 45, width: '100%' }}
           placeholder="Enter country of birth"
@@ -50,8 +68,9 @@ export const renderCommonFields = () => (
     </div>
 
     <div className="col-md-6">
-      <Form.Item label="Email" name="email">
+      <Form.Item initialValue={user.email} label="Email" name="email">
         <Input
+          disabled
           style={{ height: 45, width: '100%' }}
           placeholder="Enter email"
         />
@@ -59,7 +78,7 @@ export const renderCommonFields = () => (
     </div>
 
     <div className="col-md-6">
-      <Form.Item label="Phone Number" name="phone">
+      <Form.Item initialValue={user.phone} label="Phone Number" name="phone">
         <Input
           style={{ height: 45, width: '100%' }}
           placeholder="Enter phone number"
@@ -70,6 +89,7 @@ export const renderCommonFields = () => (
     <div className="col-md-6">
       <Form.Item label="Date of Birth" name="dob">
         <DatePicker
+          required
           style={{ height: 45, width: '100%' }}
           placeholder="Select date of birth"
         />
@@ -78,8 +98,9 @@ export const renderCommonFields = () => (
 
     <div className="col-md-6">
       <Form.Item
+        initialValue={user.national_id_or_ssn}
         label="National ID or Last 4 digits of SSN"
-        name="nationalIdOrSsn"
+        name="national_id_or_ssn"
       >
         <Input
           style={{ height: 45, width: '100%' }}
@@ -89,7 +110,7 @@ export const renderCommonFields = () => (
     </div>
 
     <div className="col-md-6">
-      <Form.Item label="Gender" name="gender">
+      <Form.Item initialValue={user.gender} label="Gender" name="gender">
         <Select
           style={{ height: 45, width: '100%' }}
           placeholder="Select gender"
@@ -102,13 +123,13 @@ export const renderCommonFields = () => (
     </div>
 
     <div className="col-md-6">
-      <Form.Item label="Race" name="race">
+      <Form.Item initialValue={user.race} label="Race" name="race">
         <Input style={{ height: 45, width: '100%' }} placeholder="Enter race" />
       </Form.Item>
     </div>
 
     <div className="col-md-6">
-      <Form.Item label="Religion" name="religion">
+      <Form.Item initialValue={user.religion} label="Religion" name="religion">
         <Select
           style={{ height: 45, width: '100%' }}
           placeholder="Select religion"
@@ -124,7 +145,11 @@ export const renderCommonFields = () => (
     </div>
 
     <div className="col-md-6">
-      <Form.Item label="Marital Status" name="maritalStatus">
+      <Form.Item
+        initialValue={user.marital_status}
+        label="Marital Status"
+        name="marital_status"
+      >
         <Select
           style={{ height: 45, width: '100%' }}
           placeholder="Select marital status"
@@ -138,7 +163,11 @@ export const renderCommonFields = () => (
     </div>
 
     <div className="col-md-6">
-      <Form.Item label="Current Address" name="currentAddress">
+      <Form.Item
+        initialValue={user.current_address}
+        label="Current Address"
+        name="current_address"
+      >
         <Input
           style={{ height: 45, width: '100%' }}
           placeholder="Enter current address"
@@ -147,7 +176,11 @@ export const renderCommonFields = () => (
     </div>
 
     <div className="col-md-6">
-      <Form.Item label="Permanent Address" name="permanentAddress">
+      <Form.Item
+        initialValue={user.permanent_address}
+        label="Permanent Address"
+        name="permanent_address"
+      >
         <Input
           style={{ height: 45, width: '100%' }}
           placeholder="Enter permanent address"
@@ -156,7 +189,11 @@ export const renderCommonFields = () => (
     </div>
 
     <div className="col-md-6">
-      <Form.Item label="Highest Level of Education" name="highestEducation">
+      <Form.Item
+        initialValue={user.highest_education}
+        label="Highest Level of Education"
+        name="highest_education"
+      >
         <Input
           style={{ height: 45, width: '100%' }}
           placeholder="Enter highest level of education"

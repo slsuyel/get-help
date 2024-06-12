@@ -15,9 +15,14 @@ const useLoggedIn = () => {
         return;
       }
       try {
-        const response = await callApi('POST', '/api/user/check-token', {
+        /* /api/user/check/login */
+        const response = await callApi('POST', '/api/user/check/login', {
           token,
         });
+        /* data
+: 
+{message: 'Token is valid', user: {…}} */
+        console.log(response);
 
         if (response.data.message === 'Token is valid') {
           setAuthenticated(true);
