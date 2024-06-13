@@ -48,7 +48,7 @@ const Sidebar = () => (
     }}
   >
     <div
-      className="border-bottom"
+      className="border-bottom "
       style={{
         height: '65px',
         display: 'flex',
@@ -63,6 +63,7 @@ const Sidebar = () => (
       />
     </div>
     <Menu
+      className="font_amazon"
       theme={theme ? 'light' : 'dark'}
       mode="inline"
       defaultSelectedKeys={['4']}

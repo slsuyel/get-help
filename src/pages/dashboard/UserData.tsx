@@ -29,7 +29,7 @@ const UserData = () => {
   console.log(userData);
 
   return (
-    <div className="">
+    <div className="font_amazon">
       {loading ? (
         <div>Loading...</div>
       ) : (

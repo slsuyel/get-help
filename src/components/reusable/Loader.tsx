@@ -2,7 +2,7 @@ import logo from '../../assets/images/logo-icon.webp';
 const Loader = () => {
   return (
     <div className="loader-container">
-      <div className="loader-content">
+      <div className="loader-content font_amazon">
         <div>
           <img src={logo} width={100} alt="" />
         </div>

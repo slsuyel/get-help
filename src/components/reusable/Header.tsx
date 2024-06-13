@@ -84,7 +84,7 @@ const Header = () => {
         fixed={isFixed ? 'top' : undefined}
         className={`border-bottom p-0 py-3 bg-white ${
           isFixed ? 'header-bg-fix' : ''
-        } ${isMobile ? 'd-none' : 'd-block'} text-uppercase`}
+        } ${isMobile ? 'd-none' : 'd-block'} text-uppercase font_amazon`}
       >
         <Container>
           <Navbar.Brand

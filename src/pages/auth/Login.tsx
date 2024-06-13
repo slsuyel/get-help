@@ -64,7 +64,7 @@ const Login = () => {
           <div className="row mx-auto py-5 ">
             <div className="col-md-4 mx-auto my-3">
               <div className="p-3 w-100 mx-auto border-0 rounded shadow py-5">
-                <div className="align-items-center d-flex gap-3 justify-content-center">
+                <div className="align-items-center d-flex gap-3 justify-content-center font_amazon">
                   <img src={logo} alt="Logo" width={50} />
                   <div>
                     <h2 className="fs-1 fw-bold" style={{ color: '#f89509' }}>
@@ -73,6 +73,9 @@ const Login = () => {
                     <h5>Frontiers for Humanity</h5>
                   </div>
                 </div>
+                <h1 className="bg-white mx-3 my-4 opacity-75 rounded text-center text-secondary-emphasis font_amazon">
+                  Login Mustafiz Foundation{' '}
+                </h1>
                 <form onSubmit={handleSubmit} className="px-3">
                   <div className="form-group mb-2">
                     <label

@@ -70,13 +70,13 @@ const UserTable = () => {
       }
     >
       <Button>
-        Actions <span className="anticon anticon-down"></span>
+        Actions <span className="anticon anticon-down font_amazon"></span>
       </Button>
     </Dropdown>
   );
 
   return (
-    <div className="">
+    <div className="font_amazon">
       <h3 className="mb-4 text-capitalize">
         {' '}
         All {category} : <span className="text-success">{status}</span>
@@ -92,10 +92,8 @@ const UserTable = () => {
               <th>Status</th>
               <th>Email</th>
               <th>Religion</th>
-
-              <th className="d-none d-lg-table-cell">Permanent Address</th>
-
-              <th className="d-none d-lg-table-cell">Highest Education</th>
+              <th className="d-none d-lg-table-cell">Permanent Addr.</th>
+              <th className="d-none d-lg-table-cell">Highest Edu.</th>
               <th>Details</th>
               <th>Action</th>
             </tr>

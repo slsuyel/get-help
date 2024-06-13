@@ -72,7 +72,7 @@ const SummaryChart = () => {
   }, []);
 
   return (
-    <div className="col-md-7 mx-auto my-2">
+    <div className="col-md-7 mx-auto my-2 ">
       <div className="p-2 card">
         <canvas
           className="w-100"

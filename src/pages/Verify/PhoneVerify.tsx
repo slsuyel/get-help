@@ -6,12 +6,12 @@
 
 // const PhoneVerify = ({ onUserVerified }) => {
 //   const firebaseConfig = {
-//     apiKey: 'AIzaSyB6HVwxcRw2FX-CVJnTrJMpNfM1LpB5vJo',
-//     authDomain: 'verify-otp-1a0e3.firebaseapp.com',
-//     projectId: 'verify-otp-1a0e3',
-//     storageBucket: 'verify-otp-1a0e3.appspot.com',
-//     messagingSenderId: '354199648360',
-//     appId: '1:354199648360:web:b3508408aeddd23b4da3dd',
+//     apiKey: '',
+//     authDomain: '',
+//     projectId: '',
+//     storageBucket: '',
+//     messagingSenderId: '',
+//     appId: ',
 //   };
 
 //   firebase.initializeApp(firebaseConfig);

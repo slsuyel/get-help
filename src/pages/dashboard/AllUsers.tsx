@@ -72,8 +72,8 @@ const AllUsers = () => {
 
   return (
     <div>
-      <div className="table-responsive">
-        <table className="table table-striped">
+      <div className="table-responsive font_amazon">
+        <table className="table table-striped fs-3">
           <thead>
             <tr>
               {' '}
@@ -84,8 +84,8 @@ const AllUsers = () => {
               <th>Status</th>
               <th>Email</th>
               <th>Religion</th>
-              <th className="d-none d-lg-table-cell">Permanent Address</th>
-              <th className="d-none d-lg-table-cell">Highest Education</th>
+              <th className="d-none d-lg-table-cell">Permanent Addr.</th>
+              <th className="d-none d-lg-table-cell">Highest Edu.</th>
               <th>Details</th>
               <th>Action</th>
             </tr>

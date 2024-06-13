@@ -8,7 +8,7 @@ const SummaryItem = ({
   value: number;
 }) => {
   return (
-    <div className="col-md-3 my-1">
+    <div className="col-md-3 my-1 font_amazon">
       <div className="border-0 card hov-card mb-2 py-3 shadow-sm">
         <div className="card-body d-flex align-item-center justify-content-around">
           <i className={`p-3 rounded-circle my-auto ${icon} fs-1`}></i>
@@ -44,7 +44,7 @@ const Summary = () => {
   ];
 
   return (
-    <div className="row mx-auto">
+    <div className="row mx-auto ">
       {summaryItems.map((item, index) => (
         <SummaryItem
           key={index}

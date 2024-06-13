@@ -5,7 +5,7 @@ import SummaryChart from './SummaryChart';
 const Dhome = () => {
   return (
     <div>
-      <div className="row mx-auto my-2">
+      <div className="row mx-auto my-2 ">
         <SummaryChart />
         <MonthlyCart />
       </div>
