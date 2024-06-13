@@ -90,7 +90,7 @@ const Register = () => {
       setMailVerified(true);
     } else {
       setLoader(false);
-      message.error('OTP verified successfully.');
+      message.error(res.data.error || 'OTP verified failed.');
     }
   };
 

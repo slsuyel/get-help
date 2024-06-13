@@ -32,6 +32,7 @@ async function handleLogoutClick() {
   const res = await callApi('post', '/api/admin/logout');
   if (res.status == 200) {
     window.location.replace('/');
+    localStorage.removeItem('token');
     message.success('Logout successfully');
   } else message.error('log out Failed');
 }
