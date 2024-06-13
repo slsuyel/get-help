@@ -719,3 +719,7 @@ openbtn
   border-bottom: 2px solid #0185d066;
   font-size: 18px;
 }
+
+.firebaseui-container {
+  max-width: 100% !important;
+}

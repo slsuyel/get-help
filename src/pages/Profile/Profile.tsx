@@ -15,6 +15,7 @@ const Profile = () => {
       const res = await callApi('Post', '/api/user/logout');
 
       if (res.status == 200) {
+        localStorage.removeItem('token');
         message.success('Logged out successfully');
         window.location.replace('/');
       } else message.error('Error occurred during logout');

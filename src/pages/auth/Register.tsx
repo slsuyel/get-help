@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Input, message, Select } from 'antd';
+import { Button, Input, message, Select } from 'antd';
 import logo from '../../assets/images/logo-icon.webp';
 import { callApi } from '@/utilities/functions';
 import { Spinner } from 'react-bootstrap';
@@ -102,6 +102,10 @@ const Register = () => {
                     value={email}
                     onChange={e => setEmail(e.target.value)}
                   />
+
+                  <div className="mt-3 text-end">
+                    <Button>Verify Email</Button>
+                  </div>
                 </div>
 
                 <div className="form-group mb-2">
@@ -164,7 +168,7 @@ const Register = () => {
                   <button
                     disabled={loader}
                     type="submit"
-                    className="primary_btn py-3 rounded w-100"
+                    className={`primary_btn py-3 rounded w-100 `}
                   >
                     {loader ? <Spinner /> : 'Register'}
                   </button>

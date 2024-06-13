@@ -11,6 +11,7 @@ import NewHome from '@/pages/Home/NewHome';
 import EditProfile from '@/pages/Profile/EditProfile';
 import Profile from '@/pages/Profile/Profile';
 import Student from '@/pages/Student/Student';
+import PhoneVerify from '@/pages/Verify/PhoneVerify';
 import AdminLogin from '@/pages/auth/AdminLogin';
 import Login from '@/pages/auth/Login';
 import Register from '@/pages/auth/Register';
@@ -50,6 +51,10 @@ const router = createBrowserRouter([
       {
         path: '/register',
         element: <Register />,
+      },
+      {
+        path: '/verify',
+        element: <PhoneVerify />,
       },
       {
         path: '/profile',
