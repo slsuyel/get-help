@@ -227,7 +227,7 @@ const EditProfile = (): JSX.Element | null => {
           <div className="col-md-6">
             <Form.Item
               initialValue={user.application_preparer_name}
-              label="Application Preparer Name"
+              label="Application preparer name (If other than applicant)"
               name="application_preparer_name"
             >
               <Input
@@ -284,7 +284,7 @@ const EditProfile = (): JSX.Element | null => {
           <div className="col-md-6">
             <Form.Item name="perjury_declaration" valuePropName="checked">
               <Checkbox required>
-                You swear under penalty of perjury that the above information is
+                I swear under penalty of perjury that the above information is
                 true and accurate.
               </Checkbox>
             </Form.Item>
@@ -293,7 +293,7 @@ const EditProfile = (): JSX.Element | null => {
           <div className="col-md-6">
             <Form.Item required name="terms_agreement" valuePropName="checked">
               <Checkbox>
-                You agree with the terms and conditions and privacy policy of
+                I agree with the terms and conditions and privacy policy of
                 Mustafiz Foundation Inc.
               </Checkbox>
             </Form.Item>
