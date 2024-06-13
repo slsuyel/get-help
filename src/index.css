@@ -1,7 +1,9 @@
 * {
   margin: 0;
 }
-
+/* body {
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+} */
 .header-fixed {
   background-color: #292c2f;
   box-shadow: 0 1px 1px #ccc;

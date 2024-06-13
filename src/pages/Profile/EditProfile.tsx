@@ -11,7 +11,7 @@ import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { Spinner } from 'react-bootstrap';
 
-const EditProfile = () => {
+const EditProfile = (): JSX.Element | null => {
   const { user, loading } = UseProfileData();
   const [loader, setLoader] = useState(false);
   const navigate = useNavigate();
@@ -50,10 +50,10 @@ const EditProfile = () => {
     return <Loader />;
   }
 
-  if (user == null) {
-    return <>User Not Found</>;
+  if (!user) {
+    navigate('/login');
+    return null;
   }
-
   return (
     <div className=" py-5 " style={{ background: '#f4f5f7' }}>
       <Form

@@ -1,1 +1,1 @@
-export const baseUrl = 'http://website-78a25b50.bce.aqd.mybluehost.me';
+export const baseUrl = 'https://api.mustafiz.org';

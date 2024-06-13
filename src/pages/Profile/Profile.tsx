@@ -1,6 +1,6 @@
 import { message, notification } from 'antd';
 import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 import DocUpdate from './DocUpdate/DocUpdate';
 import { callApi } from '@/utilities/functions';
@@ -8,6 +8,7 @@ import UseProfileData from '@/hooks/UseProfileData';
 import Loader from '@/components/reusable/Loader';
 
 const Profile = () => {
+  const navigate = useNavigate();
   const { user, loading } = UseProfileData();
   const handleLogoutClick = async () => {
     try {
@@ -37,7 +38,8 @@ const Profile = () => {
   if (loading) {
     return <Loader />;
   }
-  if (user == null) {
+  if (!user) {
+    navigate('/login');
     return null;
   }
   return (

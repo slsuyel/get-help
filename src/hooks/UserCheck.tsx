@@ -14,6 +14,7 @@ const UserCheck = ({ children }: { children: ReactNode }) => {
       if (!token) {
         setAuthenticated(false);
         setLoading(false);
+        <Navigate to="/login" />;
         return;
       }
       try {

@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
 import { callApi } from '@/utilities/functions';
 import { TypeDataForm } from '@/types';
+import { useLocation } from 'react-router-dom';
 
 const UseProfileData = () => {
+  const location = useLocation();
   const [user, setUser] = useState<TypeDataForm | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -33,7 +35,7 @@ const UseProfileData = () => {
     };
 
     checkUserAuthentication();
-  }, []);
+  }, [location]);
 
   return { user, loading };
 };
