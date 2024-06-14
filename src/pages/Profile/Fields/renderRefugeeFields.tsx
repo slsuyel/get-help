@@ -4,7 +4,7 @@ const { Option } = Select;
 
 export const renderRefugeeFields = () => (
   <>
-    <div className="col-md-6" key="conflict-info-col-1">
+    <div className="col-md-4" key="conflict-info-col-1">
       <Form.Item
         label="Country of Conflict"
         name="country_of_conflict"
@@ -29,7 +29,7 @@ export const renderRefugeeFields = () => (
       </Form.Item>
     </div>
 
-    <div className="col-md-6" key="arrival-info-col-1">
+    <div className="col-md-4" key="arrival-info-col-1">
       <Form.Item label="Arriving Date" name="arrivingDate" key="arrivingDate">
         <DatePicker
           className="input_bor_edit"
@@ -53,7 +53,7 @@ export const renderRefugeeFields = () => (
       </Form.Item>
     </div>
 
-    <div className="col-md-6" key="current-living-col-1">
+    <div className="col-md-4" key="current-living-col-1">
       <Form.Item
         label="Currently Living in Shelter or Rented House"
         name="current_living"

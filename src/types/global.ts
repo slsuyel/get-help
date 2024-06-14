@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ReactNode } from 'react';
 
 export interface ScrollToTopProps {
@@ -20,7 +21,7 @@ export interface TypeDataForm {
   current_address?: string;
   current_institution?: string;
   current_living?: string;
-  dob?: string;
+  dob?: any;
   education_level?: string;
   father_name?: string;
   gender?: string;

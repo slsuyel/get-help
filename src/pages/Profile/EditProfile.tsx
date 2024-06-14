@@ -17,15 +17,14 @@ const EditProfile = (): JSX.Element | null => {
   const navigate = useNavigate();
   const onFinish = async (values: TypeDataForm) => {
     setLoader(true);
-    if (values.perjury_declaration && values.terms_agreement && values.dob) {
-      const formattedDOB = new Date(values.dob).toISOString().split('T')[0];
+    if (values.perjury_declaration && values.terms_agreement) {
       const updatedValues = {
         ...values,
         perjury_declaration: 'yes',
         terms_agreement: 'yes',
-        dob: formattedDOB,
       };
 
+      console.log(updatedValues);
       const res = await callApi(
         'POST',
         `/api/user/update/${user?.id}`,
@@ -283,7 +282,7 @@ const EditProfile = (): JSX.Element | null => {
 
           <div className="col-md-6">
             <Form.Item name="perjury_declaration" valuePropName="checked">
-              <Checkbox required>
+              <Checkbox required className="fs-3">
                 I swear under penalty of perjury that the above information is
                 true and accurate.
               </Checkbox>
@@ -292,7 +291,7 @@ const EditProfile = (): JSX.Element | null => {
 
           <div className="col-md-6">
             <Form.Item required name="terms_agreement" valuePropName="checked">
-              <Checkbox>
+              <Checkbox className="fs-3">
                 I agree with the terms and conditions and privacy policy of
                 Mustafiz Foundation Inc.
               </Checkbox>

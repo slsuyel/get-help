@@ -1,7 +1,14 @@
 @import url('https://fonts.cdnfonts.com/css/amazon-ember');
 
+@font-face {
+  font-family: 'grapic_light';
+  src: url('./assets/fonts/graphik-regular-web.woff2') format('opentype');
+  font-weight: 400;
+}
+
 * {
   margin: 0;
+  /* font-family: 'grapic_light', sans-serif; */
 }
 
 .font_amazon {
@@ -722,6 +729,7 @@ openbtn
 .input_bor_edit {
   border-bottom: 2px solid #0185d066;
   font-size: 18px;
+  margin-top: 0px;
 }
 
 .firebaseui-container {

@@ -40,8 +40,11 @@ const UserData = () => {
                 [key, value]: [string, string] // Specify types here
               ) => (
                 <tr key={key} className="col-md-6 row mx-auto ">
-                  <th className="fs-4 col-md-6 px-3 my-2">{key}:</th>
-                  <td className="col-md-6 px-3 my-2">{value}</td>
+                  <th className="fs-4 col-md-6 px-3 my-2">
+                    {key.replace(/_/g, ' ')}
+                  </th>
+
+                  <td className="col-md-6 px-3 my-2 ">{value}</td>
                 </tr>
               )
             )}
