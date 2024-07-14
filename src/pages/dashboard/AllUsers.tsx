@@ -150,7 +150,7 @@ const AllUsers = () => {
                     {user.status}
                   </td>
 
-                  <td>{user.email}</td>
+                  <td className="text-lowercase">{user.email}</td>
                   <td>{user.religion}</td>
 
                   <td className="d-none d-lg-table-cell ">

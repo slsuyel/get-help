@@ -1,7 +1,7 @@
 import MainLayout from '@/components/layouts/MainLayout';
 import AdminLayout from '@/components/layouts/admin/AdminLayout';
 import ErrorPage from '@/components/reusable/ErrorPage';
-import UnderConstruction from '@/components/reusable/UnderConstruction';
+
 import AdminCheck from '@/hooks/AdminCheck';
 
 import UserCheck from '@/hooks/UserCheck';
@@ -10,6 +10,8 @@ import UserCheck from '@/hooks/UserCheck';
 import NewHome from '@/pages/Home/NewHome';
 import EditProfile from '@/pages/Profile/EditProfile';
 import Profile from '@/pages/Profile/Profile';
+import AllAgent from '@/pages/Setting/AllAgent';
+import NewAgent from '@/pages/Setting/NewAgent';
 import Student from '@/pages/Student/Student';
 import PhoneVerify from '@/pages/Verify/PhoneVerify';
 import AdminLogin from '@/pages/auth/AdminLogin';
@@ -108,8 +110,12 @@ const router = createBrowserRouter([
         element: <UserData />,
       },
       {
-        path: 'settings',
-        element: <UnderConstruction />,
+        path: 'stetting/agents',
+        element: <AllAgent />,
+      },
+      {
+        path: 'stetting/new-agent',
+        element: <NewAgent />,
       },
     ],
   },

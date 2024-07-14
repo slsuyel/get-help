@@ -67,7 +67,7 @@ const UserLayout = () => {
         <Footer className={`${!theme ? 'dark border-top' : ''}`}>
           <footer>
             <div className="float-right d-none d-sm-inline">Version 1.0.0 </div>
-            <strong>Copyright © 2023-2024 ZSI.AI</strong>
+            <strong>Copyright © 2023-2024 </strong>
             {''} || All rights reserved.
           </footer>
         </Footer>

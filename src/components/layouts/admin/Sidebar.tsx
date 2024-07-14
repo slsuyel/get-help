@@ -35,7 +35,14 @@ const sidebarItems = [
     ],
   },
 
-  { key: '5', title: 'Settings', slug: '/admin/settings' },
+  {
+    key: '5',
+    title: 'Settings',
+    submenu: [
+      { key: '5-1', title: 'Agents', slug: '/admin/stetting/agents' },
+      { key: '5-2', title: 'New Agent', slug: '/admin/stetting/new-agent' },
+    ],
+  },
 ];
 
 const theme = false;
