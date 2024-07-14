@@ -78,11 +78,10 @@ const UserTable = () => {
   return (
     <div className="font_amazon">
       <h3 className="mb-4 text-capitalize">
-        {' '}
         All {category} : <span className="text-success">{status}</span>
       </h3>
       <div className="table-responsive">
-        <table className="table table-striped fs-3">
+        <table className="table table-striped table-bordered fs-3">
           <thead>
             <tr>
               <th>S.L</th>

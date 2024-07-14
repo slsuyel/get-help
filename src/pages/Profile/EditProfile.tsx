@@ -74,7 +74,7 @@ const EditProfile = (): JSX.Element | null => {
               <Input
                 className="input_bor_edit"
                 placeholder="Enter reference 1 name"
-                style={{ height: 45, width: '100%' }}
+                style={{ height: 43, width: '100%' }}
               />
             </Form.Item>
           </div>
@@ -88,7 +88,7 @@ const EditProfile = (): JSX.Element | null => {
               <Input
                 className="input_bor_edit"
                 placeholder="Enter reference 1 address"
-                style={{ height: 45, width: '100%' }}
+                style={{ height: 43, width: '100%' }}
               />
             </Form.Item>
           </div>
@@ -103,7 +103,7 @@ const EditProfile = (): JSX.Element | null => {
                 type="number"
                 className="input_bor_edit"
                 placeholder="Enter reference 1 phone number"
-                style={{ height: 45, width: '100%' }}
+                style={{ height: 43, width: '100%' }}
               />
             </Form.Item>
           </div>
@@ -118,7 +118,7 @@ const EditProfile = (): JSX.Element | null => {
                 type="email"
                 className="input_bor_edit"
                 placeholder="Enter reference 1 email"
-                style={{ height: 45, width: '100%' }}
+                style={{ height: 43, width: '100%' }}
               />
             </Form.Item>
           </div>
@@ -132,7 +132,7 @@ const EditProfile = (): JSX.Element | null => {
               <Input
                 className="input_bor_edit"
                 placeholder="Enter reference 1 relationship"
-                style={{ height: 45, width: '100%' }}
+                style={{ height: 43, width: '100%' }}
               />
             </Form.Item>
           </div>
@@ -146,7 +146,7 @@ const EditProfile = (): JSX.Element | null => {
               <Input
                 className="input_bor_edit"
                 placeholder="Enter reference 2 name"
-                style={{ height: 45, width: '100%' }}
+                style={{ height: 43, width: '100%' }}
               />
             </Form.Item>
           </div>
@@ -160,7 +160,7 @@ const EditProfile = (): JSX.Element | null => {
               <Input
                 className="input_bor_edit"
                 placeholder="Enter reference 2 address"
-                style={{ height: 45, width: '100%' }}
+                style={{ height: 43, width: '100%' }}
               />
             </Form.Item>
           </div>
@@ -175,7 +175,7 @@ const EditProfile = (): JSX.Element | null => {
                 type="number"
                 className="input_bor_edit"
                 placeholder="Enter reference 2 phone number"
-                style={{ height: 45, width: '100%' }}
+                style={{ height: 43, width: '100%' }}
               />
             </Form.Item>
           </div>
@@ -190,7 +190,7 @@ const EditProfile = (): JSX.Element | null => {
                 type="email"
                 className="input_bor_edit"
                 placeholder="Enter reference 2 email"
-                style={{ height: 45, width: '100%' }}
+                style={{ height: 43, width: '100%' }}
               />
             </Form.Item>
           </div>
@@ -204,7 +204,7 @@ const EditProfile = (): JSX.Element | null => {
               <Input
                 className="input_bor_edit"
                 placeholder="Enter reference 2 relationship"
-                style={{ height: 45, width: '100%' }}
+                style={{ height: 43, width: '100%' }}
               />
             </Form.Item>
           </div>
@@ -232,7 +232,7 @@ const EditProfile = (): JSX.Element | null => {
               <Input
                 className="input_bor_edit"
                 placeholder="Enter application preparer name"
-                style={{ height: 45, width: '100%' }}
+                style={{ height: 43, width: '100%' }}
               />
             </Form.Item>
           </div>
@@ -246,7 +246,7 @@ const EditProfile = (): JSX.Element | null => {
               <Input
                 className="input_bor_edit"
                 placeholder="Enter preparer address"
-                style={{ height: 45, width: '100%' }}
+                style={{ height: 43, width: '100%' }}
               />
             </Form.Item>
           </div>
@@ -260,7 +260,7 @@ const EditProfile = (): JSX.Element | null => {
               <Input
                 className="input_bor_edit"
                 placeholder="Enter preparer email"
-                style={{ height: 45, width: '100%' }}
+                style={{ height: 43, width: '100%' }}
               />
             </Form.Item>
           </div>
@@ -275,7 +275,7 @@ const EditProfile = (): JSX.Element | null => {
                 type="number"
                 className="input_bor_edit"
                 placeholder="Enter preparer phone number"
-                style={{ height: 45, width: '100%' }}
+                style={{ height: 43, width: '100%' }}
               />
             </Form.Item>
           </div>
@@ -307,7 +307,7 @@ const EditProfile = (): JSX.Element | null => {
               <Input
                 className="input_bor_edit"
                 placeholder="Enter your name"
-                style={{ height: 45, width: '100%' }}
+                style={{ height: 43, width: '100%' }}
               />
             </Form.Item>
           </div>

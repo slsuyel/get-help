@@ -1,14 +1,8 @@
 @import url('https://fonts.cdnfonts.com/css/amazon-ember');
 
-@font-face {
-  font-family: 'grapic_light';
-  src: url('./assets/fonts/graphik-regular-web.woff2') format('opentype');
-  font-weight: 400;
-}
-
 * {
   margin: 0;
-  /* font-family: 'grapic_light', sans-serif; */
+  font-family: 'Amazon Ember';
 }
 
 .font_amazon {
@@ -23,7 +17,6 @@
   color: #ffffff;
   box-sizing: border-box;
   top: -100px;
-
   -webkit-transition: top 0.3s;
   transition: top 0.3s;
 }
@@ -434,12 +427,12 @@ input[type='email'],
 textarea,
 select {
   font-family: 'Montserrat', sans-serif;
-  width: 100%;
+
   padding: 12px;
   margin-top: 5px;
-  /* border: 1px solid #30363d; */
+
   border-radius: 5px;
-  /* background-color: #0d1117; */
+
   color: #1139a9;
   box-sizing: border-box;
   transition: border-color 0.3s, box-shadow 0.3s;
@@ -454,8 +447,8 @@ textarea::placeholder {
 input:focus,
 select:focus,
 textarea:focus {
-  border-color: #9b59b6;
-  box-shadow: 0 0 8px rgba(155, 89, 182, 0.6);
+  border-color: #7c79d6;
+  /* box-shadow: 0 0 8px rgba(155, 89, 182, 0.6); */
 }
 
 textarea {
@@ -465,7 +458,6 @@ textarea {
 /* Style submit button */
 input[type='submit'] {
   display: block;
-  width: 100%;
   padding: 12px;
   margin-top: 20px;
   background-color: #9b59b6;
@@ -494,7 +486,6 @@ input[type='submit']:hover {
 
 input[type='file'] {
   border: 1px solid #ababab;
-  width: 100%;
   padding: 5px;
   border-radius: 4px;
   color: white;
@@ -721,14 +712,13 @@ openbtn
     height: auto;
     font-size: 17px;
     color: #012b95e3;
-    font-weight: 500;
+    font-weight: 400;
     padding-left: 5px;
   }
 }
 
 .input_bor_edit {
-  border-bottom: 2px solid #0185d066;
-  font-size: 18px;
+  font-size: 17px;
   margin-top: 0px;
 }
 

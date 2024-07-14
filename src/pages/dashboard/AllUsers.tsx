@@ -1,16 +1,27 @@
-import Loader from '@/components/reusable/Loader';
 import useAllUser from '@/hooks/useAllUser';
 import { TypeDataForm } from '@/types';
 import { callApi } from '@/utilities/functions';
 import { Button, Dropdown, Menu, Modal, message } from 'antd';
 import { Link } from 'react-router-dom';
 import { MenuInfo } from 'rc-menu/lib/interface';
+import { SetStateAction, useState } from 'react';
+import { Spinner } from 'react-bootstrap';
 const AllUsers = () => {
   const { data, isLoading, refetch } = useAllUser();
+  const [searchTerm, setSearchTerm] = useState('');
 
-  if (isLoading) {
-    return <Loader />;
-  }
+  // Function to handle input change
+  const handleInputChange = (event: {
+    target: { value: SetStateAction<string> };
+  }) => {
+    setSearchTerm(event.target.value);
+  };
+
+  const handleSubmit = (event: { preventDefault: () => void }) => {
+    event.preventDefault();
+    console.log(searchTerm);
+  };
+
   const handleMenuClick = async (e: MenuInfo, record: number) => {
     const action = e.key;
     Modal.confirm({
@@ -54,6 +65,7 @@ const AllUsers = () => {
       },
     });
   };
+
   const renderActions = (record: number) => (
     <Dropdown
       overlay={
@@ -63,6 +75,7 @@ const AllUsers = () => {
           <Menu.Item key="delete">Delete</Menu.Item>
         </Menu>
       }
+      trigger={['click']}
     >
       <Button>
         Actions <span className="anticon anticon-down"></span>
@@ -72,51 +85,89 @@ const AllUsers = () => {
 
   return (
     <div>
+      <div>
+        <form
+          onSubmit={handleSubmit}
+          className="align-items-baseline d-flex gap-3 mb-4"
+        >
+          <input
+            type="text"
+            className="py-2"
+            placeholder="Name, Phone, Email, or ID"
+            value={searchTerm}
+            onChange={handleInputChange}
+          />
+          <button
+            type="submit"
+            className="btn btn-success fw-semibold py-2 rounded-3"
+          >
+            Search
+          </button>
+        </form>
+      </div>
+
       <div className="table-responsive font_amazon">
-        <table className="table table-striped fs-3">
+        <table className="table table-striped fs-3 table-bordered text-capitalize text-nowrap">
           <thead>
-            <tr>
-              {' '}
+            <tr className="text-nowrap">
               <th>S.L</th>
               <th>Name</th>
-              <th className="d-none d-lg-table-cell">Phone</th>
+              <th className="d-none d-lg-table-cell text-nowrap">Phone</th>
               <th>Category</th>
               <th>Status</th>
               <th>Email</th>
               <th>Religion</th>
-              <th className="d-none d-lg-table-cell">Permanent Addr.</th>
-              <th className="d-none d-lg-table-cell">Highest Edu.</th>
+              <th className="d-none d-lg-table-cell text-nowrap">Education</th>
               <th>Details</th>
               <th>Action</th>
             </tr>
           </thead>
           <tbody>
-            {data.map((user: TypeDataForm, index: number) => (
-              <tr key={user.id}>
-                <td>{index + 1}</td>
-                <td>{user.name}</td>
-                <td className="d-none d-lg-table-cell">{user.phone}</td>
-                <td>{user.category}</td>
-                <td>{user.status}</td>
-                <td>{user.email}</td>
-                <td>{user.religion}</td>
-                <td className="d-none d-lg-table-cell">
-                  {user.permanent_address}
-                </td>
-                <td className="d-none d-lg-table-cell">
-                  {user.highest_education}
-                </td>
-                <td className="">
-                  <Link
-                    to={`/admin/user/${user.id}`}
-                    className="btn btn-outline-success fw-normal p-1 px-4 rounded"
+            {isLoading ? (
+              <div className="w-100">
+                <Spinner />
+              </div>
+            ) : (
+              data.map((user: TypeDataForm, index: number) => (
+                <tr key={user.id}>
+                  <td>{index + 1}</td>
+                  <td>{user.name}</td>
+                  <td className="d-none d-lg-table-cell text-nowrap">
+                    {user.phone}
+                  </td>
+                  <td>{user.category}</td>
+                  <td
+                    className={`${
+                      user.status == 'rejected'
+                        ? 'text-danger'
+                        : user.status == 'approved'
+                        ? 'text-success'
+                        : user.status == 'pending'
+                        ? 'text-warning'
+                        : ''
+                    } text-center `}
                   >
-                    View
-                  </Link>
-                </td>
-                <td> {renderActions(user.id as number)}</td>
-              </tr>
-            ))}
+                    {user.status}
+                  </td>
+
+                  <td>{user.email}</td>
+                  <td>{user.religion}</td>
+
+                  <td className="d-none d-lg-table-cell ">
+                    {user.highest_education}
+                  </td>
+                  <td className="">
+                    <Link
+                      to={`/admin/user/${user.id}`}
+                      className="btn btn-outline-success fw-normal p-1 px-4 rounded"
+                    >
+                      View
+                    </Link>
+                  </td>
+                  <td> {renderActions(user.id as number)}</td>
+                </tr>
+              ))
+            )}
           </tbody>
         </table>
       </div>

@@ -17,6 +17,7 @@ import Login from '@/pages/auth/Login';
 import Register from '@/pages/auth/Register';
 import ResetPassword from '@/pages/auth/ResetPassword';
 import AllUsers from '@/pages/dashboard/AllUsers';
+import CreateUser from '@/pages/dashboard/CreateUser';
 import Dhome from '@/pages/dashboard/Dhome';
 import UserData from '@/pages/dashboard/UserData';
 import UserTable from '@/pages/dashboard/UserTable';
@@ -92,6 +93,10 @@ const router = createBrowserRouter([
       {
         path: 'all-users',
         element: <AllUsers />,
+      },
+      {
+        path: 'create',
+        element: <CreateUser />,
       },
 
       {

@@ -8,8 +8,13 @@ const sidebarItems = [
   { key: '1', title: 'Dashboard', slug: '/admin' },
   {
     key: '0',
-    title: 'All Users',
+    title: 'All Applications',
     slug: '/admin/all-users',
+  },
+  {
+    key: '00',
+    title: 'New Application ',
+    slug: '/admin/create',
   },
   {
     key: '2',

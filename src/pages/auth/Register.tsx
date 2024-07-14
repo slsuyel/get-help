@@ -193,7 +193,7 @@ const Register = () => {
                         Category
                       </label>
                       <Select
-                        style={{ height: 45, width: '100%' }}
+                        style={{ height: 43, width: '100%' }}
                         id="category"
                         placeholder="Select Category"
                         value={category}

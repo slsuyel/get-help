@@ -1,3 +1,4 @@
+import BackBtn from '@/components/reusable/BackBtn';
 import { callApi } from '@/utilities/functions';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
@@ -16,6 +17,7 @@ const UserData = () => {
       try {
         const res = await callApi('get', `/api/admin/get/user/${id}`);
         setUserData(res.data);
+
         setLoading(false);
       } catch (error) {
         console.error('Error fetching user data:', error);
@@ -25,31 +27,39 @@ const UserData = () => {
 
     fetchData();
   }, [id]);
-
-  console.log(userData);
-
+  // console.log(userData);
   return (
     <div className="font_amazon">
       {loading ? (
         <div>Loading...</div>
       ) : (
-        <table className="table">
-          <tbody className="text-capitalize row mx-auto">
-            {Object.entries(userData).map(
-              (
-                [key, value]: [string, string] // Specify types here
-              ) => (
-                <tr key={key} className="col-md-6 row mx-auto ">
-                  <th className="fs-4 col-md-6 px-3 my-2">
-                    {key.replace(/_/g, ' ')}
-                  </th>
+        <div>
+          <BackBtn />
+          <h1 className="text-center">Details of {userData.name} </h1>
 
-                  <td className="col-md-6 px-3 my-2 ">{value}</td>
-                </tr>
-              )
-            )}
-          </tbody>
-        </table>
+          <div className="table-responsive">
+            <table className="table table-bordered table-striped">
+              <tbody>
+                {Object.entries(userData).map(
+                  ([key, value]: [string, string]) =>
+                    key !== 'created_at' &&
+                    key !== 'updated_at' &&
+                    value && (
+                      <tr key={key}>
+                        <th
+                          className="text-capitalize fs-4 my-2 py-3 ps-3"
+                          style={{ width: '30%' }}
+                        >
+                          {key.replace(/_/g, ' ')}
+                        </th>
+                        <td className="ps-3 fs-4 text-capitalize">{value}</td>
+                      </tr>
+                    )
+                )}
+              </tbody>
+            </table>
+          </div>
+        </div>
       )}
     </div>
   );

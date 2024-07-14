@@ -13,7 +13,7 @@ export const renderRefugeeFields = () => (
         <Input
           className="input_bor_edit"
           placeholder="Enter the country you are fleeing from"
-          style={{ height: 45, width: '100%' }}
+          style={{ height: 43, width: '100%' }}
         />
       </Form.Item>
       <Form.Item
@@ -24,7 +24,7 @@ export const renderRefugeeFields = () => (
         <Input
           className="input_bor_edit"
           placeholder="Enter the country you are currently in"
-          style={{ height: 45, width: '100%' }}
+          style={{ height: 43, width: '100%' }}
         />
       </Form.Item>
     </div>
@@ -34,7 +34,7 @@ export const renderRefugeeFields = () => (
         <DatePicker
           className="input_bor_edit"
           placeholder="Select date of arrival"
-          style={{ height: 45, width: '100%' }}
+          style={{ height: 43, width: '100%' }}
         />
       </Form.Item>
       <Form.Item
@@ -45,7 +45,7 @@ export const renderRefugeeFields = () => (
         <Select
           className="input_bor_edit rounded-bottom-4"
           placeholder="Select legality of arrival"
-          style={{ height: 45, width: '100%' }}
+          style={{ height: 43, width: '100%' }}
         >
           <Option value="legally">Legally</Option>
           <Option value="illegally">Illegally</Option>
@@ -62,7 +62,7 @@ export const renderRefugeeFields = () => (
         <Select
           className="input_bor_edit rounded-bottom-4"
           placeholder="Select current living situation"
-          style={{ height: 45, width: '100%' }}
+          style={{ height: 43, width: '100%' }}
         >
           <Option value="shelter">Shelter</Option>
           <Option value="rented">Rented House</Option>
@@ -80,7 +80,7 @@ export const renderRefugeeFields = () => (
         <Input
           className="input_bor_edit"
           placeholder="Enter total number of family members"
-          style={{ height: 45, width: '100%' }}
+          style={{ height: 43, width: '100%' }}
         />
       </Form.Item>
       <Form.Item
@@ -92,7 +92,7 @@ export const renderRefugeeFields = () => (
         <Input
           className="input_bor_edit"
           placeholder="Enter number of adults"
-          style={{ height: 45, width: '100%' }}
+          style={{ height: 43, width: '100%' }}
         />
       </Form.Item>
       <Form.Item
@@ -104,7 +104,7 @@ export const renderRefugeeFields = () => (
         <Input
           className="input_bor_edit"
           placeholder="Enter number of minors"
-          style={{ height: 45, width: '100%' }}
+          style={{ height: 43, width: '100%' }}
         />
       </Form.Item>
     </div>
