@@ -115,7 +115,7 @@ const AllUsers = () => {
               <th className="d-none d-lg-table-cell text-nowrap">Phone</th>
               <th>Category</th>
               <th>Status</th>
-              <th>Email</th>
+
               <th>Religion</th>
               <th className="d-none d-lg-table-cell text-nowrap">Education</th>
               <th>Details</th>
@@ -128,6 +128,7 @@ const AllUsers = () => {
                 <Spinner />
               </div>
             ) : (
+              data &&
               data.map((user: TypeDataForm, index: number) => (
                 <tr key={user.id}>
                   <td>{index + 1}</td>
@@ -150,7 +151,6 @@ const AllUsers = () => {
                     {user.status}
                   </td>
 
-                  <td className="text-lowercase">{user.email}</td>
                   <td>{user.religion}</td>
 
                   <td className="d-none d-lg-table-cell ">
@@ -162,6 +162,12 @@ const AllUsers = () => {
                       className="btn btn-outline-success fw-normal p-1 px-4 rounded"
                     >
                       View
+                    </Link>
+                    <Link
+                      to={`/admin/edit/${user.id}`}
+                      className="btn btn-outline-success fw-normal p-1 px-4 rounded"
+                    >
+                      Edit
                     </Link>
                   </td>
                   <td> {renderActions(user.id as number)}</td>

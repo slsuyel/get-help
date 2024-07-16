@@ -18,7 +18,7 @@ const AdminCheck = ({ children }: { children: ReactNode }) => {
       }
       try {
         const response = await callApi('POST', '/api/admin/check-token');
-        console.log(response);
+
         if (response.data.message == 'Token is valid') {
           setAuthenticated(true);
         } else {
@@ -36,7 +36,7 @@ const AdminCheck = ({ children }: { children: ReactNode }) => {
   if (loading) {
     return <Loader />;
   }
-  return authenticated ? children : <Navigate to="/admin-login" />;
+  return authenticated ? children : <Navigate to="/login" />;
 };
 
 export default AdminCheck;

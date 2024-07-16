@@ -62,16 +62,6 @@ export const renderCommonFields = (user?: TypeDataForm) => (
     </div>
 
     <div className="col-md-6">
-      <Form.Item initialValue={user?.email} label="Email" name="email">
-        <Input
-          className="input_bor_edit"
-          style={{ height: 43, width: '100%', marginTop: '0' }}
-          placeholder="Enter email"
-        />
-      </Form.Item>
-    </div>
-
-    <div className="col-md-6">
       <Form.Item initialValue={user?.phone} label="Phone Number" name="phone">
         <Input
           type="number"

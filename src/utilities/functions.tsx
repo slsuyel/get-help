@@ -29,3 +29,31 @@ export const callApi = async (
     }
   }
 };
+
+// export const generateMail = () => {
+//   const now = new Date();
+//   const year = now.getFullYear().toString().slice(-2);
+//   const month = ('0' + (now.getMonth() + 1)).slice(-2);
+//   const day = ('0' + now.getDate()).slice(-2);
+//   const hours = ('0' + now.getHours()).slice(-2);
+//   const minutes = ('0' + now.getMinutes()).slice(-2);
+
+//   const randomNum = Math.floor(Math.random() * 9000) + 1000;
+//   const uniquePrefix = Math.random().toString(36).substring(2, 8);
+
+//   const uniqueText = `${uniquePrefix}${year}${month}${day}${hours}${minutes}${randomNum}`;
+
+//   return `${uniqueText}@mustafiz.org`;
+// };
+export const generateMail = () => {
+  const now = new Date();
+  const uniquePrefix = Math.random().toString(36).substring(2, 8);
+  const timestamp = `${now.getFullYear() % 100}${(
+    '0' +
+    (now.getMonth() + 1)
+  ).slice(-2)}${('0' + now.getDate()).slice(-2)}${('0' + now.getHours()).slice(
+    -2
+  )}${('0' + now.getMinutes()).slice(-2)}`;
+
+  return `${uniquePrefix}${timestamp}@mustafiz.org`;
+};
