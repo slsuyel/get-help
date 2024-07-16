@@ -65,11 +65,11 @@ const Header = () => {
         label: 'Login',
         link: '/login',
       },
-      {
-        id: 2,
-        label: 'Register',
-        link: '/register',
-      },
+      // {
+      //   id: 2,
+      //   label: 'Register',
+      //   link: '/register',
+      // },
     ];
   }
 

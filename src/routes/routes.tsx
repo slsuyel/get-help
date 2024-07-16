@@ -12,11 +12,11 @@ import EditProfile from '@/pages/Profile/EditProfile';
 import Profile from '@/pages/Profile/Profile';
 import AllAgent from '@/pages/Setting/AllAgent';
 import NewAgent from '@/pages/Setting/NewAgent';
-import Student from '@/pages/Student/Student';
-import PhoneVerify from '@/pages/Verify/PhoneVerify';
+// import Student from '@/pages/Student/Student';
+// import PhoneVerify from '@/pages/Verify/PhoneVerify';
 import AdminLogin from '@/pages/auth/AdminLogin';
-import Login from '@/pages/auth/Login';
-import Register from '@/pages/auth/Register';
+// import Login from '@/pages/auth/Login';
+// import Register from '@/pages/auth/Register';
 import ResetPassword from '@/pages/auth/ResetPassword';
 import AllUsers from '@/pages/dashboard/AllUsers';
 import CreateUser from '@/pages/dashboard/CreateUser';
@@ -35,30 +35,27 @@ const router = createBrowserRouter([
         path: '/',
         element: <NewHome />,
       },
-      {
-        path: '/students',
-        element: <Student />,
-      },
+      // {
+      //   path: '/students',
+      //   element: <Student />,
+      // },
+
       {
         path: '/login',
-        element: <Login />,
-      },
-      {
-        path: '/admin-login',
         element: <AdminLogin />,
       },
       {
         path: '/reset-pass',
         element: <ResetPassword />,
       },
-      {
-        path: '/register',
-        element: <Register />,
-      },
-      {
-        path: '/verify',
-        element: <PhoneVerify />,
-      },
+      // {
+      //   path: '/register',
+      //   element: <Register />,
+      // },
+      // {
+      //   path: '/verify',
+      //   element: <PhoneVerify />,
+      // },
       {
         path: '/profile',
         element: (
