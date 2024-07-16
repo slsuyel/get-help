@@ -34,6 +34,7 @@ const StepOne = () => {
     };
     const res = await callApi('Post', '/api/user/register', data);
     if (res.data.token) {
+      console.log(res);
       navigate(`/admin/edit/${res.data.user.id}`);
     }
   };
@@ -58,19 +59,16 @@ const StepOne = () => {
             />
           </Form.Item>
         </div>
-        <div className="col-md-6">
-          <Form.Item
-            label="Mobile*"
-            name="phone"
-            rules={[{ required: true, message: 'Please enter mobile' }]}
-          >
+        {/* <div className="col-md-6">
+          <Form.Item label="Phone Number" name="phone">
             <Input
-              placeholder="Applicant mobile"
+              type="number"
               className="input_bor_edit"
               style={{ height: 43, width: '100%', marginTop: '0' }}
+              placeholder="Enter phone number"
             />
           </Form.Item>
-        </div>
+        </div> */}
         <div className="col-md-6">
           <Form.Item
             label="Category *"

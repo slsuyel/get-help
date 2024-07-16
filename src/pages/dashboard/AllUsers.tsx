@@ -1,25 +1,32 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import useAllUser from '@/hooks/useAllUser';
 import { TypeDataForm } from '@/types';
 import { callApi } from '@/utilities/functions';
 import { Button, Dropdown, Menu, Modal, message } from 'antd';
 import { Link } from 'react-router-dom';
 import { MenuInfo } from 'rc-menu/lib/interface';
-import { SetStateAction, useState } from 'react';
+import { SetStateAction, useEffect, useState } from 'react';
 import { Spinner } from 'react-bootstrap';
 const AllUsers = () => {
-  const { data, isLoading, refetch } = useAllUser();
   const [searchTerm, setSearchTerm] = useState('');
+  const text = searchTerm;
+  const { data, isLoading, refetch } = useAllUser(
+    undefined,
+    undefined,
+    text && text
+  );
 
-  // Function to handle input change
   const handleInputChange = (event: {
     target: { value: SetStateAction<string> };
   }) => {
     setSearchTerm(event.target.value);
   };
+  useEffect(() => {
+    refetch();
+  }, [searchTerm]);
 
   const handleSubmit = (event: { preventDefault: () => void }) => {
     event.preventDefault();
-    console.log(searchTerm);
   };
 
   const handleMenuClick = async (e: MenuInfo, record: number) => {
@@ -91,9 +98,10 @@ const AllUsers = () => {
           className="align-items-baseline d-flex gap-3 mb-4"
         >
           <input
+            required
             type="text"
             className="py-2"
-            placeholder="Name, Phone, Email, or ID"
+            placeholder="Enter Name or Phone"
             value={searchTerm}
             onChange={handleInputChange}
           />
@@ -110,7 +118,7 @@ const AllUsers = () => {
         <table className="table table-striped fs-3 table-bordered text-capitalize text-nowrap">
           <thead>
             <tr className="text-nowrap">
-              <th>S.L</th>
+              <th>Id</th>
               <th>Name</th>
               <th className="d-none d-lg-table-cell text-nowrap">Phone</th>
               <th>Category</th>
@@ -118,7 +126,7 @@ const AllUsers = () => {
 
               <th>Religion</th>
               <th className="d-none d-lg-table-cell text-nowrap">Education</th>
-              <th>Details</th>
+              <th className="text-center">Details</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -129,9 +137,9 @@ const AllUsers = () => {
               </div>
             ) : (
               data &&
-              data.map((user: TypeDataForm, index: number) => (
+              data.map((user: TypeDataForm) => (
                 <tr key={user.id}>
-                  <td>{index + 1}</td>
+                  <td>{user.id}</td>
                   <td>{user.name}</td>
                   <td className="d-none d-lg-table-cell text-nowrap">
                     {user.phone}
@@ -156,18 +164,18 @@ const AllUsers = () => {
                   <td className="d-none d-lg-table-cell ">
                     {user.highest_education}
                   </td>
-                  <td className="">
+                  <td className="d-flex gap-2 justify-content-center">
                     <Link
                       to={`/admin/user/${user.id}`}
-                      className="btn btn-outline-success fw-normal p-1 px-4 rounded"
+                      className="btn btn-info p-1 px-3 rounded-3 text-white"
                     >
-                      View
+                      <i className="fa-solid fa-eye"></i>
                     </Link>
                     <Link
                       to={`/admin/edit/${user.id}`}
-                      className="btn btn-outline-success fw-normal p-1 px-4 rounded"
+                      className="btn btn-success p-1 px-3 rounded-3 text-white"
                     >
-                      Edit
+                      <i className="fa-solid fa-pen-to-square"></i>
                     </Link>
                   </td>
                   <td> {renderActions(user.id as number)}</td>

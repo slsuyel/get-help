@@ -3,7 +3,7 @@ import { Form, Input } from 'antd';
 
 export const renderStudentFields = (user?: TypeDataForm) => (
   <>
-    <div className="col-md-6">
+    <div className="col-md-4">
       <Form.Item
         initialValue={user?.current_institution}
         label="Current Institution Name"
@@ -17,7 +17,7 @@ export const renderStudentFields = (user?: TypeDataForm) => (
       </Form.Item>
     </div>
 
-    <div className="col-md-6">
+    <div className="col-md-4">
       <Form.Item
         initialValue={user?.institution_address}
         label="Address"
@@ -31,7 +31,7 @@ export const renderStudentFields = (user?: TypeDataForm) => (
       </Form.Item>
     </div>
 
-    <div className="col-md-6">
+    <div className="col-md-4">
       <Form.Item
         initialValue={user?.head_name}
         label="Headmaster/Principal/Dean Name"
@@ -45,7 +45,7 @@ export const renderStudentFields = (user?: TypeDataForm) => (
       </Form.Item>
     </div>
 
-    <div className="col-md-6">
+    <div className="col-md-4">
       <Form.Item
         initialValue={user?.head_phone}
         label="Phone Number"
@@ -59,7 +59,7 @@ export const renderStudentFields = (user?: TypeDataForm) => (
       </Form.Item>
     </div>
 
-    <div className="col-md-6">
+    <div className="col-md-4">
       <Form.Item
         initialValue={user?.education_level}
         label="Level of Education"
@@ -73,7 +73,7 @@ export const renderStudentFields = (user?: TypeDataForm) => (
       </Form.Item>
     </div>
 
-    <div className="col-md-6">
+    <div className="col-md-4">
       <Form.Item
         initialValue={user?.recent_exam_grade}
         label="Most Recent Exam Grade"

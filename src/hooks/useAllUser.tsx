@@ -2,11 +2,23 @@
 
 import { useState, useEffect } from 'react';
 import { callApi } from '@/utilities/functions';
+import { TypeDataForm } from '@/types';
 
-const useAllUser = (category: string, status: string, text: string) => {
-  const [data, setData] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [isError, setIsError] = useState(false);
+interface UseAllUserResult {
+  data: TypeDataForm[];
+  isLoading: boolean;
+  isError: boolean;
+  refetch: () => void;
+}
+
+const useAllUser = (
+  category?: string,
+  status?: string,
+  text?: string
+): UseAllUserResult => {
+  const [data, setData] = useState<TypeDataForm[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isError, setIsError] = useState<boolean>(false);
 
   const baseUrl = '/api/all/users/list';
   const queryParams = [

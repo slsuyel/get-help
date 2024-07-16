@@ -10,6 +10,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useState } from 'react';
 import { Spinner } from 'react-bootstrap';
 import useSingleUser from '@/hooks/useSingleUser';
+import BackBtn from '@/components/reusable/BackBtn';
 
 const EditProfile = (): JSX.Element | null => {
   const { id } = useParams();
@@ -19,11 +20,9 @@ const EditProfile = (): JSX.Element | null => {
   const navigate = useNavigate();
   const onFinish = async (values: TypeDataForm) => {
     setLoader(true);
-    if (values.perjury_declaration && values.terms_agreement) {
+    if (values) {
       const updatedValues = {
         ...values,
-        perjury_declaration: 'yes',
-        terms_agreement: 'yes',
       };
 
       console.log(updatedValues);
@@ -52,6 +51,9 @@ const EditProfile = (): JSX.Element | null => {
 
   return (
     <div className="" style={{ background: '#f4f5f7' }}>
+      <BackBtn />
+      <hr />
+      <br />
       <Form
         layout="vertical"
         onFinish={onFinish}
@@ -59,10 +61,10 @@ const EditProfile = (): JSX.Element | null => {
       >
         <div className="row mx-auto">
           {renderCommonFields(user)}
-          {user?.category === 'Student' && renderStudentFields(user)}
-          {user?.category === 'Refugee' && renderRefugeeFields()}
+          {user?.category === 'student' && renderStudentFields(user)}
+          {user?.category === 'refugee' && renderRefugeeFields()}
 
-          <div className="col-md-6">
+          <div className="col-md-4">
             <Form.Item
               initialValue={user?.reference1_name}
               label="Reference 1 Name"
@@ -76,7 +78,7 @@ const EditProfile = (): JSX.Element | null => {
             </Form.Item>
           </div>
 
-          <div className="col-md-6">
+          <div className="col-md-4">
             <Form.Item
               initialValue={user?.reference1_address}
               label="Reference 1 Address"
@@ -90,7 +92,7 @@ const EditProfile = (): JSX.Element | null => {
             </Form.Item>
           </div>
 
-          <div className="col-md-6">
+          <div className="col-md-4">
             <Form.Item
               initialValue={user?.reference1_phone}
               label="Reference 1 Phone Number"
@@ -105,7 +107,7 @@ const EditProfile = (): JSX.Element | null => {
             </Form.Item>
           </div>
 
-          <div className="col-md-6">
+          <div className="col-md-4">
             <Form.Item
               initialValue={user?.reference1_email}
               label="Reference 1 Email"
@@ -120,7 +122,7 @@ const EditProfile = (): JSX.Element | null => {
             </Form.Item>
           </div>
 
-          <div className="col-md-6">
+          <div className="col-md-4">
             <Form.Item
               initialValue={user?.reference1_relationship}
               label="Reference 1 Relationship"
@@ -134,7 +136,7 @@ const EditProfile = (): JSX.Element | null => {
             </Form.Item>
           </div>
 
-          <div className="col-md-6">
+          <div className="col-md-4">
             <Form.Item
               initialValue={user?.reference2_name}
               label="Reference 2 Name"
@@ -148,7 +150,7 @@ const EditProfile = (): JSX.Element | null => {
             </Form.Item>
           </div>
 
-          <div className="col-md-6">
+          <div className="col-md-4">
             <Form.Item
               label="Reference 2 Address"
               initialValue={user?.reference2_address}
@@ -162,7 +164,7 @@ const EditProfile = (): JSX.Element | null => {
             </Form.Item>
           </div>
 
-          <div className="col-md-6">
+          <div className="col-md-4">
             <Form.Item
               initialValue={user?.reference2_phone}
               label="Reference 2 Phone Number"
@@ -177,7 +179,7 @@ const EditProfile = (): JSX.Element | null => {
             </Form.Item>
           </div>
 
-          <div className="col-md-6">
+          <div className="col-md-4">
             <Form.Item
               initialValue={user?.reference2_email}
               label="Reference 2 Email"
@@ -192,7 +194,7 @@ const EditProfile = (): JSX.Element | null => {
             </Form.Item>
           </div>
 
-          <div className="col-md-6">
+          <div className="col-md-4">
             <Form.Item
               initialValue={user?.reference2_relationship}
               label="Reference 2 Relationship"
@@ -206,7 +208,7 @@ const EditProfile = (): JSX.Element | null => {
             </Form.Item>
           </div>
 
-          <div className="col-md-6">
+          <div className="col-md-4">
             <Form.Item
               initialValue={user?.situation}
               label="Describe your situation in minimum 200 hundred Words: "
@@ -220,7 +222,7 @@ const EditProfile = (): JSX.Element | null => {
             </Form.Item>
           </div>
 
-          {/* <div className="col-md-6">
+          {/* <div className="col-md-4">
             <Form.Item
               initialValue={user?.application_preparer_name}
               label="Application preparer name (If other than applicant)"
@@ -234,7 +236,7 @@ const EditProfile = (): JSX.Element | null => {
             </Form.Item>
           </div> */}
           {/* 
-          <div className="col-md-6">
+          <div className="col-md-4">
             <Form.Item
               initialValue={user?.preparer_address}
               label="Address"
@@ -248,7 +250,7 @@ const EditProfile = (): JSX.Element | null => {
             </Form.Item>
           </div> */}
 
-          {/* <div className="col-md-6">
+          {/* <div className="col-md-4">
             <Form.Item
               initialValue={user?.preparer_email}
               label="Email"
@@ -262,7 +264,7 @@ const EditProfile = (): JSX.Element | null => {
             </Form.Item>
           </div> */}
 
-          {/* <div className="col-md-6">
+          {/* <div className="col-md-4">
             <Form.Item
               initialValue={user?.preparer_phone}
               label="Phone Number"
@@ -277,7 +279,7 @@ const EditProfile = (): JSX.Element | null => {
             </Form.Item>
           </div> */}
 
-          {/* <div className="col-md-6">
+          {/* <div className="col-md-4">
             <Form.Item name="perjury_declaration" valuePropName="checked">
               <Checkbox required className="fs-3">
                 I swear under penalty of perjury that the above information is
@@ -286,7 +288,7 @@ const EditProfile = (): JSX.Element | null => {
             </Form.Item>
           </div> */}
 
-          {/* <div className="col-md-6">
+          {/* <div className="col-md-4">
             <Form.Item required name="terms_agreement" valuePropName="checked">
               <Checkbox className="fs-3">
                 I agree with the terms and conditions and privacy policy of
@@ -295,7 +297,7 @@ const EditProfile = (): JSX.Element | null => {
             </Form.Item>
           </div> */}
 
-          {/* <div className="col-md-6">
+          {/* <div className="col-md-4">
             <Form.Item
               initialValue={user?.applicant_signature}
               label="Sign Your Name"
