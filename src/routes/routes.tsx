@@ -112,11 +112,11 @@ const router = createBrowserRouter([
         element: <EditProfile />,
       },
       {
-        path: 'stetting/agents',
+        path: 'setting/agents',
         element: <AllAgent />,
       },
       {
-        path: 'stetting/new-agent',
+        path: 'setting/new-agent',
         element: <NewAgent />,
       },
     ],

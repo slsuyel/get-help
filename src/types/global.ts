@@ -60,3 +60,11 @@ export interface TypeDataForm {
   email: string;
   status: string;
 }
+
+export interface TAdmin {
+  id: number;
+  name: string;
+  email: string;
+  location?: string | null;
+  role?: string | null;
+}

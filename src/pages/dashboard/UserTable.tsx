@@ -6,13 +6,14 @@ import useAllUser from '@/hooks/useAllUser';
 import Loader from '@/components/reusable/Loader';
 import { TypeDataForm } from '@/types';
 import { callApi } from '@/utilities/functions';
+import useAdminProfile from '@/hooks/useAdminProfile';
 
 const UserTable = () => {
   const { category, status } = useParams();
-
+  const { admin, loading } = useAdminProfile();
   const { data, isLoading, refetch } = useAllUser(category, status);
 
-  if (isLoading) {
+  if (isLoading || loading) {
     return <Loader />;
   }
 
@@ -84,28 +85,29 @@ const UserTable = () => {
         <table className="table table-striped table-bordered fs-3">
           <thead>
             <tr>
-              <th>S.L</th>
+              <th>Id</th>
               <th>Name</th>
               <th className="d-none d-lg-table-cell">Phone</th>
               <th>Category</th>
               <th>Status</th>
-              <th>Email</th>
+
               <th>Religion</th>
-              <th className="d-none d-lg-table-cell">Permanent Addr.</th>
-              <th className="d-none d-lg-table-cell">Highest Edu.</th>
+              <th className="d-none d-lg-table-cell"> Address</th>
+              <th className="d-none d-lg-table-cell">Education</th>
               <th>Details</th>
-              <th>Action</th>
+              <th className={`${admin?.role == 'editor' ? 'd-none' : ''}`}>
+                Action
+              </th>
             </tr>
           </thead>
           <tbody>
-            {data.map((user: TypeDataForm, index: number) => (
+            {data.map((user: TypeDataForm) => (
               <tr key={user.id}>
-                <td>{index + 1}</td>
+                <td>{user.id}</td>
                 <td>{user.name}</td>
                 <td className="d-none d-lg-table-cell">{user.phone}</td>
                 <td>{user.category}</td>
                 <td>{user.status}</td>
-                <td>{user.email}</td>
 
                 <td>{user.religion}</td>
                 <td className="d-none d-lg-table-cell">
@@ -122,7 +124,10 @@ const UserTable = () => {
                     View
                   </Link>
                 </td>
-                <td> {renderActions(user.id as number)}</td>
+                <td className={`${admin?.role == 'editor' ? 'd-none' : ''}`}>
+                  {' '}
+                  {renderActions(user.id as number)}
+                </td>
               </tr>
             ))}
           </tbody>

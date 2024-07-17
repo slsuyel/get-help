@@ -7,7 +7,10 @@ import { Link } from 'react-router-dom';
 import { MenuInfo } from 'rc-menu/lib/interface';
 import { SetStateAction, useEffect, useState } from 'react';
 import { Spinner } from 'react-bootstrap';
+import useAdminProfile from '@/hooks/useAdminProfile';
 const AllUsers = () => {
+  const { admin, loading } = useAdminProfile();
+
   const [searchTerm, setSearchTerm] = useState('');
   const text = searchTerm;
   const { data, isLoading, refetch } = useAllUser(
@@ -127,11 +130,13 @@ const AllUsers = () => {
               <th>Religion</th>
               <th className="d-none d-lg-table-cell text-nowrap">Education</th>
               <th className="text-center">Details</th>
-              <th>Action</th>
+              <th className={`${admin?.role == 'editor' ? 'd-none' : ''}`}>
+                Action
+              </th>
             </tr>
           </thead>
           <tbody>
-            {isLoading ? (
+            {isLoading || loading ? (
               <div className="w-100">
                 <Spinner />
               </div>
@@ -178,7 +183,10 @@ const AllUsers = () => {
                       <i className="fa-solid fa-pen-to-square"></i>
                     </Link>
                   </td>
-                  <td> {renderActions(user.id as number)}</td>
+                  <td className={`${admin?.role == 'editor' ? 'd-none' : ''}`}>
+                    {' '}
+                    {renderActions(user.id as number)}
+                  </td>
                 </tr>
               ))
             )}

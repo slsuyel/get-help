@@ -44,6 +44,7 @@ const UserData = () => {
                   ([key, value]: [string, string]) =>
                     key !== 'created_at' &&
                     key !== 'updated_at' &&
+                    key !== 'email' &&
                     value && (
                       <tr key={key}>
                         <th

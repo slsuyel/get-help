@@ -101,7 +101,7 @@ const AdminLogin = () => {
                     className="primary_btn py-3 rounded w-100"
                     disabled={loading}
                   >
-                    {loading ? <Spinner /> : 'Admin Login'}
+                    {loading ? <Spinner /> : ' Login'}
                   </button>
                 </div>
               </form>
