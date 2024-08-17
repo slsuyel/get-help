@@ -61,20 +61,6 @@ export const renderStudentFields = (user?: TypeDataForm) => (
 
     <div className="col-md-4">
       <Form.Item
-        initialValue={user?.education_level}
-        label="Level of Education"
-        name="education_level"
-      >
-        <Input
-          className="input_bor_edit"
-          placeholder="Enter level of education"
-          style={{ height: 43, width: '100%' }}
-        />
-      </Form.Item>
-    </div>
-
-    <div className="col-md-4">
-      <Form.Item
         initialValue={user?.recent_exam_grade}
         label="Most Recent Exam Grade"
         name="recent_exam_grade"

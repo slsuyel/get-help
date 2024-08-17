@@ -16,7 +16,7 @@ const AdminLogin = () => {
 
   const from =
     (location.state && location.state.from && location.state.from.pathname) ||
-    '/admin';
+    '/dashboard';
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();

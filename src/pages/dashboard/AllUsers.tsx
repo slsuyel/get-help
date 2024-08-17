@@ -1,73 +1,56 @@
-/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { useState } from 'react';
 import useAllUser from '@/hooks/useAllUser';
-import { TypeDataForm } from '@/types';
-import { callApi } from '@/utilities/functions';
-import { Button, Dropdown, Menu, Modal, message } from 'antd';
+import { Button, Dropdown, Input, Menu, Modal, message } from 'antd';
 import { Link } from 'react-router-dom';
-import { MenuInfo } from 'rc-menu/lib/interface';
-import { SetStateAction, useEffect, useState } from 'react';
-import { Spinner } from 'react-bootstrap';
+import FilterComponent from '@/components/ui/FilterComponent';
+import { callApi } from '@/utilities/functions';
 import useAdminProfile from '@/hooks/useAdminProfile';
+import { Spinner } from 'react-bootstrap';
+import { TypeDataForm } from '@/types';
+
 const AllUsers = () => {
   const { admin, loading } = useAdminProfile();
 
-  const [searchTerm, setSearchTerm] = useState('');
-  const text = searchTerm;
+  const [filters, setFilters] = useState<{ [key: string]: any }>({});
   const { data, isLoading, refetch } = useAllUser(
-    undefined,
-    undefined,
-    text && text
+    filters.category,
+    filters.status,
+    filters.religion,
+    filters.education,
+    filters.searchText
   );
 
-  const handleInputChange = (event: {
-    target: { value: SetStateAction<string> };
-  }) => {
-    setSearchTerm(event.target.value);
-  };
-  useEffect(() => {
+  const handleFilterChange = (newFilters: { [key: string]: any }) => {
+    setFilters(newFilters);
     refetch();
-  }, [searchTerm]);
-
-  const handleSubmit = (event: { preventDefault: () => void }) => {
-    event.preventDefault();
   };
 
-  const handleMenuClick = async (e: MenuInfo, record: number) => {
+  const handleMenuClick = async (e: any, record: number) => {
     const action = e.key;
     Modal.confirm({
       title: `Confirm ${action}`,
       content: `Are you sure you want to ${action} this user?`,
       async onOk() {
-        if (action == 'delete') {
+        if (action === 'delete') {
           const res = await callApi(
             'delete',
             `/api/admin/users/delete/${record}`
           );
-          if (res.status == 200) {
+          if (res.status === 200) {
             refetch();
-
             message.success('Delete successfully');
           } else message.error('Delete function failed');
-        } else if (action == 'approved') {
-          const res = await callApi('Post', `/api/admin/users/status/update`, {
-            id: record,
-            status: 'approved',
-          });
-          if (res.status == 200) {
-            refetch();
-
-            message.success('approved  successfully');
-          } else message.error('approved function failed');
         } else {
+          const status = action === 'approved' ? 'approved' : 'rejected';
           const res = await callApi('Post', `/api/admin/users/status/update`, {
             id: record,
-            status: 'rejected',
+            status,
           });
-          if (res.status == 200) {
+          if (res.status === 200) {
             refetch();
-
-            message.success('rejected  successfully');
-          } else message.error('rejected function failed');
+            message.success(`${status} successfully`);
+          } else message.error(`${status} function failed`);
         }
       },
       onCancel() {
@@ -95,26 +78,32 @@ const AllUsers = () => {
 
   return (
     <div>
-      <div>
-        <form
-          onSubmit={handleSubmit}
-          className="align-items-baseline d-flex gap-3 mb-4"
-        >
-          <input
-            required
-            type="text"
-            className="py-2"
-            placeholder="Enter Name or Phone"
-            value={searchTerm}
-            onChange={handleInputChange}
-          />
-          <button
-            type="submit"
-            className="btn btn-success fw-semibold py-2 rounded-3"
+      <div className="align-item-center d-flex flex-wrap gap-3 my-3 justify-content-between">
+        <div>
+          <form
+            onSubmit={e => e.preventDefault()}
+            className="align-item-center d-flex gap-3"
           >
-            Search
-          </button>
-        </form>
+            <Input
+              allowClear
+              required
+              type="text"
+              style={{ height: 40, width: '100%' }}
+              placeholder="Enter Name or Phone"
+              onChange={e =>
+                setFilters({ ...filters, searchText: e.target.value })
+              }
+            />
+            <button
+              onClick={() => refetch()}
+              type="submit"
+              className="btn btn-success fw-semibold py-2 rounded-3"
+            >
+              Search
+            </button>
+          </form>
+        </div>
+        <FilterComponent onFilterChange={handleFilterChange} />
       </div>
 
       <div className="table-responsive font_amazon">
@@ -126,11 +115,10 @@ const AllUsers = () => {
               <th className="d-none d-lg-table-cell text-nowrap">Phone</th>
               <th>Category</th>
               <th>Status</th>
-
               <th>Religion</th>
               <th className="d-none d-lg-table-cell text-nowrap">Education</th>
               <th className="text-center">Details</th>
-              <th className={`${admin?.role == 'editor' ? 'd-none' : ''}`}>
+              <th className={`${admin?.role === 'editor' ? 'd-none' : ''}`}>
                 Action
               </th>
             </tr>
@@ -152,39 +140,36 @@ const AllUsers = () => {
                   <td>{user.category}</td>
                   <td
                     className={`${
-                      user.status == 'rejected'
+                      user.status === 'rejected'
                         ? 'text-danger'
-                        : user.status == 'approved'
+                        : user.status === 'approved'
                         ? 'text-success'
-                        : user.status == 'pending'
+                        : user.status === 'pending'
                         ? 'text-warning'
                         : ''
                     } text-center `}
                   >
                     {user.status}
                   </td>
-
                   <td>{user.religion}</td>
-
                   <td className="d-none d-lg-table-cell ">
-                    {user.highest_education}
+                    {user.highest_education || user.education_level}
                   </td>
                   <td className="d-flex gap-2 justify-content-center">
                     <Link
-                      to={`/admin/user/${user.id}`}
+                      to={`/dashboard/user/${user.id}`}
                       className="btn btn-info p-1 px-3 rounded-3 text-white"
                     >
                       <i className="fa-solid fa-eye"></i>
                     </Link>
                     <Link
-                      to={`/admin/edit/${user.id}`}
+                      to={`/dashboard/edit/${user.id}`}
                       className="btn btn-success p-1 px-3 rounded-3 text-white"
                     >
                       <i className="fa-solid fa-pen-to-square"></i>
                     </Link>
                   </td>
-                  <td className={`${admin?.role == 'editor' ? 'd-none' : ''}`}>
-                    {' '}
+                  <td className={`${admin?.role === 'editor' ? 'd-none' : ''}`}>
                     {renderActions(user.id as number)}
                   </td>
                 </tr>

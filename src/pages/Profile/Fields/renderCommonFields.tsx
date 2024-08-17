@@ -133,7 +133,6 @@ export const renderCommonFields = (user?: TypeDataForm | null) => (
         >
           <Option value="male">Male</Option>
           <Option value="female">Female</Option>
-          <Option value="other">Other</Option>
         </Select>
       </Form.Item>
     </div>
@@ -155,8 +154,8 @@ export const renderCommonFields = (user?: TypeDataForm | null) => (
           style={{ height: 43, width: '100%', marginTop: '0' }}
           placeholder="Select religion"
         >
-          <Option value="christianity">Christianity</Option>
           <Option value="islam">Islam</Option>
+          <Option value="christianity">Christianity</Option>
           <Option value="hinduism">Hinduism</Option>
           <Option value="buddhism">Buddhism</Option>
           <Option value="judaism">Judaism</Option>
@@ -212,17 +211,49 @@ export const renderCommonFields = (user?: TypeDataForm | null) => (
       </Form.Item>
     </div>
 
-    <div className="col-md-4">
+    {/* <div className="col-md-4">
       <Form.Item
-        initialValue={user?.highest_education}
-        label="Highest Level of Education"
-        name="highest_education"
+        initialValue={user?.education_level}
+        label="Level of Education"
+        name="education_level"
       >
         <Input
           className="input_bor_edit"
-          style={{ height: 43, width: '100%', marginTop: '0' }}
-          placeholder="Enter highest level of education"
+          placeholder="Enter level of education"
+          style={{ height: 43, width: '100%' }}
         />
+      </Form.Item>
+    </div> */}
+
+    <div className="col-md-4">
+      <Form.Item
+        initialValue={user?.education_level}
+        label="Level of Education"
+        name="education_level"
+      >
+        <Select
+          className="input_bor_edit rounded-bottom-4"
+          style={{ height: 43, width: '100%', marginTop: '0' }}
+          placeholder="Level of Education"
+        >
+          <Option value="n/a">N/A</Option>
+          <Option value="class 1">Class 1</Option>
+          <Option value="class 2">Class 2</Option>
+          <Option value="class 3">Class 3</Option>
+          <Option value="class 4">Class 4</Option>
+          <Option value="class 5">Class 5</Option>
+          <Option value="class 6">Class 6</Option>
+          <Option value="class 7">Class 7</Option>
+          <Option value="class 8">Class 8</Option>
+          <Option value="class 9">Class 9</Option>
+          <Option value="class 10">Class 10</Option>
+          <Option value="ssc">SSC</Option>
+          <Option value="hsc">HSC</Option>
+          <Option value="undergraduate">Undergraduate</Option>
+          <Option value="graduate">Graduate</Option>
+          <Option value="postgraduate">Postgraduate</Option>
+          <Option value="phd">PhD</Option>
+        </Select>
       </Form.Item>
     </div>
   </>

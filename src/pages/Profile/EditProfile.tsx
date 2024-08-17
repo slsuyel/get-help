@@ -33,7 +33,7 @@ const EditProfile = (): JSX.Element | null => {
       );
       if (res.status == 200) {
         setLoader(false);
-        navigate('/admin/all-users');
+        navigate('/dashboard/all-users');
         message.success('Data  Update / Create Successfully');
       } else {
         message.error('User Update failed');

@@ -49,7 +49,7 @@ const AllAgent = () => {
           </tr>
         </thead>
         <tbody>
-          {agents.map(agent => (
+          {agents?.map(agent => (
             <tr key={agent.id}>
               <td>{agent.id}</td>
               <td>{agent.name}</td>

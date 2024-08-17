@@ -35,7 +35,7 @@ const StepOne = () => {
     const res = await callApi('Post', '/api/user/register', data);
     if (res.data.token) {
       console.log(res);
-      navigate(`/admin/edit/${res.data.user.id}`);
+      navigate(`/dashboard/edit/${res.data.user.id}`);
     }
   };
 

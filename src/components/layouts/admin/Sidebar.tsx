@@ -11,33 +11,33 @@ const Sidebar = () => {
   const { admin } = useAdminProfile();
 
   const sidebarItems = [
-    { key: '1', title: 'Dashboard', slug: '/admin' },
+    { key: '1', title: 'Dashboard', slug: '/dashboard' },
     {
       key: '0',
       title: 'All Applications',
-      slug: '/admin/all-users',
+      slug: '/dashboard/all-users',
     },
     {
       key: '00',
       title: 'New Application ',
-      slug: '/admin/create',
+      slug: '/dashboard/create',
     },
     {
       key: '2',
       title: 'Students',
       submenu: [
-        { key: '2-1', title: 'Pending', slug: '/admin/Student/pending' },
-        { key: '2-2', title: 'Approved', slug: '/admin/Student/approved' },
-        { key: '2-3', title: 'Rejected', slug: '/admin/Student/rejected' },
+        { key: '2-1', title: 'Pending', slug: '/dashboard/Student/pending' },
+        { key: '2-2', title: 'Approved', slug: '/dashboard/Student/approved' },
+        { key: '2-3', title: 'Rejected', slug: '/dashboard/Student/rejected' },
       ],
     },
     {
       key: '3',
       title: 'Refuges',
       submenu: [
-        { key: '3-1', title: 'Pending', slug: '/admin/refugee/pending' },
-        { key: '3-2', title: 'Approved', slug: '/admin/refugee/approved' },
-        { key: '3-3', title: 'Rejected', slug: '/admin/refugee/rejected' },
+        { key: '3-1', title: 'Pending', slug: '/dashboard/refugee/pending' },
+        { key: '3-2', title: 'Approved', slug: '/dashboard/refugee/approved' },
+        { key: '3-3', title: 'Rejected', slug: '/dashboard/refugee/rejected' },
       ],
     },
   ];
@@ -47,8 +47,12 @@ const Sidebar = () => {
       key: '5',
       title: 'Settings',
       submenu: [
-        { key: '5-1', title: 'Agents', slug: '/admin/setting/agents' },
-        { key: '5-2', title: 'New Agent', slug: '/admin/setting/new-agent' },
+        { key: '5-1', title: 'Agents', slug: '/dashboard/setting/agents' },
+        {
+          key: '5-2',
+          title: 'New Agent',
+          slug: '/dashboard/setting/new-agent',
+        },
       ],
     });
   }

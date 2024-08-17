@@ -14,6 +14,8 @@ interface UseAllUserResult {
 const useAllUser = (
   category?: string,
   status?: string,
+  religion?: string,
+  education?: string,
   text?: string
 ): UseAllUserResult => {
   const [data, setData] = useState<TypeDataForm[]>([]);
@@ -24,6 +26,8 @@ const useAllUser = (
   const queryParams = [
     category && `category=${category}`,
     status && `status=${status}`,
+    religion && `religion=${religion}`,
+    education && `education=${education}`,
     text && `searchText=${text}`,
   ]
     .filter(Boolean)

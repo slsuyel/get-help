@@ -118,7 +118,7 @@ const UserTable = () => {
                 </td>
                 <td className="">
                   <Link
-                    to={`/admin/user/${user.id}`}
+                    to={`/dashboard/user/${user.id}`}
                     className="btn btn-outline-success fw-normal p-1 px-4 rounded"
                   >
                     View
