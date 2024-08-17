@@ -20,6 +20,7 @@ import AdminLogin from '@/pages/auth/AdminLogin';
 import ResetPassword from '@/pages/auth/ResetPassword';
 import AllUsers from '@/pages/dashboard/AllUsers';
 import CreateUser from '@/pages/dashboard/CreateUser/CreateUser';
+import Decision from '@/pages/dashboard/Decision/Decision';
 
 import Dhome from '@/pages/dashboard/Dhome';
 import UserData from '@/pages/dashboard/UserData';
@@ -110,6 +111,10 @@ const router = createBrowserRouter([
       {
         path: 'edit/:id',
         element: <EditProfile />,
+      },
+      {
+        path: 'decision/:id',
+        element: <Decision />,
       },
       {
         path: 'setting/agents',

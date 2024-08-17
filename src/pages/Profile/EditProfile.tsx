@@ -312,14 +312,23 @@ const EditProfile = (): JSX.Element | null => {
           </div> */}
 
           <Form.Item key="submit-button">
-            <button
-              type="submit"
-              className="btn btn-get-started"
-              style={{ width: '215px' }}
-            >
-              {' '}
-              {loader ? <Spinner /> : ' Submit & Apply'}
-            </button>
+            <div className="d-flex flex-wrap gap-2 jus justify-content-between">
+              <button
+                type="submit"
+                className="btn btn-get-started"
+                style={{ width: '215px' }}
+              >
+                {' '}
+                {loader ? <Spinner /> : ' Submit & Apply'}
+              </button>
+              <button
+                className="btn btn-primary"
+                onClick={() => navigate(`/dashboard/decision/${user?.id}`)}
+              >
+                Create Decision
+              </button>
+              <div></div>
+            </div>
           </Form.Item>
         </div>
       </Form>

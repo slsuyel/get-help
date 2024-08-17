@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import useAllUser from '@/hooks/useAllUser';
 import { Button, Dropdown, Input, Menu, Modal, message } from 'antd';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import FilterComponent from '@/components/ui/FilterComponent';
 import { callApi } from '@/utilities/functions';
 import useAdminProfile from '@/hooks/useAdminProfile';
@@ -11,7 +11,7 @@ import { TypeDataForm } from '@/types';
 
 const AllUsers = () => {
   const { admin, loading } = useAdminProfile();
-
+  const navigate = useNavigate();
   const [filters, setFilters] = useState<{ [key: string]: any }>({});
   const { data, isLoading, refetch } = useAllUser(
     filters.category,
@@ -28,6 +28,13 @@ const AllUsers = () => {
 
   const handleMenuClick = async (e: any, record: number) => {
     const action = e.key;
+
+    if (action == 'Decision') {
+      navigate(`/dashboard/decision/${record}`);
+
+      return;
+    }
+
     Modal.confirm({
       title: `Confirm ${action}`,
       content: `Are you sure you want to ${action} this user?`,
@@ -63,9 +70,21 @@ const AllUsers = () => {
     <Dropdown
       overlay={
         <Menu onClick={e => handleMenuClick(e, record)}>
-          <Menu.Item key="approved">Approved</Menu.Item>
-          <Menu.Item key="rejected">Rejected</Menu.Item>
-          <Menu.Item key="delete">Delete</Menu.Item>
+          {admin?.role == 'admin' ? (
+            <>
+              {' '}
+              <Menu.Item key="rejected">Rejected</Menu.Item>
+              <Menu.Item key="Decision">Decision</Menu.Item>
+            </>
+          ) : (
+            <>
+              {' '}
+              <Menu.Item key="approved">Approved</Menu.Item>
+              <Menu.Item key="Decision">Decision</Menu.Item>
+              <Menu.Item key="rejected">Rejected</Menu.Item>
+              <Menu.Item key="delete">Delete</Menu.Item>{' '}
+            </>
+          )}
         </Menu>
       }
       trigger={['click']}

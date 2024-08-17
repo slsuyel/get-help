@@ -53,9 +53,7 @@ const FilterComponent = ({ onFilterChange }: FilterProps) => {
             popupMatchSelectWidth={false}
           >
             <Option value="pending">pending</Option>
-            <Option value="admin approval pending">
-              admin approval pending
-            </Option>
+            <Option value=" pending approval">pending approval</Option>
             <Option value="approved">approved</Option>
             <Option value="rejected">rejected</Option>
           </Select>

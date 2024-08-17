@@ -68,3 +68,10 @@ export interface TAdmin {
   location?: string | null;
   role?: string | null;
 }
+
+export interface TDecision {
+  why: string;
+  howLong: string;
+  howMuch: number;
+  note: string;
+}
