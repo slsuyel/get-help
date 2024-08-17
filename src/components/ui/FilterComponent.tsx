@@ -18,6 +18,8 @@ const FilterComponent = ({ onFilterChange }: FilterProps) => {
     form.resetFields();
   };
 
+  const inputWidth = { width: '100%' };
+
   return (
     <div className="">
       <Form
@@ -26,11 +28,12 @@ const FilterComponent = ({ onFilterChange }: FilterProps) => {
         onFinish={handleFinish}
         className="row mx-auto justify-content-end"
       >
-        <Form.Item className="my-2 col-md-2 col-6" name="category" label="">
+        <Form.Item className="my-2 col-md-2" name="category" label="">
           <Select
-            style={{ height: 40, width: '100%' }}
-            placeholder=" Category"
+            style={{ ...inputWidth, height: 40 }}
+            placeholder="Category"
             allowClear
+            popupMatchSelectWidth={false}
           >
             <Option value="student">Student</Option>
             <Option value="senior">Senior</Option>
@@ -42,11 +45,12 @@ const FilterComponent = ({ onFilterChange }: FilterProps) => {
           </Select>
         </Form.Item>
 
-        <Form.Item className="mb-0 my-2 col-md-2 col-6" name="status" label="">
+        <Form.Item className="my-2 col-md-2" name="status" label="">
           <Select
-            style={{ height: 40, width: '100%' }}
-            placeholder=" Status"
+            style={{ ...inputWidth, height: 40 }}
+            placeholder="Status"
             allowClear
+            popupMatchSelectWidth={false}
           >
             <Option value="pending">pending</Option>
             <Option value="admin approval pending">
@@ -57,15 +61,12 @@ const FilterComponent = ({ onFilterChange }: FilterProps) => {
           </Select>
         </Form.Item>
 
-        <Form.Item
-          className="mb-0 my-2 col-md-2 col-6"
-          name="religion"
-          label=""
-        >
+        <Form.Item className="my-2 col-md-2" name="religion" label="">
           <Select
-            style={{ height: 40, width: '100%' }}
-            placeholder=" Religion"
+            style={{ ...inputWidth, height: 40 }}
+            placeholder="Religion"
             allowClear
+            popupMatchSelectWidth={false}
           >
             <Option value="islam">Islam</Option>
             <Option value="christianity">Christianity</Option>
@@ -76,15 +77,12 @@ const FilterComponent = ({ onFilterChange }: FilterProps) => {
           </Select>
         </Form.Item>
 
-        <Form.Item
-          className="mb-0 my-2 col-md-2 col-6"
-          name="education"
-          label=""
-        >
+        <Form.Item className="my-2 col-md-2" name="education" label="">
           <Select
-            placeholder=" Education"
-            style={{ height: 40, width: '100%' }}
+            placeholder="Education"
+            style={{ ...inputWidth, height: 40 }}
             allowClear
+            popupMatchSelectWidth={false}
           >
             <Option value="n/a">N/A</Option>
             <Option value="class 1">Class 1</Option>
@@ -106,20 +104,22 @@ const FilterComponent = ({ onFilterChange }: FilterProps) => {
           </Select>
         </Form.Item>
 
-        <Form.Item className="mb-0 my-2 col-md-2 col-6">
+        <Form.Item className="my-2 col-md-2">
           <button
             type="submit"
             className="btn btn-success fw-semibold py-2 rounded-3"
+            style={inputWidth}
           >
             Apply
           </button>
         </Form.Item>
 
-        <Form.Item className="mb-0 my-2 col-md-2 col-6">
+        <Form.Item className="my-2 col-md-2">
           <button
             type="button"
             onClick={handleReset}
-            className="btn btn-danger fw-semibold py-2 rounded-3 "
+            className="btn btn-danger fw-semibold py-2 rounded-3"
+            style={inputWidth}
           >
             Reset
           </button>
