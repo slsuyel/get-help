@@ -1,7 +1,9 @@
 import BackBtn from '@/components/reusable/BackBtn';
+
 import { callApi } from '@/utilities/functions';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import Decision from './Decision/Decision';
 
 interface UserData {
   [key: string]: string;
@@ -60,6 +62,12 @@ const UserData = () => {
               </tbody>
             </table>
           </div>
+
+          <br />
+          <br />
+          <br />
+          <br />
+          <Decision />
         </div>
       )}
     </div>

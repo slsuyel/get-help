@@ -1,3 +1,4 @@
+import useAdminProfile from '@/hooks/useAdminProfile';
 import { callApi } from '@/utilities/functions';
 import { LogoutOutlined, UserOutlined } from '@ant-design/icons';
 import { Dropdown, message } from 'antd';
@@ -38,6 +39,8 @@ async function handleLogoutClick() {
 }
 
 const Navbar = () => {
+  const { admin } = useAdminProfile();
+  console.log(admin);
   return (
     <div className="d-flex gap-3 align-item-center ">
       <Dropdown.Button
@@ -45,7 +48,7 @@ const Navbar = () => {
         placement="bottom"
         icon={<UserOutlined />}
       >
-        Admin
+        <span>{admin?.role || 'Admin'}</span>
       </Dropdown.Button>
     </div>
   );

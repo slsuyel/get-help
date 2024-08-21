@@ -13,15 +13,21 @@ const Sidebar = () => {
   const sidebarItems = [
     { key: '1', title: 'Dashboard', slug: '/dashboard' },
     {
-      key: '0',
-      title: 'All Applications',
-      slug: '/dashboard/all-users',
-    },
-    {
       key: '00',
-      title: 'New Application ',
+      title: 'New Applicant ',
       slug: '/dashboard/create',
     },
+    {
+      key: '09',
+      title: 'All Applications',
+      slug: '/dashboard/all-applications',
+    },
+    {
+      key: '0',
+      title: 'All Applicants',
+      slug: '/dashboard/all-users',
+    },
+
     {
       key: '2',
       title: 'Students',
@@ -47,10 +53,10 @@ const Sidebar = () => {
       key: '5',
       title: 'Settings',
       submenu: [
-        { key: '5-1', title: 'Agents', slug: '/dashboard/setting/agents' },
+        { key: '5-1', title: 'Users', slug: '/dashboard/setting/agents' },
         {
           key: '5-2',
-          title: 'New Agent',
+          title: 'New User',
           slug: '/dashboard/setting/new-agent',
         },
       ],

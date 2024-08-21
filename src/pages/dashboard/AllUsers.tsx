@@ -1,13 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from 'react';
 import useAllUser from '@/hooks/useAllUser';
-import { Button, Dropdown, Input, Menu, Modal, message } from 'antd';
+import { Button, Dropdown, Input, Menu, message, Modal } from 'antd';
 import { Link, useNavigate } from 'react-router-dom';
 import FilterComponent from '@/components/ui/FilterComponent';
-import { callApi } from '@/utilities/functions';
-import useAdminProfile from '@/hooks/useAdminProfile';
+
 import { Spinner } from 'react-bootstrap';
 import { TypeDataForm } from '@/types';
+import { callApi } from '@/utilities/functions';
+import useAdminProfile from '@/hooks/useAdminProfile';
 
 const AllUsers = () => {
   const { admin, loading } = useAdminProfile();
@@ -72,16 +73,16 @@ const AllUsers = () => {
         <Menu onClick={e => handleMenuClick(e, record)}>
           {admin?.role == 'admin' ? (
             <>
-              {' '}
-              <Menu.Item key="rejected">Rejected</Menu.Item>
-              <Menu.Item key="Decision">Decision</Menu.Item>
+              <Menu.Item key="delete">Delete</Menu.Item>{' '}
+              {/* <Menu.Item key="rejected">Rejected</Menu.Item>
+              <Menu.Item key="Decision">Decision</Menu.Item> */}
             </>
           ) : (
             <>
               {' '}
-              <Menu.Item key="approved">Approved</Menu.Item>
+              {/* <Menu.Item key="approved">Approved</Menu.Item>
               <Menu.Item key="Decision">Decision</Menu.Item>
-              <Menu.Item key="rejected">Rejected</Menu.Item>
+              <Menu.Item key="rejected">Rejected</Menu.Item> */}
               <Menu.Item key="delete">Delete</Menu.Item>{' '}
             </>
           )}
@@ -137,9 +138,7 @@ const AllUsers = () => {
               <th>Religion</th>
               <th className="d-none d-lg-table-cell text-nowrap">Education</th>
               <th className="text-center">Details</th>
-              <th className={`${admin?.role === 'editor' ? 'd-none' : ''}`}>
-                Action
-              </th>
+              <th className="text-center">Delete</th>
             </tr>
           </thead>
           <tbody>
@@ -187,8 +186,21 @@ const AllUsers = () => {
                     >
                       <i className="fa-solid fa-pen-to-square"></i>
                     </Link>
+                    <Link
+                      to={`/dashboard/applications/${user.id}`}
+                      className="btn btn-primary p-1 px-3 rounded-3 text-white"
+                    >
+                      <i className="fa-regular fa-rectangle-list"></i>
+                    </Link>
                   </td>
-                  <td className={`${admin?.role === 'editor' ? 'd-none' : ''}`}>
+
+                  <td
+                    className={`${
+                      admin?.role == 'editor' || admin?.role == 'user'
+                        ? 'd-none'
+                        : ''
+                    }`}
+                  >
                     {renderActions(user.id as number)}
                   </td>
                 </tr>

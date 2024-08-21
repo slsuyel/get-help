@@ -1,3 +1,6 @@
+// import { callApi } from '@/utilities/functions';
+// import { useEffect } from 'react';
+
 const AllAgent = () => {
   // Updated fake data array with email field added
   const agents = [
@@ -34,6 +37,10 @@ const AllAgent = () => {
       email: 'emily.davis@example.com', // New email field
     },
   ];
+
+  // useEffect(() => {
+  //   const res = await callApi('');
+  // }, []);
 
   return (
     <div className="table-responsive container rounded">

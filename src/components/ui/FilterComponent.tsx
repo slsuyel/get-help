@@ -18,7 +18,7 @@ const FilterComponent = ({ onFilterChange }: FilterProps) => {
     form.resetFields();
   };
 
-  const inputWidth = { width: '100%' };
+  const inputWidth = { width: '100px' };
 
   return (
     <div className="">
@@ -26,9 +26,9 @@ const FilterComponent = ({ onFilterChange }: FilterProps) => {
         form={form}
         layout="vertical"
         onFinish={handleFinish}
-        className="row mx-auto justify-content-end"
+        className="d-flex flex-wrap gap-2 "
       >
-        <Form.Item className="my-2 col-md-2" name="category" label="">
+        <Form.Item className="my-2 " name="category" label="">
           <Select
             style={{ ...inputWidth, height: 40 }}
             placeholder="Category"
@@ -45,7 +45,7 @@ const FilterComponent = ({ onFilterChange }: FilterProps) => {
           </Select>
         </Form.Item>
 
-        <Form.Item className="my-2 col-md-2" name="status" label="">
+        <Form.Item className="my-2 " name="status" label="">
           <Select
             style={{ ...inputWidth, height: 40 }}
             placeholder="Status"
@@ -53,13 +53,12 @@ const FilterComponent = ({ onFilterChange }: FilterProps) => {
             popupMatchSelectWidth={false}
           >
             <Option value="pending">pending</Option>
-            <Option value=" pending approval">pending approval</Option>
             <Option value="approved">approved</Option>
             <Option value="rejected">rejected</Option>
           </Select>
         </Form.Item>
 
-        <Form.Item className="my-2 col-md-2" name="religion" label="">
+        <Form.Item className="my-2 " name="religion" label="">
           <Select
             style={{ ...inputWidth, height: 40 }}
             placeholder="Religion"
@@ -75,7 +74,7 @@ const FilterComponent = ({ onFilterChange }: FilterProps) => {
           </Select>
         </Form.Item>
 
-        <Form.Item className="my-2 col-md-2" name="education" label="">
+        <Form.Item className="my-2 " name="education" label="">
           <Select
             placeholder="Education"
             style={{ ...inputWidth, height: 40 }}
@@ -102,7 +101,7 @@ const FilterComponent = ({ onFilterChange }: FilterProps) => {
           </Select>
         </Form.Item>
 
-        <Form.Item className="my-2 col-md-2">
+        <Form.Item className="my-2 ">
           <button
             type="submit"
             className="btn btn-success fw-semibold py-2 rounded-3"
@@ -112,7 +111,7 @@ const FilterComponent = ({ onFilterChange }: FilterProps) => {
           </button>
         </Form.Item>
 
-        <Form.Item className="my-2 col-md-2">
+        <Form.Item className="my-2 ">
           <button
             type="button"
             onClick={handleReset}

@@ -18,6 +18,7 @@ import AdminLogin from '@/pages/auth/AdminLogin';
 // import Login from '@/pages/auth/Login';
 // import Register from '@/pages/auth/Register';
 import ResetPassword from '@/pages/auth/ResetPassword';
+import AllApplications from '@/pages/dashboard/AllApplications/AllApplications';
 import AllUsers from '@/pages/dashboard/AllUsers';
 import CreateUser from '@/pages/dashboard/CreateUser/CreateUser';
 import Decision from '@/pages/dashboard/Decision/Decision';
@@ -96,6 +97,10 @@ const router = createBrowserRouter([
         element: <AllUsers />,
       },
       {
+        path: 'all-applications',
+        element: <AllApplications />,
+      },
+      {
         path: 'create',
         element: <CreateUser />,
       },
@@ -113,7 +118,7 @@ const router = createBrowserRouter([
         element: <EditProfile />,
       },
       {
-        path: 'decision/:id',
+        path: 'applications/:id',
         element: <Decision />,
       },
       {

@@ -70,6 +70,7 @@ export interface TAdmin {
 }
 
 export interface TDecision {
+  title: string;
   why: string;
   howLong: string;
   howMuch: number;
