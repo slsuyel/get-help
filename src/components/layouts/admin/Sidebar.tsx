@@ -48,7 +48,7 @@ const Sidebar = () => {
     },
   ];
 
-  if (admin?.role !== 'editor' && admin?.role !== 'admin') {
+  if (admin?.role == 'admin') {
     sidebarItems.push({
       key: '5',
       title: 'Settings',

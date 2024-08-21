@@ -40,7 +40,7 @@ async function handleLogoutClick() {
 
 const Navbar = () => {
   const { admin } = useAdminProfile();
-  console.log(admin);
+
   return (
     <div className="d-flex gap-3 align-item-center ">
       <Dropdown.Button
