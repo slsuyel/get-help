@@ -48,7 +48,7 @@ const Navbar = () => {
         placement="bottom"
         icon={<UserOutlined />}
       >
-        <span>{admin?.role || 'Admin'}</span>
+        <span className="text-capitalize">{admin?.role || 'Admin'}</span>
       </Dropdown.Button>
     </div>
   );

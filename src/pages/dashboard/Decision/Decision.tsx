@@ -1,18 +1,30 @@
-import { Button, Card, Col, Form, Input, InputNumber, Modal, Row } from 'antd';
+import {
+  Button,
+  Card,
+  Col,
+  Form,
+  Input,
+  InputNumber,
+  Modal,
+  Row,
+  Select,
+} from 'antd';
+const { Option } = Select;
 import BackBtn from '@/components/reusable/BackBtn';
 import Loader from '@/components/reusable/Loader';
 import useSingleUser from '@/hooks/useSingleUser';
 import { useLocation, useParams } from 'react-router-dom';
 import { TDecision } from '@/types';
 import { useState } from 'react';
+import useAdminProfile from '@/hooks/useAdminProfile';
 
 const data = [
   {
     applicant_id: 24,
     title: 'Books and Supplies',
     why: 'The student needs funds for essential books and supplies.',
-    howLong: '1 month',
-    howMuch: 200,
+    how_long: '1 month',
+    how_much: 200,
     note: 'The student has managed expenses well but needs additional support for materials.',
     status: 'pending',
     approved_amount: 0,
@@ -22,8 +34,8 @@ const data = [
     applicant_id: 24,
     title: 'Medical Expenses',
     why: 'The student requires funds for a necessary surgery.',
-    howLong: 'Immediate',
-    howMuch: 3000,
+    how_long: 'Immediate',
+    how_much: 3000,
     note: 'The surgery is urgent, and the student has no other means to cover the costs.',
     status: 'rejected',
     approved_amount: 0,
@@ -33,8 +45,8 @@ const data = [
     applicant_id: 24,
     title: 'Tuition Fees for Final Semester',
     why: 'The student needs to pay for the final semester to complete their degree.',
-    howLong: '4 months',
-    howMuch: 1000,
+    how_long: '4 months',
+    how_much: 1000,
     note: 'The student has maintained a strong academic record but is facing financial challenges due to family circumstances.',
     status: 'approved',
     approved_amount: 500,
@@ -44,8 +56,9 @@ const data = [
 
 const Decision = () => {
   const location = useLocation();
-  console.log(location);
   const { id } = useParams();
+  const { admin, loading: adminLoading } = useAdminProfile();
+
   const { user, loading } = useSingleUser(id);
   const [modalVisible, setModalVisible] = useState(false);
   const [form] = Form.useForm();
@@ -62,11 +75,13 @@ const Decision = () => {
   return (
     <div className="mx-auto">
       <div className="align-items-center border-bottom d-flex gap-5 pb-5">
-        {location.pathname.includes('dashboard/applications') && (
-          <div className="bg-success-subtle border p-2 pb-2 pe-3 ps-1 py-3 rounded-circle">
-            <BackBtn />
-          </div>
-        )}
+        {!adminLoading &&
+          admin?.role == 'Admin' &&
+          location.pathname.includes('dashboard/applications') && (
+            <div className="bg-success-subtle border p-2 pb-2 pe-3 ps-1 py-3 rounded-circle">
+              <BackBtn />
+            </div>
+          )}
         <div>
           <button
             onClick={() => setModalVisible(true)}
@@ -81,37 +96,49 @@ const Decision = () => {
         {data.map((donation, index) => (
           <Col key={index} xs={24} sm={12} md={8}>
             <Card
-              title={donation.title}
+              title={
+                <div className="align-items-baseline d-flex flex-wrap justify-content-between">
+                  <h1>{donation.title}</h1>
+                  {admin?.role == 'admin' && (
+                    <button
+                      onClick={() => setModalVisible(true)}
+                      className="btn btn-primary fs-3 fw-normal p-1 px-3"
+                    >
+                      Update
+                    </button>
+                  )}
+                </div>
+              }
               bordered={true}
               style={{ width: '100%' }}
             >
-              <p className="text-body-secondary mb-1">
+              <p className="text-body-secondary my-2">
                 <span className="fs-4 text-dark">Why:</span> {donation.why}
               </p>
-              <p className="text-body-secondary mb-1">
+              <p className="text-body-secondary my-2">
                 <span className="fs-4 text-dark">Duration:</span>{' '}
-                {donation.howLong}
+                {donation.how_long}
               </p>
-              <p className="text-body-secondary mb-1">
+              <p className="text-body-secondary my-2">
                 <span className="fs-4 text-dark">Amount Needed:</span> $
-                {donation.howMuch}
+                {donation.how_much}
               </p>
-              <p className="text-body-secondary mb-1">
+              <p className="text-body-secondary my-2">
                 <span className="fs-4 text-dark">Applied Date:</span> 20/08/2024
               </p>
 
-              <p className="text-body-secondary mb-1">
+              <p className="text-body-secondary my-2">
                 <span className="fs-4 text-dark">Note:</span> {donation.note}
               </p>
               <hr />
 
               {donation.status === 'approved' && (
                 <>
-                  <p className="text-body-secondary mb-1">
+                  <p className="text-body-secondary my-2">
                     <span className="fs-4 text-success">Approved Amount:</span>{' '}
                     {donation.approved_amount}
                   </p>
-                  <p className="text-body-secondary mb-1">
+                  <p className="text-body-secondary my-2">
                     <span className="fs-4 text-success">Author Feedback:</span>{' '}
                     {donation.feedback}
                   </p>
@@ -120,7 +147,7 @@ const Decision = () => {
 
               {donation.status === 'rejected' && (
                 <>
-                  <p className="text-body-secondary mb-1">
+                  <p className="text-body-secondary my-2">
                     <span className="fs-4 text-danger">Rejected:</span>{' '}
                     {donation.feedback}
                   </p>
@@ -138,7 +165,7 @@ const Decision = () => {
       </Row>
 
       <Modal
-        title={`Create an Application for ${user?.name}`}
+        title={` Application for ${user?.name}`}
         open={modalVisible}
         onCancel={() => setModalVisible(false)}
         footer={null}
@@ -146,8 +173,40 @@ const Decision = () => {
         <div className="mx-auto mt-5">
           <div className="p-4">
             <Form form={form} layout="vertical" onFinish={handleFormSubmit}>
+              {admin?.role == 'admin' && (
+                <>
+                  <Form.Item label="Status" name="status" className="my-2">
+                    <Select
+                      className=""
+                      style={{ height: 45, width: '100%' }}
+                      placeholder="Status"
+                    >
+                      <Option value="pending">Rejected</Option>
+                      <Option value="pending">Pending</Option>
+                      <Option value="approved">Approved</Option>
+                    </Select>
+                  </Form.Item>
+
+                  <Form.Item
+                    className="my-2"
+                    name="approved_amount"
+                    label="Approved Amount"
+                  >
+                    <Input />
+                  </Form.Item>
+
+                  <Form.Item
+                    className="my-2"
+                    name="feedback"
+                    label="Admin Feedback"
+                  >
+                    <Input.TextArea rows={2} />
+                  </Form.Item>
+                </>
+              )}
+
               <Form.Item
-                className="mb-1"
+                className="my-2"
                 name="title"
                 label="Title"
                 rules={[{ required: true, message: 'Please enter the title' }]}
@@ -155,18 +214,18 @@ const Decision = () => {
                 <Input />
               </Form.Item>
               <Form.Item
-                className="mb-1"
+                className="my-2"
                 name="why"
                 label="Why"
                 rules={[
                   { required: true, message: 'Please explain the reason' },
                 ]}
               >
-                <Input />
+                <Input.TextArea rows={3} />
               </Form.Item>
               <Form.Item
-                className="mb-1"
-                name="howLong"
+                className="my-2"
+                name="how_long"
                 label="How Long"
                 rules={[
                   { required: true, message: 'Please enter the duration' },
@@ -175,17 +234,18 @@ const Decision = () => {
                 <Input />
               </Form.Item>
               <Form.Item
-                className="mb-1"
-                name="howMuch"
+                className="my-2"
+                name="how_much"
                 label="How Much"
                 rules={[{ required: true, message: 'Please enter the amount' }]}
               >
                 <InputNumber style={{ height: 45, width: '100%' }} />
               </Form.Item>
-              <Form.Item className="mb-1" name="note" label="Note">
+              <Form.Item className="my-2" name="note" label="Note">
                 <Input.TextArea style={{ height: 80 }} />
               </Form.Item>
-              <Form.Item className="mb-1">
+
+              <Form.Item className="my-2">
                 <Button type="primary" htmlType="submit">
                   Submit
                 </Button>

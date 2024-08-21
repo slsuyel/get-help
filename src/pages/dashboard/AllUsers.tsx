@@ -138,7 +138,15 @@ const AllUsers = () => {
               <th>Religion</th>
               <th className="d-none d-lg-table-cell text-nowrap">Education</th>
               <th className="text-center">Details</th>
-              <th className="text-center">Delete</th>
+              <th
+                className={`${
+                  admin?.role == 'editor' || admin?.role == 'user'
+                    ? 'd-none'
+                    : ''
+                }`}
+              >
+                Delete
+              </th>
             </tr>
           </thead>
           <tbody>
