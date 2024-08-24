@@ -54,8 +54,8 @@ const Decision = () => {
         currentD ? `/api/decisions/${currentD.id}` : '/api/decisions',
         data
       );
-      console.log(res);
-      if (res.status == (201 || 200)) {
+      // console.log(res);
+      if (res.status == 200 || res.status == 201) {
         message.success('Application Submitted');
         refetch();
         setModalVisible(false);
@@ -186,12 +186,14 @@ const Decision = () => {
                   </Form.Item>
 
                   <Form.Item
-                    initialValue={currentD?.approved_amount}
+                    initialValue={
+                      currentD?.how_much || currentD?.approved_amount
+                    }
                     className="my-2"
                     name="approved_amount"
                     label="Approved Amount"
                   >
-                    <Input />
+                    <InputNumber style={{ height: 45, width: '100%' }} />
                   </Form.Item>
 
                   <Form.Item

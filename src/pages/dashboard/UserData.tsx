@@ -1,6 +1,7 @@
 import BackBtn from '@/components/reusable/BackBtn';
 
 import { callApi } from '@/utilities/functions';
+import { Card } from 'antd';
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
@@ -10,7 +11,6 @@ interface UserData {
 
 const UserData = () => {
   const { id } = useParams();
-
   const [userData, setUserData] = useState<UserData>({});
   const [loading, setLoading] = useState<boolean>(true);
 
@@ -46,33 +46,43 @@ const UserData = () => {
             </Link>
           </div>
 
-          <div className="table-responsive">
-            <table className="table table-bordered table-striped">
-              <tbody>
-                {Object.entries(userData).map(
-                  ([key, value]) =>
-                    key !== 'created_at' &&
-                    key !== 'updated_at' &&
-                    key !== 'decisions' &&
-                    key !== 'status' &&
-                    key !== 'email' &&
-                    (typeof value === 'string' ||
-                      typeof value === 'number') && (
-                      <tr key={key}>
-                        <th
-                          className="text-capitalize fs-4 my-2 py-3 ps-3"
-                          style={{ width: '30%' }}
-                        >
-                          {key.replace(/_/g, ' ')}
-                        </th>
-                        <td className="ps-3 fs-4 text-capitalize">
-                          {typeof value === 'string' ? value : String(value)}
-                        </td>
-                      </tr>
-                    )
-                )}
-              </tbody>
-            </table>
+          <div className="row mx-auto">
+            <div className="table-responsive col-md-6">
+              <table className="table table-bordered table-striped">
+                <tbody>
+                  {Object.entries(userData).map(
+                    ([key, value]) =>
+                      key !== 'created_at' &&
+                      key !== 'updated_at' &&
+                      key !== 'decisions' &&
+                      key !== 'status' &&
+                      key !== 'email' &&
+                      (typeof value === 'string' ||
+                        typeof value === 'number') && (
+                        <tr key={key}>
+                          <th
+                            className="text-capitalize fs-4 my-2 py-3 ps-3"
+                            style={{ width: '30%' }}
+                          >
+                            {key.replace(/_/g, ' ')}
+                          </th>
+                          <td className="ps-3 fs-4 text-capitalize">
+                            {typeof value === 'string' ? value : String(value)}
+                          </td>
+                        </tr>
+                      )
+                  )}
+                </tbody>
+              </table>
+            </div>
+
+            <div className="col-md-6">
+              <Card>
+                {' '}
+                <h3>Creator Profile</h3>
+                <div> </div>
+              </Card>
+            </div>
           </div>
         </div>
       )}

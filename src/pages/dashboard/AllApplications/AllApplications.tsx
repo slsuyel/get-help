@@ -2,15 +2,19 @@
 
 import Loader from '@/components/reusable/Loader';
 import useAllDecision from '@/hooks/useAllDecision';
-import { Input } from 'antd';
+import { callApi } from '@/utilities/functions';
+import { Input, message } from 'antd';
 import { Form, Select } from 'antd';
+import { Modal } from 'antd';
+import { useNavigate } from 'react-router-dom';
 
+const { confirm } = Modal;
 const { Option } = Select;
 
 const AllApplications = () => {
-  const { data, isLoading } = useAllDecision();
+  const { data, isLoading, refetch } = useAllDecision();
   const [form] = Form.useForm();
-
+  const navigate = useNavigate();
   const handleFinish = (values: any) => {
     console.log('Form Data:', values);
   };
@@ -18,7 +22,27 @@ const AllApplications = () => {
   const handleReset = () => {
     form.resetFields();
   };
+  const handleAction = (id: number, text: string) => {
+    confirm({
+      title: `Are you sure you want to ${text} this Application?`,
+      content: 'This action cannot be undone.',
+      okText: 'Yes',
+      cancelText: 'No',
+      onOk: async () => {
+        if (text === 'Delete') {
+          const res = await callApi('Delete', `/api/decisions/${id}`);
 
+          if (res.status === 200) {
+            refetch();
+            message.success('Application Deleted Successfully');
+          } else {
+            message.error('Application Deletion Failed');
+          }
+        }
+        navigate(`/dashboard/applications/${id}`);
+      },
+    });
+  };
   if (isLoading) {
     return <Loader />;
   }
@@ -117,6 +141,7 @@ const AllApplications = () => {
               <th>Status</th>
               <th>Approved Amount</th>
               <th>Feedback</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -144,6 +169,19 @@ const AllApplications = () => {
                 </td>
                 <td>${application.approved_amount}</td>
                 <td>{application.feedback}</td>
+                <td
+                  style={{ cursor: 'pointer' }}
+                  className="d-flex flex-wrap justify-content-around"
+                >
+                  <i
+                    onClick={() => handleAction(application.user_id, 'Update')}
+                    className="fa-solid fa-pen-to-square text-primary"
+                  ></i>
+                  <i
+                    onClick={() => handleAction(application.id, 'Delete')}
+                    className="fa-solid fa-trash text-danger"
+                  ></i>
+                </td>
               </tr>
             ))}
           </tbody>
