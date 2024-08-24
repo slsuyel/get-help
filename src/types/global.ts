@@ -178,5 +178,5 @@ export interface TAgent {
   created_at: string;
   updated_at: string;
   location: string | null;
-  role: string;
+  role: string | null;
 }

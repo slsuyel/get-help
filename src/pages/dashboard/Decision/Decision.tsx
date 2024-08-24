@@ -84,6 +84,41 @@ const Decision = () => {
       </div>
 
       <Row gutter={[16, 16]} className="mt-5">
+        <Col xs={24} sm={12} md={8}>
+          <Card>
+            <div className="table-responsive font_amazon">
+              <table className="table table-striped fs-3 table-bordered text-capitalize text-nowrap">
+                <tbody>
+                  <tr>
+                    <th>Name:</th>
+                    <td>{user?.name}</td>
+                  </tr>
+                  <tr>
+                    <th>Category:</th>
+                    <td>{user?.category}</td>
+                  </tr>
+                  <tr>
+                    <th>Phone:</th>
+                    <td>{user?.phone}</td>
+                  </tr>
+                  <tr>
+                    <th>Permanent Address:</th>
+                    <td>{user?.permanent_address}</td>
+                  </tr>
+                  <tr>
+                    <th>Highest Education:</th>
+                    <td>{user?.highest_education}</td>
+                  </tr>
+                  <tr>
+                    <th>Total Applications:</th>
+                    <td>{user?.decisions?.length}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </Card>
+        </Col>
+
         {user?.decisions?.map((donation, index) => (
           <Col key={index} xs={24} sm={12} md={8}>
             <Card
@@ -138,10 +173,15 @@ const Decision = () => {
                 </>
               )}
 
-              {donation.status === 'rejected' && (
+              {donation.status === 'reject' && (
                 <>
                   <p className="text-body-secondary my-2">
-                    <span className="fs-4 text-danger">Rejected:</span>{' '}
+                    <span className="fs-4 text-danger">
+                      Sorry, your application has been rejected.
+                    </span>{' '}
+                  </p>
+                  <p className="text-body-secondary my-2">
+                    <span className="fs-4 text-success">Author Feedback:</span>{' '}
                     {donation.feedback}
                   </p>
                 </>

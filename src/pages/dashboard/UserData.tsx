@@ -1,9 +1,11 @@
 import BackBtn from '@/components/reusable/BackBtn';
 
 import { callApi } from '@/utilities/functions';
-import { Card } from 'antd';
+
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import { TAgent } from '@/types';
+import { Card } from 'antd';
 
 interface UserData {
   [key: string]: string;
@@ -30,6 +32,8 @@ const UserData = () => {
     fetchData();
   }, [id]);
 
+  const creator = userData.creator as unknown as TAgent;
+
   return (
     <div className="font_amazon">
       {loading ? (
@@ -48,39 +52,69 @@ const UserData = () => {
 
           <div className="row mx-auto">
             <div className="table-responsive col-md-6">
-              <table className="table table-bordered table-striped">
-                <tbody>
-                  {Object.entries(userData).map(
-                    ([key, value]) =>
-                      key !== 'created_at' &&
-                      key !== 'updated_at' &&
-                      key !== 'decisions' &&
-                      key !== 'status' &&
-                      key !== 'email' &&
-                      (typeof value === 'string' ||
-                        typeof value === 'number') && (
-                        <tr key={key}>
-                          <th
-                            className="text-capitalize fs-4 my-2 py-3 ps-3"
-                            style={{ width: '30%' }}
-                          >
-                            {key.replace(/_/g, ' ')}
-                          </th>
-                          <td className="ps-3 fs-4 text-capitalize">
-                            {typeof value === 'string' ? value : String(value)}
-                          </td>
-                        </tr>
-                      )
-                  )}
-                </tbody>
-              </table>
+              <Card>
+                <h3 className="text-center mb-3">Applicant Profile</h3>
+                <table className="table table-bordered table-striped">
+                  <tbody>
+                    {Object.entries(userData).map(
+                      ([key, value]) =>
+                        key !== 'created_at' &&
+                        key !== 'updated_at' &&
+                        key !== 'decisions' &&
+                        key !== 'status' &&
+                        key !== 'email' &&
+                        (typeof value === 'string' ||
+                          typeof value === 'number') && (
+                          <tr key={key}>
+                            <th
+                              className="text-capitalize fs-4 my-2 py-3 ps-3"
+                              style={{ width: '30%' }}
+                            >
+                              {key.replace(/_/g, ' ')}
+                            </th>
+                            <td className="ps-3 fs-4 text-capitalize">
+                              {typeof value === 'string'
+                                ? value
+                                : String(value)}
+                            </td>
+                          </tr>
+                        )
+                    )}
+                  </tbody>
+                </table>
+              </Card>
             </div>
 
             <div className="col-md-6">
               <Card>
-                {' '}
-                <h3>Creator Profile</h3>
-                <div> </div>
+                <h3 className="text-center mb-3">Creator Profile</h3>
+                <div>
+                  {' '}
+                  {userData.creator && (
+                    <div className="table-responsive font_amazon">
+                      <table className="table table-striped fs-3 table-bordered text-capitalize text-nowrap">
+                        <tbody>
+                          <tr>
+                            <th>Name:</th>
+                            <td>{creator.name}</td>
+                          </tr>
+                          <tr>
+                            <th>Role:</th>
+                            <td>{creator.role}</td>
+                          </tr>
+                          <tr>
+                            <th>Location:</th>
+                            <td>{creator.location}</td>
+                          </tr>
+                          <tr>
+                            <th>email:</th>
+                            <td>{creator.email}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  )}
+                </div>
               </Card>
             </div>
           </div>
