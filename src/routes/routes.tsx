@@ -22,6 +22,7 @@ import AllApplications from '@/pages/dashboard/AllApplications/AllApplications';
 import AllUsers from '@/pages/dashboard/AllUsers';
 import CreateUser from '@/pages/dashboard/CreateUser/CreateUser';
 import Decision from '@/pages/dashboard/Decision/Decision';
+import SingleDecision from '@/pages/dashboard/Decision/SingleDecision';
 
 import Dhome from '@/pages/dashboard/Dhome';
 import MyApplicants from '@/pages/dashboard/MyApplicants/MyApplicants';
@@ -109,10 +110,18 @@ const router = createBrowserRouter([
         path: 'create',
         element: <CreateUser />,
       },
+      {
+        path: 'application/view/:id',
+        element: <SingleDecision />,
+      },
 
       {
         path: ':category/:status',
         element: <UserTable />,
+      },
+      {
+        path: 'application/:status',
+        element: <AllApplications />,
       },
       {
         path: 'user/:id',

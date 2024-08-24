@@ -32,7 +32,6 @@ const AllUsers = () => {
 
     if (action == 'Decision') {
       navigate(`/dashboard/decision/${record}`);
-
       return;
     }
 

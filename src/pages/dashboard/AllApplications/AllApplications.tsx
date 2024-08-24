@@ -4,24 +4,27 @@ import Loader from '@/components/reusable/Loader';
 import useAllDecision from '@/hooks/useAllDecision';
 import { callApi } from '@/utilities/functions';
 import { Input, message } from 'antd';
-import { Form, Select } from 'antd';
+// import { Form, Select } from 'antd';
 import { Modal } from 'antd';
-import { useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const { confirm } = Modal;
-const { Option } = Select;
+// const { Option } = Select;
 
 const AllApplications = () => {
+  const location = useLocation();
+  const path = location.pathname.split('/').pop();
+  // console.log(location);
   const { data, isLoading, refetch } = useAllDecision();
-  const [form] = Form.useForm();
+  // const [form] = Form.useForm();
   const navigate = useNavigate();
-  const handleFinish = (values: any) => {
-    console.log('Form Data:', values);
-  };
+  // const handleFinish = (values: any) => {
+  //   console.log('Form Data:', values);
+  // };
 
-  const handleReset = () => {
-    form.resetFields();
-  };
+  // const handleReset = () => {
+  //   form.resetFields();
+  // };
   const handleAction = (id: number, text: string) => {
     confirm({
       title: `Are you sure you want to ${text} this Application?`,
@@ -51,6 +54,11 @@ const AllApplications = () => {
     <div className="mt-4">
       <div className="align-item-center d-flex flex-wrap gap-3 my-3 justify-content-between">
         <div>
+          <h4 className="fs-3 text-capitalize text-info-emphasis">
+            All <span className="text-primary">{path}</span> Application
+          </h4>
+        </div>
+        <div>
           <form
             onSubmit={e => e.preventDefault()}
             className="align-item-center d-flex gap-3"
@@ -71,7 +79,7 @@ const AllApplications = () => {
           </form>
         </div>
 
-        <div>
+        {/* <div>
           <Form
             form={form}
             layout="vertical"
@@ -124,7 +132,7 @@ const AllApplications = () => {
               </button>
             </Form.Item>
           </Form>
-        </div>
+        </div> */}
       </div>
       <div className="table-responsive">
         <table className="table table-striped fs-3 table-bordered text-capitalize text-nowrap">
@@ -145,10 +153,14 @@ const AllApplications = () => {
             </tr>
           </thead>
           <tbody>
-            {data.map((application, index) => (
+            {data?.map((application, index) => (
               <tr key={index}>
                 <td>{index + 1}</td>
-                <td>{application.title}</td>
+                <td>
+                  <Link to={`/dashboard/application/view/${application.id}`}>
+                    {application.title}
+                  </Link>
+                </td>
                 <td>{application.date}</td>
                 {/* <td>{application.user.name}</td> */}
 
@@ -156,7 +168,7 @@ const AllApplications = () => {
                 <td>${application.how_much}</td>
                 <td
                   className={`text-capitalize ${
-                    application.status === 'rejected'
+                    application.status === 'reject'
                       ? 'text-danger'
                       : application.status === 'approved'
                       ? 'text-success'

@@ -20,7 +20,24 @@ const Sidebar = () => {
     {
       key: '09',
       title: 'All Applications',
-      slug: '/dashboard/all-applications',
+      submenu: [
+        { key: '2-1', title: 'All', slug: '/dashboard/application/all' },
+        {
+          key: '2-2',
+          title: 'Approved',
+          slug: '/dashboard/application/approved',
+        },
+        {
+          key: '2-3',
+          title: 'Pending',
+          slug: '/dashboard/application/pending',
+        },
+        {
+          key: '2-4',
+          title: 'Rejected',
+          slug: '/dashboard/application/rejected',
+        },
+      ],
     },
     {
       key: '0',
@@ -33,24 +50,24 @@ const Sidebar = () => {
     //   slug: '/dashboard/my-users',
     // },
 
-    {
-      key: '2',
-      title: 'Students',
-      submenu: [
-        { key: '2-1', title: 'Pending', slug: '/dashboard/Student/pending' },
-        { key: '2-2', title: 'Approved', slug: '/dashboard/Student/approved' },
-        { key: '2-3', title: 'Rejected', slug: '/dashboard/Student/rejected' },
-      ],
-    },
-    {
-      key: '3',
-      title: 'Refuges',
-      submenu: [
-        { key: '3-1', title: 'Pending', slug: '/dashboard/refugee/pending' },
-        { key: '3-2', title: 'Approved', slug: '/dashboard/refugee/approved' },
-        { key: '3-3', title: 'Rejected', slug: '/dashboard/refugee/rejected' },
-      ],
-    },
+    // {
+    //   key: '2',
+    //   title: 'Students',
+    //   submenu: [
+    //     { key: '2-1', title: 'Pending', slug: '/dashboard/Student/pending' },
+    //     { key: '2-2', title: 'Approved', slug: '/dashboard/Student/approved' },
+    //     { key: '2-3', title: 'Rejected', slug: '/dashboard/Student/rejected' },
+    //   ],
+    // },
+    // {
+    //   key: '3',
+    //   title: 'Refuges',
+    //   submenu: [
+    //     { key: '3-1', title: 'Pending', slug: '/dashboard/refugee/pending' },
+    //     { key: '3-2', title: 'Approved', slug: '/dashboard/refugee/approved' },
+    //     { key: '3-3', title: 'Rejected', slug: '/dashboard/refugee/rejected' },
+    //   ],
+    // },
   ];
 
   if (admin?.role == 'admin') {

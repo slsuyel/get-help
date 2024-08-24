@@ -45,19 +45,6 @@ const FilterComponent = ({ onFilterChange }: FilterProps) => {
           </Select>
         </Form.Item>
 
-        <Form.Item className="my-2 " name="status" label="">
-          <Select
-            style={{ ...inputWidth, height: 40 }}
-            placeholder="Status"
-            allowClear
-            popupMatchSelectWidth={false}
-          >
-            <Option value="pending">pending</Option>
-            <Option value="approved">approved</Option>
-            <Option value="rejected">rejected</Option>
-          </Select>
-        </Form.Item>
-
         <Form.Item className="my-2 " name="religion" label="">
           <Select
             style={{ ...inputWidth, height: 40 }}

@@ -15,17 +15,16 @@ const { Option } = Select;
 import BackBtn from '@/components/reusable/BackBtn';
 import Loader from '@/components/reusable/Loader';
 import useSingleUser from '@/hooks/useSingleUser';
-import { useLocation, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { TDecision } from '@/types';
 import { useState } from 'react';
 import useAdminProfile from '@/hooks/useAdminProfile';
 import { callApi } from '@/utilities/functions';
 
 const Decision = () => {
-  const location = useLocation();
   const { id } = useParams();
   const [currentD, setCurrentD] = useState<TDecision>();
-  const { admin, loading: adminLoading } = useAdminProfile();
+  const { admin } = useAdminProfile();
 
   const { user, loading, refetch } = useSingleUser(id);
   const [modalVisible, setModalVisible] = useState(false);
@@ -181,7 +180,7 @@ const Decision = () => {
                       placeholder="Status"
                     >
                       <Option value="approved">Approved</Option>
-                      <Option value="rejected">Rejected</Option>
+                      <Option value="reject">Rejected</Option>
                     </Select>
                   </Form.Item>
 

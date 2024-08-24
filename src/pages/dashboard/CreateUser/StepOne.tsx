@@ -36,6 +36,8 @@ const StepOne = () => {
     if (res.data.token) {
       console.log(res);
       navigate(`/dashboard/edit/${res.data.user.id}`);
+    } else {
+      console.log(res);
     }
   };
 
