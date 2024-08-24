@@ -1,7 +1,7 @@
-import { TypeDataForm } from '@/types';
+import { TUser } from '@/types';
 import { Form, Input } from 'antd';
 
-export const renderStudentFields = (user?: TypeDataForm) => (
+export const renderStudentFields = (user?: TUser) => (
   <>
     <div className="col-md-4">
       <Form.Item

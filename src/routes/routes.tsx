@@ -24,6 +24,7 @@ import CreateUser from '@/pages/dashboard/CreateUser/CreateUser';
 import Decision from '@/pages/dashboard/Decision/Decision';
 
 import Dhome from '@/pages/dashboard/Dhome';
+import MyApplicants from '@/pages/dashboard/MyApplicants/MyApplicants';
 import UserData from '@/pages/dashboard/UserData';
 import UserTable from '@/pages/dashboard/UserTable';
 import { createBrowserRouter } from 'react-router-dom';
@@ -95,6 +96,10 @@ const router = createBrowserRouter([
       {
         path: 'all-users',
         element: <AllUsers />,
+      },
+      {
+        path: 'my-users',
+        element: <MyApplicants />,
       },
       {
         path: 'all-applications',

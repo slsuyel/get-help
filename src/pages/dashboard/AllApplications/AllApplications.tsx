@@ -1,74 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
+import Loader from '@/components/reusable/Loader';
+import useAllDecision from '@/hooks/useAllDecision';
 import { Input } from 'antd';
 import { Form, Select } from 'antd';
 
 const { Option } = Select;
 
 const AllApplications = () => {
-  const data = [
-    {
-      applicant_id: 24,
-      name: 'John Doe',
-      title: 'Books and Supplies',
-      why: 'The student needs funds for essential books and supplies.',
-      howLong: '1 month',
-      howMuch: 200,
-      note: 'The student has managed expenses well but needs additional support for materials.',
-      status: 'pending',
-      approved_amount: 0,
-      feedback: '',
-    },
-    {
-      applicant_id: 25,
-      name: 'Jane Smith',
-      title: 'Medical Expenses',
-      why: 'The student requires funds for a necessary surgery.',
-      howLong: 'Immediate',
-      howMuch: 3000,
-      note: 'The surgery is urgent, and the student has no other means to cover the costs.',
-      status: 'rejected',
-      approved_amount: 0,
-      feedback: 'Currently we cannot provide you, Try again later',
-    },
-    {
-      applicant_id: 26,
-      name: 'Alice Johnson',
-      title: 'Tuition Fees for Final Semester',
-      why: 'The student needs to pay for the final semester to complete their degree.',
-      howLong: '4 months',
-      howMuch: 1000,
-      note: 'The student has maintained a strong academic record but is facing financial challenges due to family circumstances.',
-      status: 'approved',
-      approved_amount: 500,
-      feedback: 'Here is admin feedback',
-    },
-    {
-      applicant_id: 27,
-      name: 'Bob Brown',
-      title: 'Living Expenses',
-      why: 'The student needs help with rent and utilities.',
-      howLong: '3 months',
-      howMuch: 600,
-      note: 'The student lost a part-time job and needs temporary assistance.',
-      status: 'pending',
-      approved_amount: 0,
-      feedback: '',
-    },
-    {
-      applicant_id: 28,
-      name: 'Charlie Davis',
-      title: 'Lab Equipment',
-      why: 'The student needs specialized equipment for a final project.',
-      howLong: '1 month',
-      howMuch: 400,
-      note: 'The equipment is required to complete a key project for graduation.',
-      status: 'approved',
-      approved_amount: 400,
-      feedback: 'Approved with full amount',
-    },
-  ];
-
+  const { data, isLoading } = useAllDecision();
   const [form] = Form.useForm();
 
   const handleFinish = (values: any) => {
@@ -78,6 +18,10 @@ const AllApplications = () => {
   const handleReset = () => {
     form.resetFields();
   };
+
+  if (isLoading) {
+    return <Loader />;
+  }
 
   return (
     <div className="mt-4">
@@ -164,7 +108,9 @@ const AllApplications = () => {
             <tr>
               <th>#</th>
               <th>Title</th>
-              <th>Name</th>
+              <th>Applied Date</th>
+
+              {/* <th>Name</th> */}
 
               <th>How Long</th>
               <th>How Much</th>
@@ -178,10 +124,11 @@ const AllApplications = () => {
               <tr key={index}>
                 <td>{index + 1}</td>
                 <td>{application.title}</td>
-                <td>{application.name}</td>
+                <td>{application.date}</td>
+                {/* <td>{application.user.name}</td> */}
 
-                <td>{application.howLong}</td>
-                <td>${application.howMuch}</td>
+                <td>{application.how_long}</td>
+                <td>${application.how_much}</td>
                 <td
                   className={`text-capitalize ${
                     application.status === 'rejected'

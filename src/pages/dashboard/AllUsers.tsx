@@ -134,7 +134,7 @@ const AllUsers = () => {
               <th>Name</th>
               <th className="d-none d-lg-table-cell text-nowrap">Phone</th>
               <th>Category</th>
-              <th>Status</th>
+              {/* <th>Status</th> */}
               <th>Religion</th>
               <th className="d-none d-lg-table-cell text-nowrap">Education</th>
               <th className="text-center">Details</th>
@@ -164,7 +164,7 @@ const AllUsers = () => {
                     {user.phone}
                   </td>
                   <td>{user.category}</td>
-                  <td
+                  {/* <td
                     className={`${
                       user.status === 'rejected'
                         ? 'text-danger'
@@ -176,7 +176,7 @@ const AllUsers = () => {
                     } text-center `}
                   >
                     {user.status}
-                  </td>
+                  </td> */}
                   <td>{user.religion}</td>
                   <td className="d-none d-lg-table-cell ">
                     {user.highest_education || user.education_level}

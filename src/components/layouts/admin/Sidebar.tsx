@@ -27,6 +27,11 @@ const Sidebar = () => {
       title: 'All Applicants',
       slug: '/dashboard/all-users',
     },
+    // {
+    //   key: 's0',
+    //   title: 'My Applicants',
+    //   slug: '/dashboard/my-users',
+    // },
 
     {
       key: '2',

@@ -2,8 +2,7 @@ import BackBtn from '@/components/reusable/BackBtn';
 
 import { callApi } from '@/utilities/functions';
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import Decision from './Decision/Decision';
+import { Link, useParams } from 'react-router-dom';
 
 interface UserData {
   [key: string]: string;
@@ -11,6 +10,7 @@ interface UserData {
 
 const UserData = () => {
   const { id } = useParams();
+
   const [userData, setUserData] = useState<UserData>({});
   const [loading, setLoading] = useState<boolean>(true);
 
@@ -29,25 +29,35 @@ const UserData = () => {
 
     fetchData();
   }, [id]);
-  // console.log(userData);
+
   return (
     <div className="font_amazon">
       {loading ? (
         <div>Loading...</div>
       ) : (
         <div>
-          <BackBtn />
-          <h1 className="text-center">Details of {userData.name} </h1>
+          <div className="align-items-center d-flex flex-wrap justify-content-between my-5">
+            <BackBtn />
+            <Link
+              to={`/dashboard/applications/${userData.id}`}
+              className="btn btn-primary p-1 px-3 rounded-3 text-white"
+            >
+              See All Decisions {userData.name}
+            </Link>
+          </div>
 
           <div className="table-responsive">
             <table className="table table-bordered table-striped">
               <tbody>
                 {Object.entries(userData).map(
-                  ([key, value]: [string, string]) =>
+                  ([key, value]) =>
                     key !== 'created_at' &&
                     key !== 'updated_at' &&
+                    key !== 'decisions' &&
+                    key !== 'status' &&
                     key !== 'email' &&
-                    value && (
+                    (typeof value === 'string' ||
+                      typeof value === 'number') && (
                       <tr key={key}>
                         <th
                           className="text-capitalize fs-4 my-2 py-3 ps-3"
@@ -55,19 +65,15 @@ const UserData = () => {
                         >
                           {key.replace(/_/g, ' ')}
                         </th>
-                        <td className="ps-3 fs-4 text-capitalize">{value}</td>
+                        <td className="ps-3 fs-4 text-capitalize">
+                          {typeof value === 'string' ? value : String(value)}
+                        </td>
                       </tr>
                     )
                 )}
               </tbody>
             </table>
           </div>
-
-          <br />
-          <br />
-          <br />
-          <br />
-          <Decision />
         </div>
       )}
     </div>

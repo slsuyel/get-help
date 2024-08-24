@@ -321,12 +321,7 @@ const EditProfile = (): JSX.Element | null => {
                 {' '}
                 {loader ? <Spinner /> : ' Submit & Apply'}
               </button>
-              <button
-                className="btn btn-primary"
-                onClick={() => navigate(`/dashboard/decision/${user?.id}`)}
-              >
-                Create Decision
-              </button>
+
               <div></div>
             </div>
           </Form.Item>

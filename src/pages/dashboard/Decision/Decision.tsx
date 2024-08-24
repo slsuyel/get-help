@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import {
   Button,
   Card,
@@ -5,6 +6,7 @@ import {
   Form,
   Input,
   InputNumber,
+  message,
   Modal,
   Row,
   Select,
@@ -17,49 +19,15 @@ import { useLocation, useParams } from 'react-router-dom';
 import { TDecision } from '@/types';
 import { useState } from 'react';
 import useAdminProfile from '@/hooks/useAdminProfile';
-
-const data = [
-  {
-    applicant_id: 24,
-    title: 'Books and Supplies',
-    why: 'The student needs funds for essential books and supplies.',
-    how_long: '1 month',
-    how_much: 200,
-    note: 'The student has managed expenses well but needs additional support for materials.',
-    status: 'pending',
-    approved_amount: 0,
-    feedback: '',
-  },
-  {
-    applicant_id: 24,
-    title: 'Medical Expenses',
-    why: 'The student requires funds for a necessary surgery.',
-    how_long: 'Immediate',
-    how_much: 3000,
-    note: 'The surgery is urgent, and the student has no other means to cover the costs.',
-    status: 'rejected',
-    approved_amount: 0,
-    feedback: 'Currently we cannot provided you, Try again letter',
-  },
-  {
-    applicant_id: 24,
-    title: 'Tuition Fees for Final Semester',
-    why: 'The student needs to pay for the final semester to complete their degree.',
-    how_long: '4 months',
-    how_much: 1000,
-    note: 'The student has maintained a strong academic record but is facing financial challenges due to family circumstances.',
-    status: 'approved',
-    approved_amount: 500,
-    feedback: 'Here is admin feedback',
-  },
-];
+import { callApi } from '@/utilities/functions';
 
 const Decision = () => {
   const location = useLocation();
   const { id } = useParams();
+  const [currentD, setCurrentD] = useState<TDecision>();
   const { admin, loading: adminLoading } = useAdminProfile();
 
-  const { user, loading } = useSingleUser(id);
+  const { user, loading, refetch } = useSingleUser(id);
   const [modalVisible, setModalVisible] = useState(false);
   const [form] = Form.useForm();
 
@@ -67,33 +35,57 @@ const Decision = () => {
     return <Loader />;
   }
 
-  const handleFormSubmit = (values: TDecision) => {
-    console.log(values);
-    setModalVisible(false);
+  const handleFormSubmit = async (values: TDecision) => {
+    try {
+      const data = {
+        user_id: id,
+        approved_amount: values.approved_amount,
+        status: values.status || 'pending',
+        how_long: values.how_long,
+        how_much: values.how_much,
+        note: values.note,
+        title: values.title,
+        why: values.title,
+        feedback: values.feedback,
+      };
+
+      const res = await callApi(
+        'POST',
+        currentD ? `/api/decisions/${currentD.id}` : '/api/decisions',
+        data
+      );
+      console.log(res);
+      if (res.status == (201 || 200)) {
+        message.success('Application Submitted');
+        refetch();
+        setModalVisible(false);
+      }
+    } catch (error) {
+      console.error('Error submitting decision:', error);
+      setModalVisible(false);
+    }
+  };
+
+  const handleUpdate = (d: TDecision) => {
+    setCurrentD(d);
+    setModalVisible(true);
+    // console.log(d);
   };
 
   return (
     <div className="mx-auto">
-      <div className="align-items-center border-bottom d-flex gap-5 pb-5">
-        {!adminLoading &&
-          admin?.role == 'Admin' &&
-          location.pathname.includes('dashboard/applications') && (
-            <div className="bg-success-subtle border p-2 pb-2 pe-3 ps-1 py-3 rounded-circle">
-              <BackBtn />
-            </div>
-          )}
-        <div>
-          <button
-            onClick={() => setModalVisible(true)}
-            className="btn btn-success fw-normal p-2"
-          >
-            Create Applications of {user?.name}
-          </button>
-        </div>
+      <div className="align-items-center d-flex flex-wrap justify-content-between my-5">
+        <BackBtn />
+        <button
+          onClick={() => setModalVisible(true)}
+          className="btn btn-success fw-normal p-2"
+        >
+          Create Applications of {user?.name}
+        </button>
       </div>
 
       <Row gutter={[16, 16]} className="mt-5">
-        {data.map((donation, index) => (
+        {user?.decisions?.map((donation, index) => (
           <Col key={index} xs={24} sm={12} md={8}>
             <Card
               title={
@@ -101,7 +93,9 @@ const Decision = () => {
                   <h1>{donation.title}</h1>
                   {admin?.role == 'admin' && (
                     <button
-                      onClick={() => setModalVisible(true)}
+                      onClick={() => {
+                        handleUpdate(donation);
+                      }}
                       className="btn btn-primary fs-3 fw-normal p-1 px-3"
                     >
                       Update
@@ -155,7 +149,7 @@ const Decision = () => {
               )}
 
               {donation.status === 'pending' && (
-                <p className="btn btn-warning fs-3 fw-normal p-1 px-4 text-bg-danger mt-3">
+                <p className="btn  btn-warning fs-3 fw-normal p-1 px-4 text-bg-danger mt-3">
                   Wait for Admin review
                 </p>
               )}
@@ -175,19 +169,24 @@ const Decision = () => {
             <Form form={form} layout="vertical" onFinish={handleFormSubmit}>
               {admin?.role == 'admin' && (
                 <>
-                  <Form.Item label="Status" name="status" className="my-2">
+                  <Form.Item
+                    initialValue={currentD?.status}
+                    label="Status"
+                    name="status"
+                    className="my-2"
+                  >
                     <Select
                       className=""
                       style={{ height: 45, width: '100%' }}
                       placeholder="Status"
                     >
-                      <Option value="pending">Rejected</Option>
-                      <Option value="pending">Pending</Option>
                       <Option value="approved">Approved</Option>
+                      <Option value="rejected">Rejected</Option>
                     </Select>
                   </Form.Item>
 
                   <Form.Item
+                    initialValue={currentD?.approved_amount}
                     className="my-2"
                     name="approved_amount"
                     label="Approved Amount"
@@ -196,6 +195,7 @@ const Decision = () => {
                   </Form.Item>
 
                   <Form.Item
+                    initialValue={currentD?.feedback}
                     className="my-2"
                     name="feedback"
                     label="Admin Feedback"
@@ -206,6 +206,7 @@ const Decision = () => {
               )}
 
               <Form.Item
+                initialValue={currentD?.title}
                 className="my-2"
                 name="title"
                 label="Title"
@@ -214,6 +215,7 @@ const Decision = () => {
                 <Input />
               </Form.Item>
               <Form.Item
+                initialValue={currentD?.why}
                 className="my-2"
                 name="why"
                 label="Why"
@@ -224,6 +226,7 @@ const Decision = () => {
                 <Input.TextArea rows={3} />
               </Form.Item>
               <Form.Item
+                initialValue={currentD?.how_long}
                 className="my-2"
                 name="how_long"
                 label="How Long"
@@ -234,6 +237,7 @@ const Decision = () => {
                 <Input />
               </Form.Item>
               <Form.Item
+                initialValue={currentD?.how_much}
                 className="my-2"
                 name="how_much"
                 label="How Much"
@@ -241,7 +245,12 @@ const Decision = () => {
               >
                 <InputNumber style={{ height: 45, width: '100%' }} />
               </Form.Item>
-              <Form.Item className="my-2" name="note" label="Note">
+              <Form.Item
+                initialValue={currentD?.note}
+                className="my-2"
+                name="note"
+                label="Note"
+              >
                 <Input.TextArea style={{ height: 80 }} />
               </Form.Item>
 

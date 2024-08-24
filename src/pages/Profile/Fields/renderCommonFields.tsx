@@ -1,9 +1,9 @@
-import { TypeDataForm } from '@/types';
+import { TUser } from '@/types';
 import { Form, Input, DatePicker, Select } from 'antd';
 
 const { Option } = Select;
 
-export const renderCommonFields = (user?: TypeDataForm | null) => (
+export const renderCommonFields = (user?: TUser | null) => (
   <>
     <div className="col-md-4">
       <Form.Item
