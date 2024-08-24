@@ -156,7 +156,7 @@ const AllApplications = () => {
             {data?.map((application, index) => (
               <tr key={index}>
                 <td>{index + 1}</td>
-                <td>
+                <td className="btn-link">
                   <Link to={`/dashboard/application/view/${application.id}`}>
                     {application.title}
                   </Link>

@@ -1,50 +1,26 @@
-// import { callApi } from '@/utilities/functions';
-// import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
+import { callApi } from '@/utilities/functions';
+import { TAgent } from '@/types';
 
 const AllAgent = () => {
-  // Updated fake data array with email field added
-  const agents = [
-    {
-      id: 1,
-      name: 'John Doe',
-      location: 'New York',
-      role: 'admin',
-      action: 'delete',
-      email: 'john.doe@example.com', // New email field
-    },
-    {
-      id: 2,
-      name: 'Jane Smith',
-      location: 'Los Angeles',
-      role: 'editor',
-      action: 'delete',
-      email: 'jane.smith@example.com', // New email field
-    },
-    {
-      id: 3,
-      name: 'James Johnson',
-      location: 'Chicago',
-      role: 'admin',
-      action: 'delete',
-      email: 'james.johnson@example.com', // New email field
-    },
-    {
-      id: 4,
-      name: 'Emily Davis',
-      location: 'San Francisco',
-      role: 'editor',
-      action: 'delete',
-      email: 'emily.davis@example.com', // New email field
-    },
-  ];
+  const [agents, setAgents] = useState<TAgent[]>([]);
 
-  // useEffect(() => {
-  //   const res = await callApi('');
-  // }, []);
+  useEffect(() => {
+    const fetchAgents = async () => {
+      try {
+        const res = await callApi('get', '/api/admins');
+        setAgents(res.data);
+      } catch (error) {
+        console.error('Error fetching agents:', error);
+      }
+    };
+
+    fetchAgents();
+  }, []);
 
   return (
-    <div className="table-responsive container rounded">
-      <table className="table table-striped table-bordered">
+    <div className="table-responsive rounded">
+      <table className="table table-striped fs-3 table-bordered text-capitalize text-nowrap">
         <thead className="thead-dark">
           <tr>
             <th>ID</th>
@@ -60,7 +36,7 @@ const AllAgent = () => {
             <tr key={agent.id}>
               <td>{agent.id}</td>
               <td>{agent.name}</td>
-              <td>{agent.location}</td>
+              <td>{agent.location ?? 'N/A'}</td> {/* Handle null location */}
               <td>{agent.role}</td>
               <td>{agent.email}</td> {/* Display email field */}
               <td>

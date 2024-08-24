@@ -169,3 +169,14 @@ export interface TCreator {
   location: string;
   role: string;
 }
+
+export interface TAgent {
+  id: number;
+  name: string;
+  email: string;
+  email_verified_at: string | null;
+  created_at: string;
+  updated_at: string;
+  location: string | null;
+  role: string;
+}
