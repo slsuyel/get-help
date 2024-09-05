@@ -139,11 +139,23 @@ export const renderCommonFields = (user?: TUser | null) => (
 
     <div className="col-md-4">
       <Form.Item initialValue={user?.race} label="Race" name="race">
-        <Input
+        <Select
           className="input_bor_edit"
           style={{ height: 43, width: '100%', marginTop: '0' }}
-          placeholder="Enter race"
-        />
+          placeholder="Select race"
+        >
+          <Option value="white">White</Option>
+          <Option value="black_or_african_american">
+            Black or African American
+          </Option>
+          <Option value="american_indian_or_alaska_native">
+            American Indian or Alaska Native
+          </Option>
+          <Option value="asian">Asian</Option>
+          <Option value="native_hawaiian_or_other_pacific_islander">
+            Native Hawaiian or Other Pacific Islander
+          </Option>
+        </Select>
       </Form.Item>
     </div>
 

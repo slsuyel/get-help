@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import Loader from '@/components/reusable/Loader';
+import useAdminProfile from '@/hooks/useAdminProfile';
 import useAllDecision from '@/hooks/useAllDecision';
 import { callApi } from '@/utilities/functions';
 import { Input, message } from 'antd';
@@ -12,6 +13,7 @@ const { confirm } = Modal;
 // const { Option } = Select;
 
 const AllApplications = () => {
+  const { admin } = useAdminProfile();
   const location = useLocation();
   const path = location.pathname.split('/').pop();
   // console.log(location);
@@ -149,7 +151,7 @@ const AllApplications = () => {
               <th>Status</th>
               <th>Approved Amount</th>
               <th>Feedback</th>
-              <th>Action</th>
+              {admin?.role == 'admin' && <th>Action</th>}
             </tr>
           </thead>
           <tbody>
@@ -181,19 +183,24 @@ const AllApplications = () => {
                 </td>
                 <td>${application.approved_amount}</td>
                 <td>{application.feedback}</td>
-                <td
-                  style={{ cursor: 'pointer' }}
-                  className="d-flex flex-wrap justify-content-around"
-                >
-                  <i
-                    onClick={() => handleAction(application.user_id, 'Update')}
-                    className="fa-solid fa-pen-to-square text-primary"
-                  ></i>
-                  <i
-                    onClick={() => handleAction(application.id, 'Delete')}
-                    className="fa-solid fa-trash text-danger"
-                  ></i>
-                </td>
+                {admin?.role == 'admin' && (
+                  <td
+                    style={{ cursor: 'pointer' }}
+                    className="d-flex flex-wrap justify-content-around"
+                  >
+                    <i
+                      onClick={() =>
+                        handleAction(application.user_id, 'Update')
+                      }
+                      className="fa-solid fa-pen-to-square text-primary"
+                    ></i>
+
+                    <i
+                      onClick={() => handleAction(application.id, 'Delete')}
+                      className="fa-solid fa-trash text-danger"
+                    ></i>
+                  </td>
+                )}
               </tr>
             ))}
           </tbody>
