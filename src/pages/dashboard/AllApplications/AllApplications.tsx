@@ -1,25 +1,25 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import Loader from '@/components/reusable/Loader';
-import useAdminProfile from '@/hooks/useAdminProfile';
 import useAllDecision from '@/hooks/useAllDecision';
-import { callApi } from '@/utilities/functions';
-import { Input, message } from 'antd';
+// import useAdminProfile from '@/hooks/useAdminProfile';
+// import { callApi } from '@/utilities/functions';
+// import { Modal } from 'antd';
+import { Input } from 'antd';
 // import { Form, Select } from 'antd';
-import { Modal } from 'antd';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
-const { confirm } = Modal;
+// const { confirm } = Modal;
 // const { Option } = Select;
 
 const AllApplications = () => {
-  const { admin } = useAdminProfile();
+  // const { admin } = useAdminProfile();
   const location = useLocation();
   const path = location.pathname.split('/').pop();
   // console.log(location);
-  const { data, isLoading, refetch } = useAllDecision();
+  const { data, isLoading } = useAllDecision();
   // const [form] = Form.useForm();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   // const handleFinish = (values: any) => {
   //   console.log('Form Data:', values);
   // };
@@ -27,27 +27,27 @@ const AllApplications = () => {
   // const handleReset = () => {
   //   form.resetFields();
   // };
-  const handleAction = (id: number, text: string) => {
-    confirm({
-      title: `Are you sure you want to ${text} this Application?`,
-      content: 'This action cannot be undone.',
-      okText: 'Yes',
-      cancelText: 'No',
-      onOk: async () => {
-        if (text === 'Delete') {
-          const res = await callApi('Delete', `/api/decisions/${id}`);
+  // const handleAction = (id: number, text: string) => {
+  //   confirm({
+  //     title: `Are you sure you want to ${text} this Application?`,
+  //     content: 'This action cannot be undone.',
+  //     okText: 'Yes',
+  //     cancelText: 'No',
+  //     onOk: async () => {
+  //       if (text === 'Delete') {
+  //         const res = await callApi('Delete', `/api/decisions/${id}`);
 
-          if (res.status === 200) {
-            refetch();
-            message.success('Application Deleted Successfully');
-          } else {
-            message.error('Application Deletion Failed');
-          }
-        }
-        navigate(`/dashboard/applications/${id}`);
-      },
-    });
-  };
+  //         if (res.status === 200) {
+  //           refetch();
+  //           message.success('Application Deleted Successfully');
+  //         } else {
+  //           message.error('Application Deletion Failed');
+  //         }
+  //       }
+  //       navigate(`/dashboard/applications/${id}`);
+  //     },
+  //   });
+  // };
   if (isLoading) {
     return <Loader />;
   }
@@ -151,7 +151,7 @@ const AllApplications = () => {
               <th>Status</th>
               <th>Approved Amount</th>
               <th>Feedback</th>
-              {admin?.role == 'admin' && <th>Action</th>}
+              {/* {admin?.role == 'admin' && <th>Action</th>} */}
             </tr>
           </thead>
           <tbody>
@@ -183,7 +183,7 @@ const AllApplications = () => {
                 </td>
                 <td>${application.approved_amount}</td>
                 <td>{application.feedback}</td>
-                {admin?.role == 'admin' && (
+                {/* {admin?.role == 'admin' && (
                   <td
                     style={{ cursor: 'pointer' }}
                     className="d-flex flex-wrap justify-content-around"
@@ -200,7 +200,7 @@ const AllApplications = () => {
                       className="fa-solid fa-trash text-danger"
                     ></i>
                   </td>
-                )}
+                )} */}
               </tr>
             ))}
           </tbody>
