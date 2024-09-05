@@ -26,6 +26,7 @@ import SingleDecision from '@/pages/dashboard/Decision/SingleDecision';
 
 import Dhome from '@/pages/dashboard/Dhome';
 import MyApplicants from '@/pages/dashboard/MyApplicants/MyApplicants';
+import Transaction from '@/pages/dashboard/Transaction/Transaction';
 import UserData from '@/pages/dashboard/UserData';
 import UserTable from '@/pages/dashboard/UserTable';
 import { createBrowserRouter } from 'react-router-dom';
@@ -134,6 +135,10 @@ const router = createBrowserRouter([
       {
         path: 'applications/:id',
         element: <Decision />,
+      },
+      {
+        path: 'transaction/:id',
+        element: <Transaction />,
       },
       {
         path: 'setting/agents',

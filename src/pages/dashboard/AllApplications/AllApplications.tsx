@@ -57,7 +57,7 @@ const AllApplications = () => {
       <div className="align-item-center d-flex flex-wrap gap-3 my-3 justify-content-between">
         <div>
           <h4 className="fs-3 text-capitalize text-info-emphasis">
-            All <span className="text-primary">{path}</span> Application
+            <span className="text-primary">{path}</span> Application
           </h4>
         </div>
         <div>

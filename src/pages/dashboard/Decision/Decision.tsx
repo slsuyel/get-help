@@ -15,7 +15,7 @@ const { Option } = Select;
 import BackBtn from '@/components/reusable/BackBtn';
 import Loader from '@/components/reusable/Loader';
 import useSingleUser from '@/hooks/useSingleUser';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { TDecision } from '@/types';
 import { useState } from 'react';
 import useAdminProfile from '@/hooks/useAdminProfile';
@@ -161,16 +161,31 @@ const Decision = () => {
               <hr />
 
               {donation.status === 'approved' && (
-                <>
-                  <p className="text-body-secondary my-2">
-                    <span className="fs-4 text-success">Approved Amount:</span>{' '}
-                    {donation.approved_amount}
-                  </p>
-                  <p className="text-body-secondary my-2">
-                    <span className="fs-4 text-success">Author Feedback:</span>{' '}
-                    {donation.feedback}
-                  </p>
-                </>
+                <div className=" d-flex justify-content-between flex-wrap gap-2 align-items-center">
+                  <div>
+                    <p className="text-body-secondary my-2">
+                      <span className="fs-4 text-success">
+                        Approved Amount:
+                      </span>{' '}
+                      {donation.approved_amount}
+                    </p>
+                    <p className="text-body-secondary my-2">
+                      <span className="fs-4 text-success">
+                        Author Feedback:
+                      </span>{' '}
+                      {donation.feedback}
+                    </p>
+                  </div>
+
+                  <div>
+                    <Link
+                      className="btn btn-success fs-4 fw-normal p-1 px-3"
+                      to={`/dashboard/transaction/${donation.id}`}
+                    >
+                      Transaction
+                    </Link>
+                  </div>
+                </div>
               )}
 
               {donation.status === 'reject' && (

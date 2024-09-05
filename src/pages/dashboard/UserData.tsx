@@ -44,9 +44,9 @@ const UserData = () => {
             <BackBtn />
             <Link
               to={`/dashboard/applications/${userData.id}`}
-              className="btn btn-primary p-1 px-3 rounded-3 text-white"
+              className="btn btn-primary p-1 px-3 rounded-3 text-white fw-normal"
             >
-              See All Decisions {userData.name}
+              See All Applications {userData.name}
             </Link>
           </div>
 
