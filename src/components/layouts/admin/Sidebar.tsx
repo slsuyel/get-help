@@ -19,7 +19,7 @@ const Sidebar = () => {
     },
     {
       key: '09',
-      title: 'All Applications',
+      title: admin?.role === 'editor' ? 'My Applications' : 'All Applications',
       submenu: [
         { key: '2-1', title: 'All', slug: '/dashboard/application/all' },
         {
@@ -41,36 +41,12 @@ const Sidebar = () => {
     },
     {
       key: '0',
-      title: 'All Applicants',
+      title: admin?.role === 'editor' ? 'My Applicants' : 'All Applicants',
       slug: '/dashboard/all-users',
     },
-    // {
-    //   key: 's0',
-    //   title: 'My Applicants',
-    //   slug: '/dashboard/my-users',
-    // },
-
-    // {
-    //   key: '2',
-    //   title: 'Students',
-    //   submenu: [
-    //     { key: '2-1', title: 'Pending', slug: '/dashboard/Student/pending' },
-    //     { key: '2-2', title: 'Approved', slug: '/dashboard/Student/approved' },
-    //     { key: '2-3', title: 'Rejected', slug: '/dashboard/Student/rejected' },
-    //   ],
-    // },
-    // {
-    //   key: '3',
-    //   title: 'Refuges',
-    //   submenu: [
-    //     { key: '3-1', title: 'Pending', slug: '/dashboard/refugee/pending' },
-    //     { key: '3-2', title: 'Approved', slug: '/dashboard/refugee/approved' },
-    //     { key: '3-3', title: 'Rejected', slug: '/dashboard/refugee/rejected' },
-    //   ],
-    // },
   ];
 
-  if (admin?.role == 'admin') {
+  if (admin?.role === 'super') {
     sidebarItems.push({
       key: '5',
       title: 'Settings',

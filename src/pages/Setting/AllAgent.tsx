@@ -27,7 +27,7 @@ const AllAgent = () => {
             <th>Name</th>
             <th>Location</th>
             <th>Role</th>
-            <th>Email</th> {/* New column for Email */}
+            <th>Email</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -36,9 +36,9 @@ const AllAgent = () => {
             <tr key={agent.id}>
               <td>{agent.id}</td>
               <td>{agent.name}</td>
-              <td>{agent.location ?? 'N/A'}</td> {/* Handle null location */}
+              <td>{agent.location ?? 'N/A'}</td>
               <td>{agent.role}</td>
-              <td>{agent.email}</td> {/* Display email field */}
+              <td>{agent.email}</td>
               <td>
                 <button className="btn btn-danger fs-4 fw-normal p-1 rounded">
                   Delete

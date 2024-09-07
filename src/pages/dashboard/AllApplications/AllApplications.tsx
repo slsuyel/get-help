@@ -146,7 +146,7 @@ const AllApplications = () => {
 
               {/* <th>Name</th> */}
 
-              <th>How Long</th>
+              <th>Duration</th>
               <th>How Much</th>
               <th>Status</th>
               <th>Approved Amount</th>

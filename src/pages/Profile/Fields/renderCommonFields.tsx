@@ -88,13 +88,13 @@ export const renderCommonFields = (user?: TUser | null) => (
     <div className="col-md-4">
       <Form.Item
         initialValue={user?.country_of_birth}
-        label="Country of Birth"
+        label="Country"
         name="country_of_birth"
       >
         <Input
           className="input_bor_edit"
           style={{ height: 43, width: '100%', marginTop: '0' }}
-          placeholder="Enter country of birth"
+          placeholder="Enter Your country"
         />
       </Form.Item>
     </div>

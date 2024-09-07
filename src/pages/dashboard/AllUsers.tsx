@@ -1,99 +1,32 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import useAllUser from '@/hooks/useAllUser';
 import { Input } from 'antd';
 import { Link } from 'react-router-dom';
 import FilterComponent from '@/components/ui/FilterComponent';
-
 import { Spinner } from 'react-bootstrap';
 import { TypeDataForm } from '@/types';
-// import { callApi } from '@/utilities/functions';
-// import useAdminProfile from '@/hooks/useAdminProfile';
 
 const AllUsers = () => {
-  // const { admin, loading } = useAdminProfile();
-  // const navigate = useNavigate();
   const [filters, setFilters] = useState<{ [key: string]: any }>({});
   const { data, isLoading, refetch } = useAllUser(
     filters.category,
-    filters.status,
     filters.religion,
     filters.education,
-    filters.searchText
+    filters.searchText,
+    filters.country
   );
 
-  const handleFilterChange = (newFilters: { [key: string]: any }) => {
-    setFilters(newFilters);
+  useEffect(() => {
     refetch();
+  }, [filters]);
+
+  const handleFilterChange = (newFilters: { [key: string]: any }) => {
+    setFilters(prevFilters => ({
+      ...prevFilters,
+      ...newFilters,
+    }));
   };
-
-  // const handleMenuClick = async (e: any, record: number) => {
-  //   const action = e.key;
-
-  //   if (action == 'Decision') {
-  //     navigate(`/dashboard/decision/${record}`);
-  //     return;
-  //   }
-
-  //   Modal.confirm({
-  //     title: `Confirm ${action}`,
-  //     content: `Are you sure you want to ${action} this user?`,
-  //     async onOk() {
-  //       if (action === 'delete') {
-  //         const res = await callApi(
-  //           'delete',
-  //           `/api/admin/users/delete/${record}`
-  //         );
-  //         if (res.status === 200) {
-  //           refetch();
-  //           message.success('Delete successfully');
-  //         } else message.error('Delete function failed');
-  //       } else {
-  //         const status = action === 'approved' ? 'approved' : 'rejected';
-  //         const res = await callApi('Post', `/api/admin/users/status/update`, {
-  //           id: record,
-  //           status,
-  //         });
-  //         if (res.status === 200) {
-  //           refetch();
-  //           message.success(`${status} successfully`);
-  //         } else message.error(`${status} function failed`);
-  //       }
-  //     },
-  //     onCancel() {
-  //       console.log('Action canceled:', action);
-  //     },
-  //   });
-  // };
-
-  // const renderActions = (record: number) => (
-  //   <Dropdown
-  //     overlay={
-  //       <Menu onClick={e => handleMenuClick(e, record)}>
-  //         {admin?.role == 'admin' ? (
-  //           <>
-  //             <Menu.Item key="delete">Delete</Menu.Item>{' '}
-  //             <Menu.Item key="rejected">Rejected</Menu.Item>
-  //             <Menu.Item key="Decision">Decision</Menu.Item>
-  //           </>
-  //         ) : (
-  //           <>
-  //             {' '}
-  //             <Menu.Item key="approved">Approved</Menu.Item>
-  //             <Menu.Item key="Decision">Decision</Menu.Item>
-  //             <Menu.Item key="rejected">Rejected</Menu.Item>
-  //             <Menu.Item key="delete">Delete</Menu.Item>{' '}
-  //           </>
-  //         )}
-  //       </Menu>
-  //     }
-  //     trigger={['click']}
-  //   >
-  //     <Button>
-  //       Actions <span className="anticon anticon-down"></span>
-  //     </Button>
-  //   </Dropdown>
-  // );
 
   return (
     <div>
@@ -110,7 +43,10 @@ const AllUsers = () => {
               style={{ height: 40, width: '100%' }}
               placeholder="Enter Name or Phone"
               onChange={e =>
-                setFilters({ ...filters, searchText: e.target.value })
+                setFilters(prevFilters => ({
+                  ...prevFilters,
+                  searchText: e.target.value,
+                }))
               }
             />
             <button
@@ -133,28 +69,19 @@ const AllUsers = () => {
               <th>Name</th>
               <th className="d-none d-lg-table-cell text-nowrap">Phone</th>
               <th>Category</th>
-              {/* <th>Status</th> */}
               <th>Religion</th>
               <th className="d-none d-lg-table-cell text-nowrap">Education</th>
               <th className="text-center">Details</th>
-              {/* <th
-                className={`${
-                  admin?.role == 'editor' || admin?.role == 'user'
-                    ? 'd-none'
-                    : ''
-                }`}
-              >
-                Delete
-              </th> */}
             </tr>
           </thead>
           <tbody>
             {isLoading ? (
-              <div className="w-100">
-                <Spinner />
-              </div>
-            ) : (
-              data &&
+              <tr>
+                <td colSpan={7} className="text-center">
+                  <Spinner animation="border" />
+                </td>
+              </tr>
+            ) : data && data.length > 0 ? (
               data.map((user: TypeDataForm) => (
                 <tr key={user.id}>
                   <td>{user.id}</td>
@@ -163,19 +90,6 @@ const AllUsers = () => {
                     {user.phone}
                   </td>
                   <td>{user.category}</td>
-                  {/* <td
-                    className={`${
-                      user.status === 'rejected'
-                        ? 'text-danger'
-                        : user.status === 'approved'
-                        ? 'text-success'
-                        : user.status === 'pending'
-                        ? 'text-warning'
-                        : ''
-                    } text-center `}
-                  >
-                    {user.status}
-                  </td> */}
                   <td>{user.religion}</td>
                   <td className="d-none d-lg-table-cell ">
                     {user.highest_education || user.education_level}
@@ -200,18 +114,14 @@ const AllUsers = () => {
                       <i className="fa-regular fa-rectangle-list"></i>
                     </Link>
                   </td>
-
-                  {/* <td
-                    className={`${
-                      admin?.role == 'editor' || admin?.role == 'user'
-                        ? 'd-none'
-                        : ''
-                    }`}
-                  >
-                    {renderActions(user.id as number)}
-                  </td> */}
                 </tr>
               ))
+            ) : (
+              <tr>
+                <td colSpan={7} className="text-center">
+                  No data available
+                </td>
+              </tr>
             )}
           </tbody>
         </table>

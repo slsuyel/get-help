@@ -7,6 +7,45 @@ interface FilterProps {
   onFilterChange: (filters: { [key: string]: any }) => void;
 }
 
+const categories = [
+  'Student',
+  'Senior',
+  'Disable',
+  'Orphan',
+  'Homeless',
+  'Refugee',
+  'Other',
+];
+
+const religions = [
+  'Islam',
+  'Christianity',
+  'Hinduism',
+  'Buddhism',
+  'Judaism',
+  'Other',
+];
+
+const educations = [
+  'N/A',
+  'Class 1',
+  'Class 2',
+  'Class 3',
+  'Class 4',
+  'Class 5',
+  'Class 6',
+  'Class 7',
+  'Class 8',
+  'Class 9',
+  'Class 10',
+  'SSC',
+  'HSC',
+  'Undergraduate',
+  'Graduate',
+  'Postgraduate',
+  'PhD',
+];
+
 const FilterComponent = ({ onFilterChange }: FilterProps) => {
   const [form] = Form.useForm();
 
@@ -14,6 +53,7 @@ const FilterComponent = ({ onFilterChange }: FilterProps) => {
   const handleFinish = (values: { [key: string]: any }) => {
     onFilterChange(values);
   };
+
   const handleReset = () => {
     form.resetFields();
   };
@@ -28,67 +68,64 @@ const FilterComponent = ({ onFilterChange }: FilterProps) => {
         onFinish={handleFinish}
         className="d-flex flex-wrap gap-2 "
       >
-        <Form.Item className="my-2 " name="category" label="">
+        <Form.Item className="my-2 " name="country">
+          <Select
+            style={{ ...inputWidth, height: 40 }}
+            placeholder="Country"
+            allowClear
+            popupMatchSelectWidth={false}
+          >
+            <Option value="Bangladesh">Bangladesh</Option>
+            <Option value="USA">USA</Option>
+          </Select>
+        </Form.Item>
+
+        <Form.Item className="my-2 " name="category">
           <Select
             style={{ ...inputWidth, height: 40 }}
             placeholder="Category"
             allowClear
             popupMatchSelectWidth={false}
           >
-            <Option value="student">Student</Option>
-            <Option value="senior">Senior</Option>
-            <Option value="disable">Disable</Option>
-            <Option value="orphan">Orphan</Option>
-            <Option value="homeless">Homeless</Option>
-            <Option value="refugee">Refugee</Option>
-            <Option value="other">Other</Option>
+            {categories.map(category => (
+              <Option key={category} value={category.toLowerCase()}>
+                {category}
+              </Option>
+            ))}
           </Select>
         </Form.Item>
 
-        <Form.Item className="my-2 " name="religion" label="">
+        <Form.Item className="my-2 " name="religion">
           <Select
             style={{ ...inputWidth, height: 40 }}
             placeholder="Religion"
             allowClear
             popupMatchSelectWidth={false}
           >
-            <Option value="islam">Islam</Option>
-            <Option value="christianity">Christianity</Option>
-            <Option value="hinduism">Hinduism</Option>
-            <Option value="buddhism">Buddhism</Option>
-            <Option value="judaism">Judaism</Option>
-            <Option value="other">Other</Option>
+            {religions.map(religion => (
+              <Option key={religion} value={religion.toLowerCase()}>
+                {religion}
+              </Option>
+            ))}
           </Select>
         </Form.Item>
 
-        <Form.Item className="my-2 " name="education" label="">
+        <Form.Item className="my-2 " name="education">
           <Select
             placeholder="Education"
             style={{ ...inputWidth, height: 40 }}
             allowClear
             popupMatchSelectWidth={false}
           >
-            <Option value="n/a">N/A</Option>
-            <Option value="class 1">Class 1</Option>
-            <Option value="class 2">Class 2</Option>
-            <Option value="class 3">Class 3</Option>
-            <Option value="class 4">Class 4</Option>
-            <Option value="class 5">Class 5</Option>
-            <Option value="class 6">Class 6</Option>
-            <Option value="class 7">Class 7</Option>
-            <Option value="class 8">Class 8</Option>
-            <Option value="class 9">Class 9</Option>
-            <Option value="class 10">Class 10</Option>
-            <Option value="ssc">SSC</Option>
-            <Option value="hsc">HSC</Option>
-            <Option value="undergraduate">Undergraduate</Option>
-            <Option value="graduate">Graduate</Option>
-            <Option value="postgraduate">Postgraduate</Option>
-            <Option value="phd">PhD</Option>
+            {educations.map(education => (
+              <Option key={education} value={education.toLowerCase()}>
+                {education}
+              </Option>
+            ))}
           </Select>
         </Form.Item>
 
-        <Form.Item className="my-2 ">
+        <Form.Item className="my-2">
           <button
             type="submit"
             className="btn btn-success fw-semibold py-2 rounded-3"
@@ -98,7 +135,7 @@ const FilterComponent = ({ onFilterChange }: FilterProps) => {
           </button>
         </Form.Item>
 
-        <Form.Item className="my-2 ">
+        <Form.Item className="my-2">
           <button
             type="button"
             onClick={handleReset}

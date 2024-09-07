@@ -285,22 +285,44 @@ const Decision = () => {
                 initialValue={currentD?.how_long}
                 className="my-2"
                 name="how_long"
-                label="How Long"
+                label="Duration"
                 rules={[
                   { required: true, message: 'Please enter the duration' },
                 ]}
               >
                 <Input />
               </Form.Item>
-              <Form.Item
-                initialValue={currentD?.how_much}
-                className="my-2"
-                name="how_much"
-                label="How Much"
-                rules={[{ required: true, message: 'Please enter the amount' }]}
-              >
-                <InputNumber style={{ height: 45, width: '100%' }} />
-              </Form.Item>
+
+              <div className="row my-2">
+                <Form.Item
+                  label="Select Currency"
+                  className="col-md-4"
+                  name="currency"
+                  rules={[
+                    { required: true, message: 'Please select a currency!' },
+                  ]}
+                >
+                  <Select
+                    style={{ height: 40, width: '100%' }}
+                    placeholder="Select a currency"
+                  >
+                    <Option value="USD">USD</Option>
+                    <Option value="BDT">BDT</Option>
+                  </Select>
+                </Form.Item>
+
+                <Form.Item
+                  className="col-md-8 "
+                  initialValue={currentD?.how_much}
+                  name="how_much"
+                  label="How Much"
+                  rules={[
+                    { required: true, message: 'Please enter the amount' },
+                  ]}
+                >
+                  <InputNumber style={{ height: 45, width: '100%' }} />
+                </Form.Item>
+              </div>
               <Form.Item
                 initialValue={currentD?.note}
                 className="my-2"
