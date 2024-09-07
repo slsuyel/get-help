@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { callApi } from '@/utilities/functions';
 import { TAgent } from '@/types';
+import { Link } from 'react-router-dom';
 
 const AllAgent = () => {
   const [agents, setAgents] = useState<TAgent[]>([]);
@@ -40,9 +41,9 @@ const AllAgent = () => {
               <td>{agent.role}</td>
               <td>{agent.email}</td>
               <td>
-                <button className="btn btn-danger fs-4 fw-normal p-1 rounded">
-                  Delete
-                </button>
+                <Link to={`/dashboard/data/creator/${agent.id}`}>
+                  View Data
+                </Link>
               </td>
             </tr>
           ))}

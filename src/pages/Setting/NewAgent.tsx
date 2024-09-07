@@ -36,7 +36,7 @@ const NewAgent = () => {
   const handleSubmit = async () => {
     setLoading(true);
     try {
-      const res = await callApi('post', '/api/admin/register', formData);
+      const res = await callApi('post', '/api/admin/reg', formData);
 
       if (res.status === 201) {
         message.success('Agent Created Successfully');

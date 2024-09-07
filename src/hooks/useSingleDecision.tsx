@@ -1,9 +1,9 @@
-import { TDecision } from '@/types';
+import { TSingleDecision } from '@/types';
 import { callApi } from '@/utilities/functions';
 import { useState, useEffect, useCallback } from 'react';
 
 const useSingleDecision = (id: number) => {
-  const [decision, setDecision] = useState<TDecision | null>(null);
+  const [decision, setDecision] = useState<TSingleDecision>();
   const [loading, setLoading] = useState(true);
 
   const fetchData = useCallback(async () => {

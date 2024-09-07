@@ -11,7 +11,9 @@ import AdminCheck from '@/hooks/AdminCheck';
 import NewHome from '@/pages/Home/NewHome';
 import EditProfile from '@/pages/Profile/EditProfile';
 import AllAgent from '@/pages/Setting/AllAgent';
+import CreatorsData from '@/pages/Setting/CreatorsData';
 import NewAgent from '@/pages/Setting/NewAgent';
+
 // import Student from '@/pages/Student/Student';
 // import PhoneVerify from '@/pages/Verify/PhoneVerify';
 import AdminLogin from '@/pages/auth/AdminLogin';
@@ -147,6 +149,10 @@ const router = createBrowserRouter([
       {
         path: 'setting/new-agent',
         element: <NewAgent />,
+      },
+      {
+        path: 'data/creator/1',
+        element: <CreatorsData />,
       },
     ],
   },

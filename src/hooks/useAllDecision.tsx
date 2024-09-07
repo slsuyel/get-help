@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { TDecision } from '@/types';
+import { TUserDecision } from '@/types';
 import { callApi } from '@/utilities/functions';
 import { useEffect, useState, useCallback } from 'react';
 import { useLocation } from 'react-router-dom';
 
 const useAllDecision = () => {
   const location = useLocation();
-  const [data, setData] = useState<TDecision[]>([]);
+  const [data, setData] = useState<TUserDecision[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const determineEndpoint = (pathname: string): string => {

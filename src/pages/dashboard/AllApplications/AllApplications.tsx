@@ -18,6 +18,7 @@ const AllApplications = () => {
   const path = location.pathname.split('/').pop();
   // console.log(location);
   const { data, isLoading } = useAllDecision();
+
   // const [form] = Form.useForm();
   // const navigate = useNavigate();
   // const handleFinish = (values: any) => {
@@ -166,8 +167,16 @@ const AllApplications = () => {
                 <td>{application.date}</td>
                 {/* <td>{application.user.name}</td> */}
 
-                <td>{application.how_long}</td>
-                <td>${application.how_much}</td>
+                <td>
+                  {' '}
+                  {application.how_long.start_date}
+                  To
+                  {application.how_long.end_date}
+                </td>
+                <td>
+                  {application.currency} {}
+                  {application.how_much}
+                </td>
                 <td
                   className={`text-capitalize ${
                     application.status === 'reject'
@@ -181,7 +190,9 @@ const AllApplications = () => {
                 >
                   {application.status}
                 </td>
-                <td>${application.approved_amount}</td>
+                <td>
+                  {application.currency} {} {application.approved_amount}
+                </td>
                 <td>{application.feedback}</td>
                 {/* {admin?.role == 'admin' && (
                   <td
