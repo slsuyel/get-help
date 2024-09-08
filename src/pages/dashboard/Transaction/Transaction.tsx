@@ -1,28 +1,49 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useParams } from 'react-router-dom';
-import { Form, Input, Select, Button, Modal } from 'antd';
+import { Form, Input, Select, Button, Modal, message } from 'antd';
 import BackBtn from '@/components/reusable/BackBtn';
 import { useState } from 'react';
 import useAdminProfile from '@/hooks/useAdminProfile';
 import Loader from '@/components/reusable/Loader';
+import { callApi } from '@/utilities/functions';
+
+import useSingleDecision from '@/hooks/useSingleDecision';
 
 const Transaction = () => {
   const { id } = useParams();
-  console.log(id);
   const { admin, loading } = useAdminProfile();
+  const { decision, loading: dload, refetch } = useSingleDecision(Number(id));
   const { Option } = Select;
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [formValues, setFormValues] = useState(null);
-
+  const [formValues, setFormValues] = useState({});
+  const [loader, setLoader] = useState(false);
   const showModal = (values: any) => {
     setFormValues(values);
     setIsModalVisible(true);
   };
 
-  const handleOk = () => {
-    console.log('Confirmed Payment:', formValues);
+  const handleOk = async () => {
     setIsModalVisible(false);
-    // Handle payment logic here
+    setLoader(true);
+    // Format the date as YYYY-MM-DD HH:MM:SS
+    const today = new Date().toISOString().slice(0, 19).replace('T', ' ');
+    try {
+      const res = await callApi('POST', '/api/transactions', {
+        decision_id: id,
+        datetime: today,
+        ...formValues,
+      });
+
+      if (res.status === 201) {
+        message.success('Transaction created successfully');
+        setLoader(false);
+        refetch();
+      }
+    } catch (error) {
+      message.error('Transaction created successfully');
+      console.error('API Error:', error);
+      setLoader(false);
+    }
   };
 
   const handleCancel = () => {
@@ -30,7 +51,7 @@ const Transaction = () => {
   };
 
   const handleSubmit = (values: any) => {
-    showModal(values); // Show the modal when form is submitted
+    showModal(values);
   };
 
   const transactionData = {
@@ -80,13 +101,15 @@ const Transaction = () => {
     ],
   };
 
-  const totalCredited = transactionData.transaction_history.reduce(
-    (sum, tx) => sum + tx.amount,
+  const totalCredited = decision?.transactions.reduce(
+    (sum, tx) => sum + Number(tx.amount),
     0
   );
-  if (loading) {
+
+  if (loading || dload) {
     return <Loader />;
   }
+
   return (
     <div className="mt-4">
       <BackBtn />
@@ -97,8 +120,7 @@ const Transaction = () => {
             <div className="card-header">Applicant Information</div>
             <div className="card-body">
               <p>
-                <strong>Applicant Name:</strong>{' '}
-                {transactionData.applicant_name}
+                <strong>Applicant Name:</strong> {decision?.user.name}
               </p>
               <p>
                 <strong>Application Created Date:</strong>{' '}
@@ -106,28 +128,29 @@ const Transaction = () => {
               </p>
               <p>
                 <strong>Application Creator Name:</strong>{' '}
-                {transactionData.creator_name}
+                {decision?.user.creator}
               </p>
               <p>
-                <strong>Address:</strong> {transactionData.address}
+                <strong>Address:</strong> : {decision?.user.current_address}
               </p>
               <p>
-                <strong>Approved Amount:</strong> $
-                {transactionData.approved_amount}
+                <strong>Approved Amount:</strong> {decision?.currency}{' '}
+                {decision?.approved_amount}
               </p>
               <p>
-                <strong>Total Credited Amount:</strong> ${totalCredited}
+                <strong>Total Credited Amount:</strong> {decision?.currency}{' '}
+                {totalCredited}
               </p>
             </div>
           </div>
         </div>
-
-        {admin?.role == 'admin' && (
-          <div className="col-md-6 ">
-            <div className="card px-3 py-2 ">
-              <div className="card-header my-3">Make Payment</div>
+        {(admin?.role === 'admin' || admin?.role === 'super') && (
+          <div className="col-md-6">
+            <div className="card px-3">
+              <div className="card-header my-2 mb-3">Make Payment</div>
               <Form layout="vertical" onFinish={handleSubmit}>
                 <div className="row mx-auto mt-">
+                  {/* Currency */}
                   <div className="col-md-6">
                     <Form.Item
                       name="currency"
@@ -153,7 +176,10 @@ const Transaction = () => {
                     <Form.Item
                       name="amount"
                       rules={[
-                        { required: true, message: 'Please enter an amount!' },
+                        {
+                          required: true,
+                          message: 'Please enter an amount!',
+                        },
                       ]}
                     >
                       <Input
@@ -167,7 +193,7 @@ const Transaction = () => {
                   {/* Payment Method */}
                   <div className="col-md-6">
                     <Form.Item
-                      name="paymentBy"
+                      name="payment_by"
                       rules={[
                         {
                           required: true,
@@ -185,10 +211,20 @@ const Transaction = () => {
                       </Select>
                     </Form.Item>
                   </div>
-
                   <div className="col-md-6">
-                    <Form.Item label="">
+                    <Form.Item name="note">
+                      <Input
+                        style={{ height: 40, width: '100%' }}
+                        type="text"
+                        placeholder="Enter any note!"
+                      />
+                    </Form.Item>
+                  </div>
+                  {/* Submit Button */}
+                  <div className="col-md-4">
+                    <Form.Item>
                       <Button
+                        loading={loader}
                         type="primary"
                         htmlType="submit"
                         style={{ width: '100%', height: 40 }}
@@ -213,17 +249,17 @@ const Transaction = () => {
                 <th>Date</th>
                 <th>Payment By</th>
                 <th>Amount</th>
-                <th>Transaction id</th>
+                <th>Note</th>
               </tr>
             </thead>
             <tbody>
-              {transactionData.transaction_history.map((transaction, index) => (
+              {decision?.transactions.map((transaction, index) => (
                 <tr key={index}>
                   <td>{index + 1}</td>
-                  <td>{transaction.date}</td>
+                  <td>{transaction.datetime}</td>
                   <td>{transaction.payment_by}</td>
                   <td>${transaction.amount}</td>
-                  <td>{transaction.trans_id}</td>
+                  <td>{transaction.note}</td>
                 </tr>
               ))}
             </tbody>
@@ -233,7 +269,7 @@ const Transaction = () => {
 
       <Modal
         title="Confirm Payment"
-        visible={isModalVisible}
+        open={isModalVisible}
         onOk={handleOk}
         onCancel={handleCancel}
         okText="Confirm"

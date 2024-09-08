@@ -201,6 +201,18 @@ export interface TDonationRequest {
   why: string;
 }
 
+export interface TTransaction {
+  id: number;
+  decision_id: number;
+  currency: string;
+  amount: string;
+  payment_by: string;
+  datetime: string;
+  note: string;
+  created_at: Date;
+  updated_at: Date;
+}
+
 export interface TSingleDecision {
   id: number;
   user_id: number;
@@ -219,6 +231,7 @@ export interface TSingleDecision {
   created_at: Date;
   updated_at: Date;
   user: TUser;
+  transactions: TTransaction[];
 }
 
 export interface HowLong {

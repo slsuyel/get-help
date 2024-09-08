@@ -139,7 +139,7 @@ const router = createBrowserRouter([
         element: <Decision />,
       },
       {
-        path: 'transaction/:id',
+        path: 'transaction/:user/:id',
         element: <Transaction />,
       },
       {
@@ -151,7 +151,7 @@ const router = createBrowserRouter([
         element: <NewAgent />,
       },
       {
-        path: 'data/creator/1',
+        path: 'data/creator/:id',
         element: <CreatorsData />,
       },
     ],

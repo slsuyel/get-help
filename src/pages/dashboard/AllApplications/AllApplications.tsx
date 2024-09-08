@@ -58,7 +58,7 @@ const AllApplications = () => {
       <div className="align-item-center d-flex flex-wrap gap-3 my-3 justify-content-between">
         <div>
           <h4 className="fs-3 text-capitalize text-info-emphasis">
-            <span className="text-primary">{path}</span> Application
+            <span className="text-primary">{path ? path : ''}</span> Application
           </h4>
         </div>
         <div>
@@ -193,7 +193,7 @@ const AllApplications = () => {
                 <td>
                   {application.currency} {} {application.approved_amount}
                 </td>
-                <td>{application.feedback}</td>
+                <td>{application.feedback?.slice(0, 25)}</td>
                 {/* {admin?.role == 'admin' && (
                   <td
                     style={{ cursor: 'pointer' }}

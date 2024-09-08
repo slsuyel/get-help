@@ -74,50 +74,49 @@ const CreateDecision = ({
         <div className="mx-auto mt-5">
           <div className="p-4">
             <Form form={form} layout="vertical" onFinish={handleFormSubmit}>
-              {admin?.role == 'admin' ||
-                (admin?.role == 'super' && (
-                  <>
-                    <Form.Item
-                      initialValue={currentD?.status}
-                      label="Status"
-                      name="status"
-                      className="my-2"
+              {(admin?.role === 'admin' || admin?.role === 'super') && (
+                <>
+                  <Form.Item
+                    initialValue={currentD?.status}
+                    label="Status"
+                    name="status"
+                    className="my-2"
+                  >
+                    <Select
+                      style={{ height: 45, width: '100%' }}
+                      placeholder="Status"
                     >
-                      <Select
-                        style={{ height: 45, width: '100%' }}
-                        placeholder="Status"
-                      >
-                        <Option value="pending">Pending</Option>
-                        <Option value="approved">Approved</Option>
-                        <Option value="reject">Rejected</Option>
-                      </Select>
-                    </Form.Item>
+                      <Option value="pending">Pending</Option>
+                      <Option value="approved">Approved</Option>
+                      <Option value="reject">Rejected</Option>
+                    </Select>
+                  </Form.Item>
 
-                    <Form.Item
-                      initialValue={
-                        currentD?.how_much || currentD?.approved_amount
-                      }
-                      className="my-2"
-                      name="approved_amount"
-                      label="Approved Amount"
-                    >
-                      <InputNumber style={{ height: 45, width: '100%' }} />
-                    </Form.Item>
+                  <Form.Item
+                    initialValue={
+                      currentD?.how_much || currentD?.approved_amount
+                    }
+                    className="my-2"
+                    name="approved_amount"
+                    label="Approved Amount"
+                  >
+                    <InputNumber style={{ height: 45, width: '100%' }} />
+                  </Form.Item>
 
-                    <Form.Item
-                      initialValue={currentD?.feedback}
-                      className="my-2"
-                      name="feedback"
-                      label="Admin Feedback"
-                    >
-                      <Input.TextArea rows={2} />
-                    </Form.Item>
-                  </>
-                ))}
+                  <Form.Item
+                    initialValue={currentD?.feedback}
+                    className="my-2"
+                    name="feedback"
+                    label="Admin Feedback"
+                  >
+                    <Input.TextArea rows={2} />
+                  </Form.Item>
+                </>
+              )}
 
               <Form.Item
                 initialValue={currentD?.title}
-                className="my-2"
+                className="my-2 mt-3"
                 name="title"
                 label="Title"
                 rules={[{ required: true, message: 'Please enter the title' }]}
@@ -136,27 +135,19 @@ const CreateDecision = ({
                 <Input.TextArea rows={3} />
               </Form.Item>
 
-              <Form.Item
-                label="Duration"
-                name="duration"
-                rules={[
-                  { required: true, message: 'Please select the duration!' },
-                ]}
-              >
-                <RangePicker style={{ width: '100%' }} />
+              <Form.Item label="Duration" name="duration">
+                <RangePicker style={{ height: 45, width: '100%' }} />
               </Form.Item>
 
               <div className="row my-2">
                 <Form.Item
+                  initialValue={currentD?.currency}
                   label="Select Currency"
                   className="col-md-4"
                   name="currency"
-                  rules={[
-                    { required: true, message: 'Please select a currency!' },
-                  ]}
                 >
                   <Select
-                    style={{ height: 40, width: '100%' }}
+                    style={{ height: 45, width: '100%' }}
                     placeholder="Select a currency"
                   >
                     <Option value="USD">USD</Option>

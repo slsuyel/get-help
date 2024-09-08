@@ -38,7 +38,7 @@ const SingleDecision = () => {
       <div className="col-md-6">
         <Card
           bordered={true}
-          className=" rounded-lg"
+          className=" rounded-lg fs-3"
           style={{ width: '100%' }}
           title={
             <h3 className="text-xl font-semibold text-red-600">
@@ -47,28 +47,32 @@ const SingleDecision = () => {
           }
         >
           <p className="text-gray-700 my-2">
-            <span className="text-lg font-semibold text-black">Why:</span>{' '}
+            <span className="text-lg font-semibold text-secondary text-secondary">
+              Reason:
+            </span>{' '}
             {donation?.why || 'N/A'}
           </p>
           <p className="text-gray-700 my-2">
-            <span className="text-lg font-semibold text-black">Duration:</span>{' '}
+            <span className="text-lg font-semibold text-secondary">
+              Duration:
+            </span>{' '}
             {donation?.how_long.start_date}
             {donation?.how_long.end_date}
           </p>
           <p className="text-gray-700 my-2">
-            <span className="text-lg font-semibold text-black">
+            <span className="text-lg font-semibold text-secondary">
               Amount Needed:
             </span>{' '}
             {donation.currency} {donation?.how_much || 'N/A'}
           </p>
           <p className="text-gray-700 my-2">
-            <span className="text-lg font-semibold text-black">
+            <span className="text-lg font-semibold text-secondary">
               Applied Date:
             </span>{' '}
             20/08/2024
           </p>
           <p className="text-gray-700 my-2">
-            <span className="text-lg font-semibold text-black">Note:</span>{' '}
+            <span className="text-lg font-semibold text-secondary">Note:</span>{' '}
             {donation?.note || 'N/A'}
           </p>
           <hr className="my-4" />
@@ -76,13 +80,13 @@ const SingleDecision = () => {
           {donation?.status === 'approved' && (
             <>
               <p className="text-gray-700 my-2">
-                <span className="text-lg font-semibold text-green-600">
+                <span className="text-lg font-semibold text-success">
                   Approved Amount:
                 </span>{' '}
-                ${donation?.approved_amount || 'N/A'}
+                {donation.currency} {donation?.approved_amount || 'N/A'}
               </p>
               <p className="text-gray-700 my-2">
-                <span className="text-lg font-semibold text-green-600">
+                <span className="text-lg font-semibold text-success">
                   Author Feedback:
                 </span>{' '}
                 {donation?.feedback || 'N/A'}
@@ -134,7 +138,7 @@ const SingleDecision = () => {
                 </tr>
                 <tr className="border-b">
                   <th className="py-2 pr-4">Permanent Address:</th>
-                  <td className="py-2">{user?.permanent_address || 'N/A'}</td>
+                  <td className="py-2">{user?.current_address || 'N/A'}</td>
                 </tr>
                 <tr className="border-b">
                   <th className="py-2 pr-4">Highest Education:</th>
@@ -142,7 +146,7 @@ const SingleDecision = () => {
                 </tr>
                 <tr>
                   <th className="py-2 pr-4">Total Applications:</th>
-                  <td className="py-2">{user?.decisions?.length || 0}</td>
+                  <td className="py-2">{user?.decisions?.length}</td>
                 </tr>
               </tbody>
             </table>

@@ -83,7 +83,7 @@ const Decision = () => {
                 <div className="align-items-baseline d-flex flex-wrap justify-content-between">
                   <h1>{donation.title}</h1>
 
-                  {(admin?.role == 'admin' || admin?.role == 'super') && (
+                  {(admin?.role === 'admin' || admin?.role === 'super') && (
                     <button
                       disabled={donation.status === 'approved'}
                       onClick={() => handleUpdate(donation)}
@@ -140,7 +140,7 @@ const Decision = () => {
                   <div>
                     <Link
                       className="btn btn-success fs-4 fw-normal p-1 px-3"
-                      to={`/dashboard/transaction/${donation.id}`}
+                      to={`/dashboard/transaction/${user.id}/${donation.id}`}
                     >
                       Transaction
                     </Link>
