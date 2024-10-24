@@ -94,6 +94,20 @@
   display: none;
 }
 
+.primary-btn {
+  background-color: #E89E1E;
+  color: white;
+  text-align: center;
+  padding: 10px 16px;
+  font-size: 14px;
+  text-transform: capitalize;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.primary-btn:hover {
+  background-color: #111827;
+}
+
 /* Logo */
 
 .header-fixed .header-limiter h1 {

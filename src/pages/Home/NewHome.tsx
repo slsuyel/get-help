@@ -7,9 +7,9 @@ const NewHome = () => {
   return (
     <div>
       <div>
-        <section className="hero pt-15">
-          <div className="container">
-            <div className="section-content">
+        <section className="hero pt-5 ">
+          <div className="container pt-5 mt-md-5">
+            <div className="section-content mt-md-5">
               <div className="hero-text">
                 <h1 className="hero-title">
                   Empower. Support. Thrive. Connect.

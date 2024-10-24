@@ -82,21 +82,20 @@ const Header = () => {
       <Navbar
         expand="lg"
         fixed={isFixed ? 'top' : undefined}
-        className={`border-bottom p-0 py-3 bg-white ${
-          isFixed ? 'header-bg-fix' : ''
-        } ${isMobile ? 'd-none' : 'd-block'} text-uppercase font_amazon`}
+        className={`border-bottom py-3 bg-white ${isFixed ? 'header-bg-fix' : ''
+          } ${isMobile ? 'd-none' : 'd-block'} text-uppercase font_amazon`}
       >
         <Container>
           <Navbar.Brand
             href="/"
-            className="align-items-center d-flex gap-3 navbar-brand"
+            className="align-items-center d-flex gap-2 gap-md-3 navbar-brand"
           >
             <img src={logo} alt="Logo" width={70} />
-            <div>
-              <h2 className="fs-1 fw-bold" style={{ color: '#f89509' }}>
+            <div className='d-flex flex-column justify-content-center'>
+              <h2 className="fs-2 fw-bold mt-1" style={{ color: '#E89E1E' }}>
                 Mustafiz Foundation Inc.
               </h2>
-              <h5>Frontiers for Humanity</h5>
+              <p style={{ color: '#ED0012', marginTop: '-2px' }}>Frontiers for Humanity</p>
             </div>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -108,21 +107,14 @@ const Header = () => {
               {user ? 'Apply from profile' : 'Need Help'}
             </h4>
             {menuItems.map(item => (
-              <NavLink key={item.id} to={item.link} className="nav-link fs-1">
+              <NavLink key={item.id} to={item.link} className="nav-link fs-3">
                 {item.label}
               </NavLink>
             ))}
-            {/* <Button
-              onClick={handleNotice}
-              className="shadow-none text-primary bg-transparent"
-              type="primary"
-              icon={<SoundOutlined className="fs-1" />}
-              style={{ fontSize: '24px' }}
-            ></Button> */}
             <NavLink
               target="_blank"
-              to={'https://mustafiz.org/donation/'}
-              className="btn btn-get-started p-2 px-3 rounded"
+              to={'https://mustafiz.org/donate/'}
+              className="primary-btn rounded"
             >
               Donate here
             </NavLink>
@@ -132,17 +124,17 @@ const Header = () => {
 
       {isMobile && (
         <>
-          <div className="align-items-center d-flex justify-content-between p-2 ">
+          <div className="align-items-center d-flex justify-content-between px-2 py-3 ">
             <Navbar.Brand
               href="/"
               className="align-items-center d-flex gap-3 navbar-brand"
             >
               <img src={logo} alt="Logo" width={70} />
               <div>
-                <h2 className="fs-1 fw-bold" style={{ color: '#f89509' }}>
+                <h2 className="fs-2 fw-bold" style={{ color: '#f89509' }}>
                   Mustafiz Foundation Inc.
                 </h2>
-                <h5>Frontiers for Humanity</h5>
+                <h5 style={{ color: '#ED0012', marginTop: '-2px' }}>Frontiers for Humanity</h5>
               </div>
             </Navbar.Brand>
 
@@ -156,7 +148,6 @@ const Header = () => {
             </div>
           </div>
           <Drawer
-            style={{ backgroundColor: '#be93b6' }}
             placement="left"
             onClose={onClose}
             open={MobileMenu}
