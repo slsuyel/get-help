@@ -1,12 +1,74 @@
-@import url('https://fonts.cdnfonts.com/css/amazon-ember');
-
-* {
-  margin: 0;
-  font-family: 'Amazon Ember';
+/* Regular (normal weight and normal style) */
+@font-face {
+  font-family: "Helvetica";
+  src: local("Helvetica"),
+    url('/fonts/helvetica/Helvetica-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
 }
 
+/* Bold (bold weight and normal style) */
+@font-face {
+  font-family: "Helvetica";
+  src: local("Helvetica"),
+    url('/fonts/helvetica/Helvetica-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+/* Italic (normal weight and italic style) */
+@font-face {
+  font-family: "Helvetica";
+  src: local("Helvetica"),
+    url('/fonts/helvetica/Helvetica-Italic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+}
+
+/* Bold Italic (bold weight and italic style) */
+@font-face {
+  font-family: "Helvetica";
+  src: local("Helvetica"),
+    url('/fonts/helvetica/Helvetica-BoldItalic.ttf') format('truetype');
+  font-weight: 700;
+  font-style: italic;
+}
+
+/* Light (light weight and normal style) */
+@font-face {
+  font-family: "Helvetica";
+  src: local("Helvetica"),
+    url('/fonts/helvetica/Helvetica-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+/* Light Italic (light weight and italic style) */
+@font-face {
+  font-family: "Helvetica";
+  src: local("Helvetica"),
+    url('/fonts/helvetica/Helvetica-LightItalic.ttf') format('truetype');
+  font-weight: 300;
+  font-style: italic;
+}
+
+/* Apply the font globally */
+@layer base {
+  :root {
+    --radius: 0.5rem;
+    font-family: "Helvetica";
+  }
+}
+
+/* Remove font-family: 'Amazon Ember' from the global reset */
+* {
+  margin: 0;
+  font-family: "Helvetica";
+}
+
+/* Apply Amazon Ember only to elements with the class .font_amazon */
 .font_amazon {
-  font-family: 'Amazon Ember';
+  font-family: "Helvetica";
 }
 
 .header-fixed {
@@ -113,12 +175,10 @@ body.fixed .header-fixed .header-limiter nav {
   top: 50px;
   left: 100px;
   font-size: 37px;
-  background: linear-gradient(
-    160deg,
-    rgba(0, 104, 154, 1) 0%,
-    rgba(34, 134, 185, 1) 70%,
-    rgba(93, 171, 213, 1) 100%
-  );
+  background: linear-gradient(160deg,
+      rgba(0, 104, 154, 1) 0%,
+      rgba(34, 134, 185, 1) 70%,
+      rgba(93, 171, 213, 1) 100%);
   padding: 22px 30px;
   color: white;
 }
@@ -547,9 +607,11 @@ input[type='file'] {
   font-weight: 400;
   background: #0e3fad;
 }
+
 .primary_btn:hover {
   background-color: #0e3eadd2;
 }
+
 student-profile .card {
   border-radius: 10px;
 }
@@ -579,6 +641,7 @@ student-profile .card {
   padding: 5px 10px;
   color: #000;
 }
+
 a.nav-link.fs-1.active {
   color: #0032ab;
   border-bottom: 2px solid #fed100;
@@ -588,15 +651,19 @@ a.nav-link.fs-1.active {
   border-top: 4px solid #ddd;
   border-bottom: 2px solid #ddd;
 }
+
 .notice {
   border-top: 1px rgb(206, 232, 244) solid;
 }
+
 .notice:nth-child(odd) {
   background-color: rgb(238, 248, 253);
 }
+
 .notice-content {
   padding: 8px 10px;
 }
+
 .notice-content p {
   margin-bottom: 5px;
 }
@@ -615,16 +682,19 @@ a.nav-link.fs-1.active {
   from {
     width: 0;
   }
+
   to {
     width: 10ch;
   }
 }
 
 @keyframes blink-caret {
+
   from,
   to {
     border-color: transparent;
   }
+
   50% {
     border-color: black;
   }
@@ -648,6 +718,7 @@ a.nav-link.fs-1.active {
     opacity: 0;
     transform: translateY(-20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -675,14 +746,17 @@ openbtn
   left: 14px;
   height: 3px;
   transition: all 0.4s;
+
   &:nth-of-type(1) {
     top: 15px;
     width: 45%;
   }
+
   &:nth-of-type(2) {
     top: 23px;
     width: 35%;
   }
+
   &:nth-of-type(3) {
     top: 31px;
     width: 20%;
@@ -696,9 +770,11 @@ openbtn
     left: 14px;
     transform: translateY(6px) rotate(-135deg);
   }
+
   &:nth-of-type(2) {
     opacity: 0;
   }
+
   &:nth-of-type(3) {
     width: 45%;
     top: 30px;
@@ -708,7 +784,7 @@ openbtn
 }
 
 .edit_pro {
-  .ant-form-item-label > label {
+  .ant-form-item-label>label {
     height: auto;
     font-size: 17px;
     color: #012b95e3;
